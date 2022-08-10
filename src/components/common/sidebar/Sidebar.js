@@ -1,3 +1,7 @@
+// import React from 'react';
+// import './Sidebar.css';
+// import { Link } from 'react-router-dom';
+// import {AiFillAliwangwang} from 'react-icons/ai';
 import React, { useState } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
@@ -28,7 +32,7 @@ const Sidebar = () => {
         </h1>
         <div className="userinfo">
           <h3>OOO님(작업)</h3>
-          <Link to="" className="bR8 primary">
+          <Link to="/" className="bR8 primary">
             마이페이지
           </Link>
         </div>
@@ -44,7 +48,7 @@ const Sidebar = () => {
               </Link>
               <ul className="depth2">
                 <li>
-                  <Link to="/notice">
+                  <Link to="/noticeList">
                     <IoIosArrowForward className="arrow" />
                     <p>공지사항 목록</p>
                   </Link>

@@ -1,7 +1,7 @@
 // 모듈 불러오기
-import React from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // SampleText.js에서 text를 받아와 toast창에 출력
 const Toastify = ({ text }) => {
@@ -13,7 +13,7 @@ const Toastify = ({ text }) => {
       // 2초 후 toast off
       autoClose: 2000,
       // 진행 시간 바 숨김
-      hideProgressBar: true,
+      hideProgressBar: true
     });
   };
 

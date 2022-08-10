@@ -1,16 +1,16 @@
-.main {
-  border-bottom: 1px solid black;
-  /* border-bottom: 완성 후 제거할 것 */
+.main{
+    border-bottom: 1px solid black;
+    /* border-bottom: 완성 후 제거할 것 */
 }
-.mainTop {
-  height: 180px;
-  padding: 45px 30px;
+.mainTop{
+    height:180px;
+    padding:45px 30px;
 }
-.mainTop > h2 {
-  font-size: 25px;
-  font-weight: 700;
+.mainTop > h2{
+    font-size: 25px;
+    font-weight: 700;
 }
-.mainTop > p {
-  margin-top: 10px;
-  font-size: 14px;
+.mainTop > p{
+    margin-top:10px;
+    font-size: 14px;
 }
