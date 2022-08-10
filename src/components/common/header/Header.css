@@ -1,0 +1,18 @@
+.header{margin-left:30%;}
+.main{background-color: rgba(150, 150, 150, 0.8);}
+.mainTop{
+    background-color:blue;
+    height:30%;
+    padding:3%;
+}
+.mainTop > h2{
+    background-color:gray;
+    width:250px;
+    height:100px;
+}
+.mainTop > p{
+    width:250px;
+    height:30px;
+    background-color:gray;
+    margin-top:10px;
+}
