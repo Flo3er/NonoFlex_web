@@ -1,3 +1,79 @@
-*{margin:0; padding:0;}
-ul{list-style:none;}
-a{color:inherit; text-decoration: none;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+input:focus {
+  outline: none;
+}
+
+/* 공통 클래스 작업 */
+.mL10 {
+  margin-left: 10px;
+}
+.bR8 {
+  border-radius: 8px;
+}
+
+.texthint {
+  color: #7a7a7d;
+}
+.primary {
+  color: #1f6de2;
+}
+.primaryDark {
+  color: #0043af;
+}
+.secondary {
+  color: #e2f1ff;
+}
+.back-primary {
+  background-color: #1f6de2;
+}
+.back-secondary {
+  background-color: #e2f1ff;
+}
+
+.row {
+  margin-left: 260px;
+}
+
+.fs14 {
+  font-size: 14px;
+}
+.fs10 {
+  font-size: 10px;
+}
+
+.btn-primary {
+  border: 5px solid #1f6de2;
+}
+.btnadd {
+  background-image: url("./assets/image/add.png");
+  background-size: cover;
+  width: 13.5px;
+  height: 13.5px;
+}
+.btnList {
+  background-image: url("./assets/image/list.png");
+  background-size: cover;
+  width: 17.5px;
+  height: 9.65px;
+  margin-right: 10px;
+}
+
+/* @media screen and (max-width:950px){
+    .row{margin-left:200px;}
+} */

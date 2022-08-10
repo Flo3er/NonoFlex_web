@@ -1,18 +1,16 @@
-.header{margin-left:30%;}
-.main{background-color: rgba(150, 150, 150, 0.8);}
-.mainTop{
-    background-color:blue;
-    height:30%;
-    padding:3%;
+.main {
+  border-bottom: 1px solid black;
+  /* border-bottom: 완성 후 제거할 것 */
 }
-.mainTop > h2{
-    background-color:gray;
-    width:250px;
-    height:100px;
+.mainTop {
+  height: 180px;
+  padding: 45px 30px;
 }
-.mainTop > p{
-    width:250px;
-    height:30px;
-    background-color:gray;
-    margin-top:10px;
+.mainTop > h2 {
+  font-size: 25px;
+  font-weight: 700;
+}
+.mainTop > p {
+  margin-top: 10px;
+  font-size: 14px;
 }

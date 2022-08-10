@@ -1,41 +1,41 @@
-.bus{margin-left:30%;}
+.bus {
+  margin-left: 30%;
+}
 
-h1{
-    color: #464646;
-    font-family: Georgia, "Times New Roman", serif;
+h1 {
+  color: #464646;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 table {
-    width: 100%;
-    text-align: center;
-    border-top: 3px solid #369;
-    border-collapse: collapse;
-    /* border-radius: 16px; */
-    /* box-shadow: inset 0 0 8px; */
-    /* background-color: #ffebb5; */
+  width: 100%;
+  text-align: center;
+  border-top: 3px solid #369;
+  border-collapse: collapse;
 }
 
-th{
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    padding: 15px;
-    background-color: #efefef;
-    vertical-align: top;
+th {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  padding: 15px;
+  background-color: #efefef;
+  vertical-align: top;
 }
 
-td{
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-collapse: collapse;
-    padding: 15px;
-    text-align: left;
-    vertical-align: top;
+td {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-collapse: collapse;
+  padding: 15px;
+  text-align: left;
+  vertical-align: top;
 }
 
-th:first-child, td:first-child {
-    border-left: none;
+th:first-child,
+td:first-child {
+  border-left: none;
 }
 
-.App{
-    margin: 30px 150px 30px 150px;
+.App {
+  margin: 30px 150px 30px 150px;
 }

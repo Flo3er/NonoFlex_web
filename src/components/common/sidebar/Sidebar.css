@@ -1,49 +1,151 @@
-.sidebar{
-    height:100vh;
-    position:fixed;
-    top:0; left:0;
-    z-index:999;
-    width:30%;
-    background-color:yellow;
+/* sidebar 공통.css */
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 260px;
+  border-right: 1px solid black;
+  /* border-right: 완성 후 제거할 것 */
 }
-.head{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:10% 0;
-}
-.head > h1{
-    border:1px solid black;
-    font-size:50px;
-}
-.head > h1:hover{color:red;}
-.head > h3{
-    border:1px solid black;
-    font-size:30px;
-    margin:10% 0;
-}
-.mainNav{
-    width:100%;
-}
-.depth1{border:1px solid red;}
-.depth1 > li{ margin-bottom:2%;}
-.depth1 > li:hover{ text-decoration: underline; }
-.depth1 > li:last-child{margin-bottom:0;}
-.liA{
-    display:flex;
-    align-items:center;
-    padding:2%;
-}
-.emo{
-    width:40px;
-    height:40px;
-    margin-right:10px;
-    background-color:green;
+.head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
 }
 
-@media screen and (max-width:950px){
+/* 로고부분.css */
+.head > h1 {
+  width: 100%;
+  margin-top: 45px;
+}
+.head > h1 a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.head > h1 a img {
+  margin-right: 10px;
+}
+.head > h1 .title > h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.head > h1 .title > h2:after {
+  display: block;
+  clear: both;
+  border-bottom: 2px solid orange;
+  content: "";
+}
+.head > h1 .title > p {
+  font-weight: 350;
+}
+.head > h3 {
+  font-size: 30px;
+  margin: 10% 0;
+}
+
+/* useinfo 부분.css */
+.head > .userinfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 31px;
+}
+.head > .userinfo a {
+  background-color: inherit;
+  border: 1px solid #1f6de2;
+  font-size: 10px;
+  padding: 5px 14px;
+}
+
+/* 네비.css */
+.mainNav {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.depth1 {
+  height: 100vh;
+}
+.depth1 > li {
+  margin-bottom: 5px;
+  width: 220px;
+}
+.depth1 > li > a > p {
+  padding: 10px 0;
+}
+.depth1 > li:hover > a {
+  transition: all 0.1s;
+  background-color: #f2f9ff;
+}
+.depth1 > li:hover > a > .emo {
+  color: #1f6de2;
+}
+
+/* depth1 클릭 시 작업 (depth2보이기, 배경주기) */
+.depth1 > li:last-child {
+  margin-bottom: 0;
+}
+.depth1 > li.on .liA {
+  background-color: #e2f1ff;
+}
+.depth1 > li.on .liA .emo {
+  color: #1f6de2;
+}
+.depth1 > li.on .depth2 {
+  display: block;
+}
+
+/* .depth2작업 */
+.depth1 > li .depth2 {
+  display: none;
+}
+.depth2 > li > a {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #e2f1ff;
+}
+.depth1 > li .depth2 > li:hover > a {
+  background-color: #f2f9ff;
+}
+.depth1 > li .depth2 > li > a .arrow {
+  position: absolute;
+  left: 15px;
+  display: none;
+}
+.depth1 > li .depth2 > li:hover > a .arrow {
+  display: inline-block;
+}
+.depth1 > li .depth2 > li > a p {
+  padding-left: 50px;
+}
+
+/* 네비메뉴 공통작업 */
+.liA {
+  display: flex;
+  align-items: center;
+  padding: 2%;
+}
+.emo {
+  margin: 0 10px;
+}
+.small {
+  width: 17px;
+}
+
+/* 반응형 화면 구현 */
+/* @media screen and (max-width:950px){
+    .sidebar {width:80px;}
     h1{margin-bottom:20%;}
     h3{display:none;}
     .liA{
@@ -52,4 +154,4 @@
         flex-direction:column;
     }
     .liP{display:none;}
-}
+} */

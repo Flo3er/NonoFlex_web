@@ -6,6 +6,6 @@ import boardSlice from "./BoardSlice";
 export const store = configureStore({
   // reducer 정의
   reducer: {
-    board: boardSlice
-  }
+    board: boardSlice,
+  },
 });
