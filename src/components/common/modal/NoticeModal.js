@@ -11,6 +11,7 @@ const NoticeModal = ({ onClose }) => {
   const [checkedButtons, setCheckedButtons] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [onFocused, setOnFocused] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -19,11 +20,13 @@ const NoticeModal = ({ onClose }) => {
       id: "",
       title: title,
       content: content,
+      onFocused: onFocused,
     };
     dispatch(save(inputData));
-    NoticeMethod.NoticePost(title, content);
+    NoticeMethod.NoticePost(title, content, onFocused);
     setTitle("");
     setContent("");
+    setOnFocused("");
     history.push("/");
     onClose();
   };
@@ -39,9 +42,11 @@ const NoticeModal = ({ onClose }) => {
     if (checked) {
       setCheckedButtons([...checkedButtons, id]);
       console.log(`체크 반영 완료`);
+      setOnFocused(true);
     } else {
       setCheckedButtons(checkedButtons.filter(button => button !== id));
       console.log(`체크 해제 반영 완료`);
+      setOnFocused(false);
     }
   };
 
@@ -82,7 +87,7 @@ const NoticeModal = ({ onClose }) => {
                 <label id="check" htmlFor="check"></label>
                 <p className="mL10 fs14">주요 공지사항</p>
               </div>
-              <button className="close bR8" onClick={onSave}>
+              <button className="btnClose bR8" onClick={onSave}>
                 저장하기
               </button>
             </footer>

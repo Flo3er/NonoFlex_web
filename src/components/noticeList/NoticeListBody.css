@@ -22,20 +22,61 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid blue;
   width: 100%;
-  height: 60px;
+  max-height: 60px;
   cursor: pointer;
+  padding: 20px 15px;
+}
+.noticeListBody .full-list .depth1 .depth1Li.on {
+  background-color: blue;
 }
 .noticeListBody .full-list .depth1 .depth1Li .list-left {
-  flex: 1;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .noticeListBody .full-list .depth1 .depth1Li .list-right {
-  width: 70px;
+  /* figma에는 width70인데 그렇게하면 날씨 두줄됨. 체크필요 */
+  width: 75px;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .noticeListBody .choice-notice {
-  border: 1px solid black;
+  border: 1px solid #b0becc;
   width: 770px;
   height: 650px;
+  padding: 30px;
+}
+.noticeListBody .choice-notice .list-up {
+  display: flex;
+  justify-content: space-between;
+}
+.noticeListBody .choice-notice .list-up .strong {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 500px;
+}
+.noticeListBody .choice-notice .list-up .right-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.noticeListBody .choice-notice .content {
+  border: 1px solid black;
+  margin-top: 10px;
+  min-height: 480px;
+}
+.noticeListBody .choice-notice .viewList {
+  justify-content: flex-start;
+}
+.noticeListBody .choice-notice .viewList .btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }

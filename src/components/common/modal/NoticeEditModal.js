@@ -1,40 +1,15 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { AiOutlineClose } from "react-icons/ai";
-import { useHistory } from "react-router-dom";
 import "./Modal.css";
-import { edit } from "../../../features/BoardSlice";
+import { useSelector } from "react-redux";
+
+import { NoticeMethod } from "../../../apis/NoitceMethod";
 
 const NoticeEditModal = ({ onClose }) => {
   const [checkedButtons, setCheckedButtons] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
-  // selectRowData useSelector를 이용해 조회한 state내에 있는 selectRowData 저장한다.
-  //   const selectRowData = useSelector(state => state.board.selectRowData);
-  //   // title 초기값은 현재 저장되어 있는 selectRowData의 title을 가져와 보여준다.
-  //   const [title, setTitle] = useState(selectRowData.title);
-  //   console.log();
-  //   // content 초기값은 현재 저장되어 있는 selectRowData의 content를 가져와 보여준다.
-  //   const [content, setContent] = useState(selectRowData.content);
-
-  //   const dispatch = useDispatch();
-  //   const history = useHistory();
-
-  //   const onEdit = () => {
-  //     const inputData = {
-  //       id: selectRowData.id,
-  //       title: title,
-  //       content: content,
-  //     };
-  //     console.log(inputData);
-  //     // console.log("clickSave :: ", inputData);
-  //     dispatch(edit(inputData));
-  //     setTitle("");
-  //     setContent("");
-  //     history.push("/");
-  //   };
 
   const handleTitle = event => {
     setTitle(event.target.value);
@@ -53,6 +28,11 @@ const NoticeEditModal = ({ onClose }) => {
     }
   };
 
+  useEffect(() => {
+    const remove = NoticeMethod.NoticeDelete();
+    console.log(remove);
+  });
+
   return (
     <Modal>
       <div className="modal">
@@ -63,7 +43,7 @@ const NoticeEditModal = ({ onClose }) => {
                 type="text"
                 name="title"
                 onChange={handleTitle}
-                value={title}
+                // value={selectRowData.title}
               />
               <button className="close">
                 <AiOutlineClose />
@@ -74,7 +54,7 @@ const NoticeEditModal = ({ onClose }) => {
                 className="bR8"
                 onChange={handleContent}
                 name="content"
-                value={content}
+                // value={selectRowData.content}
               />
             </main>
             <footer>
@@ -90,7 +70,10 @@ const NoticeEditModal = ({ onClose }) => {
                 <label id="check" htmlFor="check"></label>
                 <p className="mL10 fs14">주요 공지사항</p>
               </div>
-              <button className="close bR8">수정하기</button>
+              <div className="btn">
+                <button className="btnError error">공지사항 삭제</button>
+                <button className="btnClose bR8">수정하기</button>
+              </div>
             </footer>
           </form>
         </section>
