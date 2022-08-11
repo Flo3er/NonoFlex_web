@@ -27,11 +27,13 @@ export const NoticeGet = async () => {
 };
 
 // Notice 수정(put)
-export const NoticePut = async () => {
+// export const NoticePut = async () => {
+async function NoticePut(title, contents, noticeId) {
   try {
-    const response = await Instance.put("/api/v1/notice/20", {
-      title: "sampleNoice",
-      content: "이건 샘플입니다",
+    const response = await Instance.put(`/api/v1/notice/${noticeId}`, {
+      id: noticeId,
+      title: title,
+      content: contents,
       onFocused: false,
     });
     console.log(response.data);
@@ -39,18 +41,23 @@ export const NoticePut = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 // Notice 삭제(delete)
-export const NoticeDelete = async () => {
+// export const NoticeDelete = async () => {
+async function NoticeDelete(title, contents, noticeId) {
   try {
-    const response = await Instance.delete("/api/v1/notice/16", {});
+    const response = await Instance.delete(`/api/v1/notice/id=${noticeId}`, {
+      id: noticeId,
+      title: title,
+      content: contents,
+    });
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 // 여러 함수를 하나의 변수로 통합 후 export
 export const NoticeMethod = {

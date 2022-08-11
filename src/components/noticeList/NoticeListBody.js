@@ -5,19 +5,18 @@ import { useSelector, useDispatch } from "react-redux";
 // import ViewList from './ViewList.js';
 import { select } from "../../features/BoardSlice";
 
-const NoticeListBody = index => {
+const NoticeListBody = () => {
   const [list, setList] = useState([]);
   const [viewList, setViewList] = useState([]);
   const [date, setDate] = useState([]);
-  const [date2, setDate2] = useState([]);
 
   function onClickList(index) {
     setViewList(list[index]);
-    console.log(list[index]);
+    // console.log(list[index]);
 
     // 날짜 YYYY-MM-DD를 YYYY년 MM월 DD일로 변경하기
     const date = list[index].updateAt;
-    console.log(date);
+    // console.log(date);
     const update =
       date.substr(0, 4) +
       "년 " +
@@ -25,21 +24,12 @@ const NoticeListBody = index => {
       "월 " +
       date.substr(8, 2) +
       "일";
-    const update2 =
-      date.substr(2, 2) +
-      "년 " +
-      date.substr(5, 2) +
-      "월 " +
-      date.substr(8, 2) +
-      "일";
-    console.log(update, update2);
+    // console.log(update);
     setDate(update);
-    setDate2(update2);
   }
 
   useEffect(() => {
     const get = NoticeMethod.NoticeGet();
-    // console.log(get)
     const getData = () => {
       get.then(data => {
         setList(data);
@@ -47,6 +37,10 @@ const NoticeListBody = index => {
     };
     getData();
   }, []);
+
+  function onDelete() {
+    alert("sss");
+  }
 
   return (
     <div className="noticeListBody">
@@ -66,7 +60,7 @@ const NoticeListBody = index => {
                 </div>
                 <div className="list-right fs10 primaryDark">
                   <p>{list.writer}</p>
-                  <p>{date2}</p>
+                  <p className="go-right">{list.updateAt}</p>
                 </div>
               </li>
             ))}
@@ -84,8 +78,12 @@ const NoticeListBody = index => {
             </div>
             <p className="content">{viewList.content}</p>
             <div className="btn">
-              <button className="btnError error">공지사항 삭제</button>
-              <button className="btnClose bR8">수정하기</button>
+              <button className="btnError error" type="button">
+                공지사항 삭제
+              </button>
+              <button className="btnClose bR8" type="button">
+                수정하기
+              </button>
             </div>
           </div>
         ) : (
