@@ -74,6 +74,7 @@
   border: 1px solid black;
   margin-top: 10px;
   min-height: 480px;
+  width: 100%;
 }
 .noticeListBody .choice-notice .viewList {
   justify-content: flex-start;

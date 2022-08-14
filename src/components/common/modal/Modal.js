@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
-import useOutSideClick from '../../../hooks/useOutSideClick';
-import ModalContainer from './ModalContainer';
-import './Modal.css';
+import React, { useRef } from "react";
+import useOutSideClick from "../../../hooks/useOutSideClick";
+import ModalContainer from "./ModalContainer";
+import "./Modal.css";
 
 const Modal = ({ onClose, children }) => {
   const modalRef = useRef(null);
   const handleClose = () => {
-    onClose ?.();
+    onClose?.();
   };
-  
+
   useOutSideClick(modalRef, handleClose);
 
   // useEffect(() => {
@@ -20,12 +20,12 @@ const Modal = ({ onClose, children }) => {
   return (
     <ModalContainer>
       <div className="overlay">
-        <div className="modalWrap" ref={modalRef}>
-          <div className = "contents">{children}</div>
+        <div className="modalWrap bR8" ref={modalRef}>
+          <div className="contents">{children}</div>
         </div>
       </div>
     </ModalContainer>
   );
-}
+};
 
 export default Modal;

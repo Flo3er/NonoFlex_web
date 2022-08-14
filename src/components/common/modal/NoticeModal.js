@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { save } from "../../../features/BoardSlice";
 import { useHistory } from "react-router-dom";
-import "./Modal.css";
+import "./NoticeModal.css";
 import NoticeMethod from "../../../apis/NoitceMethod";
 
 const NoticeModal = ({ onClose }) => {

@@ -31,7 +31,6 @@ export const NoticeGet = async () => {
 async function NoticePut(title, contents, noticeId) {
   try {
     const response = await Instance.put(`/api/v1/notice/${noticeId}`, {
-      id: noticeId,
       title: title,
       content: contents,
       onFocused: false,
@@ -45,13 +44,9 @@ async function NoticePut(title, contents, noticeId) {
 
 // Notice 삭제(delete)
 // export const NoticeDelete = async () => {
-async function NoticeDelete(title, contents, noticeId) {
+async function NoticeDelete(noticeId) {
   try {
-    const response = await Instance.delete(`/api/v1/notice/id=${noticeId}`, {
-      id: noticeId,
-      title: title,
-      content: contents,
-    });
+    const response = await Instance.delete(`/api/v1/notice/${noticeId}`, {});
     console.log(response.data);
     return response.data;
   } catch (error) {
