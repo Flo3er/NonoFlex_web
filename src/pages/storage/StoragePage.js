@@ -2,19 +2,19 @@ import React from 'react';
 
 import Header from '../../components/common/header/Header';
 import Sidebar from '../../components/common/sidebar/Sidebar';
-import NoticeApiBody from '../../components/main/noticeApi/NoticeApiBody';
+import StorageBody from '../../components/main/storage/StorageBody';
 
 
-const NoticePage = () => {
+const StoragePage = () => {
     return (
         <div>
             <Header />
             <div className = "container">
                 <Sidebar />
-                <NoticeApiBody />
+                <StorageBody />
             </div>
         </div>
     )
 }
 
-export default NoticePage;
+export default StoragePage;

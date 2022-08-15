@@ -1,0 +1,63 @@
+.loginbody{
+  background-color: #0043AF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.loginform{
+  /* margin: 0 auto; */
+  width: 420px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 15px;
+
+}
+.loginform > h2{
+  /* background-color: bisque; */
+  position: relative;
+  top: 50px;
+  left: 110px;
+
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  font-size: 25px;
+}
+.loginform > input{
+  width : 350px;
+  height: 50px;
+}
+.loginEmail{
+  display: flex;
+  margin-top: 170px;
+  margin-bottom: 15px;
+  margin-left: 35px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: #F1F4F8;
+}
+.loginPassword{
+  margin-left: 35px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: #F1F4F8;
+}
+.sign{
+  width: 200px;
+  height: 16px;
+  margin-top: 12px;
+  margin-bottom: 32px;
+  margin-left: 120px;
+  display: flex;
+  font-size: 14px;
+}
+.submit{
+  width: 350px;
+  height: 50px;
+  margin-left: 35px;
+  background-color: #1F6DE2;
+  color: #fff;
+  border-radius: 10px;
+  border-color: #fff;
+}

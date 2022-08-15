@@ -2,19 +2,18 @@ import React from 'react';
 
 import Header from '../../components/common/header/Header';
 import Sidebar from '../../components/common/sidebar/Sidebar';
-import NoticeApiBody from '../../components/main/noticeApi/NoticeApiBody';
+import ToolkitBody from '../../components/main/toolkit/ToolkitBody';
 
-
-const NoticePage = () => {
+const ToolkitPage = () => {
     return (
         <div>
             <Header />
             <div className = "container">
                 <Sidebar />
-                <NoticeApiBody />
+                <ToolkitBody />
             </div>
         </div>
     )
 }
 
-export default NoticePage;
+export default ToolkitPage;
