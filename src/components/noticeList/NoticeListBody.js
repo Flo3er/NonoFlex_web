@@ -1,17 +1,44 @@
 import React, { useEffect, useState } from "react";
 import "./NoticeListBody.css";
 import { NoticeMethod } from "../../apis/NoitceMethod";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { edit, remove } from "../../features/BoardSlice";
+import { NotificationsPausedOutlined } from "@mui/icons-material";
 
 const NoticeListBody = () => {
   const [list, setList] = useState([]);
   const [viewList, setViewList] = useState([]);
   const [date, setDate] = useState([]);
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const selectRowData = useSelector(state => state.board.selectRowData);
+  const [title, setTitle] = useState(selectRowData.title);
+  const [content, setContent] = useState(selectRowData.content);
   const [noticeId, setNoticeId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  // const [newData, setNewData] = useState([]);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const onChange = () => {
+    const inputData = {
+      id: viewList.id,
+      title: title,
+      content: content,
+    };
+    console.log("clickSave ::", inputData);
+    dispatch(edit(inputData));
+    setTitle("");
+    setContent("");
+    history.push("/noticeList");
+  };
+
+  const onRemove = () => {
+    dispatch(remove(selectRowData.noticeId));
+    console.log("remove button");
+    setTitle("");
+    setContent("");
+    history.push("/noticeList");
+  };
 
   const onClickButton = () => {
     setIsOpen(true);
@@ -45,6 +72,7 @@ const NoticeListBody = () => {
     setTitle(listIndex.title);
     setContent(listIndex.content);
     onClickButton();
+    history.push("/noticeList");
   }
 
   useEffect(() => {
@@ -64,46 +92,12 @@ const NoticeListBody = () => {
     NoticeMethod.NoticeDelete(noticeId);
   };
 
-  const noticeInfo = () => {
-    if (setIsOpen) {
-      return (
-        <div className="viewList">
-          <div className="list-up">
-            <input
-              className="strong"
-              value={title}
-              type="text"
-              onChange={handleTitle}
-            />
-            <div className="right-data">
-              <p className="fs10 primary">{viewList.writer}</p>
-              <p className="fs10 texthint">{date}</p>
-            </div>
-          </div>
-          <textarea
-            className="content"
-            value={content}
-            onChange={handleContent}
-          />
-          <div className="btn">
-            <button
-              className="btnError error"
-              type="button"
-              onClick={e => noticeDel(noticeId)}
-            >
-              공지사항 삭제
-            </button>
-            <button
-              className="btnClose bR8"
-              type="button"
-              onClick={e => noticePut(title, content, noticeId)}
-            >
-              수정하기
-            </button>
-          </div>
-        </div>
-      );
-    }
+  const putting = e => {
+    noticePut(title, content, noticeId);
+  };
+
+  const delling = e => {
+    noticeDel(noticeId);
   };
 
   return (
@@ -131,7 +125,45 @@ const NoticeListBody = () => {
         </ul>
       </div>
       <div className="choice-notice bR8">
-        <div>{isOpen && noticeInfo()}</div>
+        {viewList.length !== 0 ? (
+          <div className="viewList">
+            <div className="list-up">
+              <input
+                type="text"
+                className="strong"
+                value={title}
+                onChange={handleTitle}
+              >
+                {/* {viewList.title} */}
+              </input>
+              <div className="right-data">
+                <p className="fs10 primary">{viewList.writer}</p>
+                <p className="fs10 texthint">{date}</p>
+              </div>
+            </div>
+            <textarea
+              className="content"
+              value={content}
+              onChange={handleContent}
+            >
+              {/* {viewList.content} */}
+            </textarea>
+            <div className="btn">
+              <button
+                className="btnError error"
+                type="button"
+                onClick={delling}
+              >
+                공지사항 삭제
+              </button>
+              <button className="btnClose bR8" type="button" onClick={putting}>
+                수정하기
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="texthint fs20">공지사항을 선택해주세요.</p>
+        )}
       </div>
     </div>
   );

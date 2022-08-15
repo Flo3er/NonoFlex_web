@@ -38,10 +38,6 @@ const NoticeListBody = () => {
     getData();
   }, []);
 
-  function onDelete() {
-    alert("sss");
-  }
-
   return (
     <div className="noticeListBody">
       <div className="full-list">
