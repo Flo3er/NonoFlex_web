@@ -3,8 +3,8 @@ import "./NoticeListBody.css";
 import { NoticeMethod } from "../../apis/NoitceMethod";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { edit, remove } from "../../features/BoardSlice";
-import { NotificationsPausedOutlined } from "@mui/icons-material";
+// import { edit, remove } from "../../features/BoardSlice";
+// import { NotificationsPausedOutlined } from "@mui/icons-material";
 
 const NoticeListBody = () => {
   const [list, setList] = useState([]);
@@ -19,26 +19,26 @@ const NoticeListBody = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const onChange = () => {
-    const inputData = {
-      id: viewList.id,
-      title: title,
-      content: content,
-    };
-    console.log("clickSave ::", inputData);
-    dispatch(edit(inputData));
-    setTitle("");
-    setContent("");
-    history.push("/noticeList");
-  };
+  // const onChange = () => {
+  //   const inputData = {
+  //     id: viewList.id,
+  //     title: title,
+  //     content: content,
+  //   };
+  //   console.log("clickSave ::", inputData);
+  //   dispatch(edit(inputData));
+  //   setTitle("");
+  //   setContent("");
+  //   history.push("/noticeList");
+  // };
 
-  const onRemove = () => {
-    dispatch(remove(selectRowData.noticeId));
-    console.log("remove button");
-    setTitle("");
-    setContent("");
-    history.push("/noticeList");
-  };
+  // const onRemove = () => {
+  //   dispatch(remove(selectRowData.noticeId));
+  //   console.log("remove button");
+  //   setTitle("");
+  //   setContent("");
+  //   history.push("/noticeList");
+  // };
 
   const onClickButton = () => {
     setIsOpen(true);
@@ -102,68 +102,78 @@ const NoticeListBody = () => {
 
   return (
     <div className="noticeListBody">
-      <div className="full-list">
-        <ul className="depth1">
-          {list &&
-            list.map((list, index) => (
-              <li
-                className="depth1Li"
-                key={index}
-                onClick={() => {
-                  onClickList(index);
-                }}
-              >
-                <div className="list-left">
-                  <p className="list-data">{list.title}</p>
+      {/* <div className="up-btn">
+        <button className="btnList upBtn" />
+        <button className="btnadd upBtn" />
+      </div> */}
+      <div className="listFlex">
+        <div className="full-list">
+          <ul className="depth1">
+            {list &&
+              list.map((list, index) => (
+                <li
+                  className="depth1Li"
+                  key={index}
+                  onClick={() => {
+                    onClickList(index);
+                  }}
+                >
+                  <div className="list-left">
+                    <p className="list-data">{list.title}</p>
+                  </div>
+                  <div className="list-right fs10 primaryDark">
+                    <p>{list.writer}</p>
+                    <p className="go-right">{list.updateAt}</p>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </div>
+        <div className="choice-notice bR8">
+          {viewList.length !== 0 ? (
+            <div className="viewList">
+              <div className="list-up">
+                <input
+                  type="text"
+                  className="strong"
+                  value={title}
+                  onChange={handleTitle}
+                >
+                  {/* {viewList.title} */}
+                </input>
+                <div className="right-data">
+                  <p className="fs10 primary">{viewList.writer}</p>
+                  <p className="fs10 texthint">{date}</p>
                 </div>
-                <div className="list-right fs10 primaryDark">
-                  <p>{list.writer}</p>
-                  <p className="go-right">{list.updateAt}</p>
-                </div>
-              </li>
-            ))}
-        </ul>
-      </div>
-      <div className="choice-notice bR8">
-        {viewList.length !== 0 ? (
-          <div className="viewList">
-            <div className="list-up">
-              <input
-                type="text"
-                className="strong"
-                value={title}
-                onChange={handleTitle}
+              </div>
+              <textarea
+                className="content"
+                value={content}
+                onChange={handleContent}
               >
-                {/* {viewList.title} */}
-              </input>
-              <div className="right-data">
-                <p className="fs10 primary">{viewList.writer}</p>
-                <p className="fs10 texthint">{date}</p>
+                {/* {viewList.content} */}
+              </textarea>
+              <div className="btn">
+                <button
+                  className="btnError error"
+                  type="button"
+                  onClick={delling}
+                >
+                  공지사항 삭제
+                </button>
+                <button
+                  className="btnClose bR8"
+                  type="button"
+                  onClick={putting}
+                >
+                  수정하기
+                </button>
               </div>
             </div>
-            <textarea
-              className="content"
-              value={content}
-              onChange={handleContent}
-            >
-              {/* {viewList.content} */}
-            </textarea>
-            <div className="btn">
-              <button
-                className="btnError error"
-                type="button"
-                onClick={delling}
-              >
-                공지사항 삭제
-              </button>
-              <button className="btnClose bR8" type="button" onClick={putting}>
-                수정하기
-              </button>
-            </div>
-          </div>
-        ) : (
-          <p className="texthint fs20">공지사항을 선택해주세요.</p>
-        )}
+          ) : (
+            <p className="texthint fs20 nopage">공지사항을 선택해주세요.</p>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ const NoticeEditModal = ({ onClose }) => {
   const [checkedButtons, setCheckedButtons] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [list, setList] = useState([]);
 
   const handleTitle = event => {
     setTitle(event.target.value);
@@ -29,9 +30,14 @@ const NoticeEditModal = ({ onClose }) => {
   };
 
   useEffect(() => {
-    const remove = NoticeMethod.NoticeDelete();
-    console.log(remove);
-  });
+    const get = NoticeMethod.NoticeGet();
+    const getData = () => {
+      get.then(data => {
+        setList(data);
+      });
+    };
+    getData();
+  }, []);
 
   return (
     <Modal>
@@ -43,7 +49,7 @@ const NoticeEditModal = ({ onClose }) => {
                 type="text"
                 name="title"
                 onChange={handleTitle}
-                // value={selectRowData.title}
+                value={title}
               />
               <button className="close">
                 <AiOutlineClose />
@@ -54,7 +60,7 @@ const NoticeEditModal = ({ onClose }) => {
                 className="bR8"
                 onChange={handleContent}
                 name="content"
-                // value={selectRowData.content}
+                value={content}
               />
             </main>
             <footer>
