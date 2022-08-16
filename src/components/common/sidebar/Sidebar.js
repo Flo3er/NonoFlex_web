@@ -10,7 +10,7 @@ import { CgHome } from "react-icons/cg";
 import { BiBox, BiFile } from "react-icons/bi";
 import { AiOutlineSetting } from "react-icons/ai";
 import logo from "../../../assets/image/logo.png";
-import $ from "jquery";
+// import $ from "jquery";
 
 const Sidebar = () => {
   const [click, setClick] = useState(0);
@@ -18,11 +18,6 @@ const Sidebar = () => {
   const tabClickkHandler = index => {
     setClick(index);
   };
-
-  $(".depth2 > li ").on("click", function (e) {
-    e.preventDefault();
-    $(this).css({ color: "red" });
-  });
 
   return (
     <div className="sidebar">

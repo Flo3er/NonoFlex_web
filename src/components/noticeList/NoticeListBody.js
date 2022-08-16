@@ -19,27 +19,6 @@ const NoticeListBody = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // const onChange = () => {
-  //   const inputData = {
-  //     id: viewList.id,
-  //     title: title,
-  //     content: content,
-  //   };
-  //   console.log("clickSave ::", inputData);
-  //   dispatch(edit(inputData));
-  //   setTitle("");
-  //   setContent("");
-  //   history.push("/noticeList");
-  // };
-
-  // const onRemove = () => {
-  //   dispatch(remove(selectRowData.noticeId));
-  //   console.log("remove button");
-  //   setTitle("");
-  //   setContent("");
-  //   history.push("/noticeList");
-  // };
-
   const onClickButton = () => {
     setIsOpen(true);
   };
@@ -53,7 +32,6 @@ const NoticeListBody = () => {
 
   function onClickList(index) {
     const listIndex = list[index];
-
     setViewList(listIndex);
 
     // 날짜 YYYY-MM-DD를 YYYY년 MM월 DD일로 변경하기
@@ -72,7 +50,7 @@ const NoticeListBody = () => {
     setTitle(listIndex.title);
     setContent(listIndex.content);
     onClickButton();
-    history.push("/noticeList");
+    // history.push("/noticeList");
   }
 
   useEffect(() => {
@@ -94,18 +72,23 @@ const NoticeListBody = () => {
 
   const putting = e => {
     noticePut(title, content, noticeId);
+    // 화면 새로고침되게 설정
+    window.location.replace("/noticeList");
   };
 
   const delling = e => {
     noticeDel(noticeId);
+    // 화면 새로고침되게 설정
+    // (history.push로는 작동되지않아 다른 방법으로 진행함)
+    window.location.replace("/noticeList");
   };
 
   return (
     <div className="noticeListBody">
-      {/* <div className="up-btn">
-        <button className="btnList upBtn" />
-        <button className="btnadd upBtn" />
-      </div> */}
+      <div className="up-btn">
+        <button className="btnList2 upBtn" />
+        <button className="btnaddBlue upBtn" />
+      </div>
       <div className="listFlex">
         <div className="full-list">
           <ul className="depth1">

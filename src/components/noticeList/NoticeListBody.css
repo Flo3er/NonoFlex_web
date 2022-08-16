@@ -1,21 +1,6 @@
 .noticeListBody {
   position: relative;
 }
-/* .change {
-  border: 1px solid red;
-  width: 24px;
-  height: 24px;
-} */
-/* .upBtn {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 16px;
-}
-.btnList {
-  position: absolute;
-  top: 0;
-  left: 326px;
-} */
 .listFlex {
   display: flex;
   align-items: center;
@@ -23,9 +8,9 @@
 }
 .noticeListBody .full-list {
   border: 1px solid red;
-  width: 320px;
+  width: 540px;
+  /* width: 320px; */
   height: 650px;
-  /* margin: 0 30px 0 30px; */
   margin-right: 30px;
   overflow: auto;
 }
@@ -55,8 +40,7 @@
   text-overflow: ellipsis;
 }
 .noticeListBody .full-list .depth1 .depth1Li .list-right {
-  /* figma에는 width70인데 그렇게하면 날씨 두줄됨. 체크필요 */
-  width: 75px;
+  width: 70px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -67,7 +51,8 @@
 }
 .noticeListBody .choice-notice {
   border: 1px solid #b0becc;
-  width: 770px;
+  /* width: 770px; */
+  width: 780px;
   height: 650px;
   padding: 30px;
 }
@@ -109,4 +94,8 @@
   justify-content: center;
   align-items: center;
   font-weight: 400;
+}
+
+.up-btn {
+  margin-bottom: 16px;
 }
