@@ -9,8 +9,6 @@ function Login () {
   const [token, setToken] = useState("")
   const Onlogin = async() =>{
     Logininfosand();
-    console.log(token);
-    localStorage.setItem("Authorization", JSON.stringify("시발"));
   }
   function Logininfosand () {
     const post = LoginMethod.LoginPost();

@@ -7,7 +7,8 @@ async function LoginPost () {
           "password": "admin",
           "tokenActiveSeconds": 300 // 5분
       });
-      // console.log(response.data);
+      localStorage.setItem("Authorization", JSON.stringify(response.data));
+      console.log(response.data);
       // console.log(response);
       
   } catch (error) {
