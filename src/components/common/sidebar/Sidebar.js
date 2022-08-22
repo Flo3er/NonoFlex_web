@@ -10,13 +10,17 @@ import { CgHome } from "react-icons/cg";
 import { BiBox, BiFile } from "react-icons/bi";
 import { AiOutlineSetting } from "react-icons/ai";
 import logo from "../../../assets/image/logo.png";
-// import $ from "jquery";
 
 const Sidebar = () => {
   const [click, setClick] = useState(0);
+  const [isActive, setIsActive] = useState("false");
 
   const tabClickkHandler = index => {
     setClick(index);
+  };
+
+  const handleToggle = () => {
+    setIsActive(!isActive);
   };
 
   return (
@@ -41,7 +45,7 @@ const Sidebar = () => {
           <ul className="depth1">
             <li
               onClick={() => tabClickkHandler(0)}
-              className={click === 0 ? "on" : ""}
+              className={click === 0 ? "on" : null}
             >
               <Link to="/" className="liA">
                 <CgHome className="emo" />
@@ -49,20 +53,20 @@ const Sidebar = () => {
               </Link>
               <ul className="depth2">
                 <li>
+                  <Link to="/">
+                    {/* <p className="btnArrowRight" /> */}
+                    <p>홈</p>
+                  </Link>
+                </li>
+                <li>
                   <Link to="/noticeList">
-                    <IoIosArrowForward className="arrow" />
+                    {/* <IoIosArrowForward className="arrow" /> */}
                     <p>공지사항 목록</p>
                   </Link>
                 </li>
                 <li>
                   <Link to="">
-                    <IoIosArrowForward className="arrow" />
-                    <p>참여자 작업 현황</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="">
-                    <IoIosArrowForward className="arrow" />
+                    {/* <IoIosArrowForward className="arrow" /> */}
                     <p>입&#47;출고 현황</p>
                   </Link>
                 </li>

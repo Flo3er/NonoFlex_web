@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./NoticeListBody.css";
 import { NoticeMethod } from "../../apis/NoitceMethod";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-// import { edit, remove } from "../../features/BoardSlice";
-// import { NotificationsPausedOutlined } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import NoticeModal from "../common/modal/NoticeModal";
 
 const NoticeListBody = () => {
   const [list, setList] = useState([]);
   const [viewList, setViewList] = useState([]);
-  const [date, setDate] = useState([]);
+  const [changedate, setChangeDate] = useState([]);
 
   const selectRowData = useSelector(state => state.board.selectRowData);
   const [title, setTitle] = useState(selectRowData.title);
@@ -17,7 +16,8 @@ const NoticeListBody = () => {
   const [noticeId, setNoticeId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
-  const dispatch = useDispatch();
+
+  // const [update, setUpdate] = useState(selectRowData.updateAt);
 
   const onClickButton = () => {
     setIsOpen(true);
@@ -44,13 +44,13 @@ const NoticeListBody = () => {
       "월 " +
       date.substr(8, 2) +
       "일";
-    setDate(update);
+    setChangeDate(update);
 
     setNoticeId(listIndex.noticeId);
     setTitle(listIndex.title);
     setContent(listIndex.content);
-    onClickButton();
-    // history.push("/noticeList");
+    // onClickButton();
+    history.push("/noticeList");
   }
 
   useEffect(() => {
@@ -87,7 +87,14 @@ const NoticeListBody = () => {
     <div className="noticeListBody">
       <div className="up-btn">
         <button className="btnList2 upBtn" />
-        <button className="btnaddBlue upBtn" />
+        <button className="btnaddBlue upBtn" onClick={onClickButton} />
+        {isOpen && (
+          <NoticeModal
+            onClose={() => {
+              setIsOpen(false);
+            }}
+          />
+        )}
       </div>
       <div className="listFlex">
         <div className="full-list">
@@ -126,7 +133,7 @@ const NoticeListBody = () => {
                 </input>
                 <div className="right-data">
                   <p className="fs10 primary">{viewList.writer}</p>
-                  <p className="fs10 texthint">{date}</p>
+                  <p className="fs10 texthint">{changedate}</p>
                 </div>
               </div>
               <textarea

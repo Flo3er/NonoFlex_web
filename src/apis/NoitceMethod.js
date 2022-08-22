@@ -1,12 +1,12 @@
 import Instance from "./NoticeInstance";
 
 // Notice 생성(post)
-async function NoticePost(title, contents) {
+async function NoticePost(title, contents, onFocused) {
   try {
     const response = await Instance.post("/api/v1/notice", {
       title: title,
       content: contents,
-      onFocused: false,
+      onFocused: onFocused,
     });
     console.log(response.data);
     return response.data;
@@ -33,7 +33,7 @@ async function NoticePut(title, contents, noticeId) {
     const response = await Instance.put(`/api/v1/notice/${noticeId}`, {
       title: title,
       content: contents,
-      onFocused: false,
+      // onFocused: onFocused,
     });
     console.log(response.data);
     return response.data;

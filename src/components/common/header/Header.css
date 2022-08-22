@@ -16,9 +16,12 @@
 }
 
 /* noticList page's header */
+.notice-header {
+  padding: 0 120px;
+  border-bottom: 1px solid black;
+}
 .notice-main {
   display: flex;
-  border-bottom: 1px solid black;
   position: relative;
 }
 .searchBox {

@@ -11,12 +11,6 @@ const Modal = ({ onClose, children }) => {
 
   useOutSideClick(modalRef, handleClose);
 
-  // useEffect(() => {
-  //   const $body = document.querySelector("body");
-  //   $body.style.overflow = "hidden";
-  //   return () => ($body.style.overflow = "auto")
-  // } ,[]);
-
   return (
     <ModalContainer>
       <div className="overlay">

@@ -3,19 +3,21 @@ import Modal from "./Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import "./Modal.css";
 import { NoticeMethod } from "../../../apis/NoitceMethod";
+import { useSelector } from "react-redux";
+import NoticeModal from "../../common/modal/NoticeModal";
 
 const NoticeEditModal = ({ onClose }) => {
   const [checkedButtons, setCheckedButtons] = useState([]);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const inputData = useSelector(state => state.board.inputData);
+  const lastId = useSelector(state => state.board.lastId);
   const [list, setList] = useState([]);
 
-  const handleTitle = event => {
-    setTitle(event.target.value);
-  };
-  const handleContent = event => {
-    setContent(event.target.value);
-  };
+  // const handleTitle = event => {
+  //   setTitle(event.target.value);
+  // };
+  // const handleContent = event => {
+  //   setContent(event.target.value);
+  // };
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -46,19 +48,19 @@ const NoticeEditModal = ({ onClose }) => {
               <input
                 type="text"
                 name="title"
-                onChange={handleTitle}
-                value={title}
+                // onChange={handleTitle}
+                // value={title}
               />
-              <button className="close">
+              <button className="close" onClick={onClose}>
                 <AiOutlineClose />
               </button>
             </header>
             <main>
               <textarea
                 className="bR8"
-                onChange={handleContent}
+                // onChange={handleContent}
                 name="content"
-                value={content}
+                // value={content}
               />
             </main>
             <footer>

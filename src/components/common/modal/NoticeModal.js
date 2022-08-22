@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Modal from "./Modal";
 import { AiOutlineClose } from "react-icons/ai";
@@ -6,6 +6,10 @@ import { save } from "../../../features/BoardSlice";
 import { useHistory } from "react-router-dom";
 import "./NoticeModal.css";
 import NoticeMethod from "../../../apis/NoitceMethod";
+
+// import Toastify from "../toast/Toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NoticeModal = ({ onClose }) => {
   const [checkedButtons, setCheckedButtons] = useState([]);
@@ -16,19 +20,36 @@ const NoticeModal = ({ onClose }) => {
   const history = useHistory();
 
   const onSave = () => {
-    const inputData = {
-      id: "",
-      title: title,
-      content: content,
-      onFocused: onFocused,
-    };
-    dispatch(save(inputData));
-    NoticeMethod.NoticePost(title, content, onFocused);
-    setTitle("");
-    setContent("");
-    setOnFocused("");
-    history.push("/");
-    onClose();
+    if (title === "") {
+      alert("title 비어있음");
+      // 토스트창 구현하기
+      // toast.error(`title가 비어있습니다`, {
+      //   position: toast.POSITION.BOTTOM_CENTER,
+      //   autoClose: 3000,
+      // });
+      title.focus();
+      return false;
+    } else if (content === "") {
+      alert("content 비어있음");
+      content.focus();
+      return false;
+    } else {
+      const inputData = {
+        id: "",
+        title: title,
+        content: content,
+        onFocused: onFocused,
+      };
+      // dispatch = action을 찾고 만약 action이 존재하면 status를 action으로 바꿈
+      // 메서드를 호출하는 것
+      dispatch(save(inputData));
+      NoticeMethod.NoticePost(title, content, onFocused);
+      setTitle("");
+      setContent("");
+      setOnFocused("");
+      // history.push("/");
+      onClose();
+    }
   };
 
   const handleTitle = event => {
@@ -92,6 +113,7 @@ const NoticeModal = ({ onClose }) => {
               </button>
             </footer>
           </form>
+          <ToastContainer />
         </section>
       </div>
     </Modal>

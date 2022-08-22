@@ -72,8 +72,8 @@ input:focus {
 .btnadd {
   background-image: url("./assets/image/add.png");
   background-size: cover;
-  width: 13.5px;
-  height: 13.5px;
+  width: 24px;
+  height: 24px;
 }
 .btnaddBlue {
   background-image: url("./assets/image/add\(blue\).png");
@@ -85,9 +85,16 @@ input:focus {
 .btnList {
   background-image: url("./assets/image/list.png");
   background-size: cover;
-  width: 17.5px;
-  height: 9.65px;
+  width: 24px;
+  height: 24px;
   margin-right: 10px;
+}
+.btnListBlue {
+  background-image: url("./assets/image/list\(blue\).png");
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
 }
 .btnList2 {
   background-image: url("./assets/image/format_line_spacing.png");
@@ -108,6 +115,9 @@ input:focus {
   font-size: 16px;
   font-weight: 400;
   margin-right: 15px;
+}
+.btnArrowRight {
+  background-image: url("./assets/image/arrow_right\(blue\).png");
 }
 
 /* @media screen and (max-width:950px){
