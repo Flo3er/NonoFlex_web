@@ -8,8 +8,6 @@ const initialState = {
       id: "",
       title: "",
       content: "",
-      createAt: "",
-      updateAt: "",
     },
   ],
   selectRowData: {},

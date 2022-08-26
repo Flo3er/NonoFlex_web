@@ -28,6 +28,7 @@
   height: 100%;
   padding: 10px;
   border: none;
+  resize: none;
 }
 .modal > section form > main textarea:focus {
   border: 1px solid #1f6de2;

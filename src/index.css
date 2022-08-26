@@ -30,7 +30,8 @@ input:focus {
 .texthint {
   color: #7a7a7d;
 }
-.primary {
+.primary,
+.textColor {
   color: #1f6de2;
 }
 .primaryDark {

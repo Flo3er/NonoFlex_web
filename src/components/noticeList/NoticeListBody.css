@@ -1,21 +1,20 @@
 .noticeListBody {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: calc(100vh - 180px);
 }
 .listFlex {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .noticeListBody .full-list {
   border: 1px solid red;
   width: 540px;
   /* width: 320px; */
-  height: 650px;
+  /* height: 650px; */
   margin-right: 30px;
-  overflow: auto;
+  overflow: scroll;
+  height: 100%;
 }
 .noticeListBody .full-list::-webkit-scrollbar {
   display: none;

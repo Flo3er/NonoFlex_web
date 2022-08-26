@@ -1,12 +1,22 @@
 import Instance from "./NoticeInstance";
 
 // Notice 생성(post)
-async function NoticePost(title, contents, onFocused) {
+async function NoticePost(
+  title,
+  contents,
+  onFocused,
+  createAt,
+  updateAt,
+  writer
+) {
   try {
     const response = await Instance.post("/api/v1/notice", {
       title: title,
       content: contents,
       onFocused: onFocused,
+      createAt: createAt,
+      updateAt: updateAt,
+      writer: writer,
     });
     console.log(response.data);
     return response.data;
@@ -28,12 +38,12 @@ export const NoticeGet = async () => {
 
 // Notice 수정(put)
 // export const NoticePut = async () => {
-async function NoticePut(title, contents, noticeId) {
+async function NoticePut(title, contents, onFocused, noticeId) {
   try {
     const response = await Instance.put(`/api/v1/notice/${noticeId}`, {
       title: title,
       content: contents,
-      // onFocused: onFocused,
+      onFocused: onFocused,
     });
     console.log(response.data);
     return response.data;

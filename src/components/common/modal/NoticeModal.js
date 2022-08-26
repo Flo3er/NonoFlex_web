@@ -16,10 +16,12 @@ const NoticeModal = ({ onClose }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [onFocused, setOnFocused] = useState(false);
+  const [createAt, setCreateAt] = useState("");
+  const [updateAt, setUpdateAt] = useState("");
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
-  const onSave = () => {
+  const onSave = e => {
     if (title === "") {
       alert("title 비어있음");
       // 토스트창 구현하기
@@ -28,25 +30,31 @@ const NoticeModal = ({ onClose }) => {
       //   autoClose: 3000,
       // });
       title.focus();
-      return false;
-    } else if (content === "") {
+      e.preventDefault();
+    }
+    if (content === "") {
       alert("content 비어있음");
       content.focus();
-      return false;
-    } else {
+      e.preventDefault();
+    }
+    if (title !== "" && content !== "") {
       const inputData = {
         id: "",
         title: title,
         content: content,
         onFocused: onFocused,
+        createAt: createAt,
+        updateAt: updateAt,
       };
       // dispatch = action을 찾고 만약 action이 존재하면 status를 action으로 바꿈
       // 메서드를 호출하는 것
       dispatch(save(inputData));
-      NoticeMethod.NoticePost(title, content, onFocused);
+      NoticeMethod.NoticePost(title, content, onFocused, createAt, updateAt);
       setTitle("");
       setContent("");
       setOnFocused("");
+      setCreateAt("");
+      setUpdateAt("");
       // history.push("/");
       onClose();
     }
@@ -72,10 +80,10 @@ const NoticeModal = ({ onClose }) => {
   };
 
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <div className="modal">
         <section>
-          <form onSubmit>
+          <form>
             <header>
               <input
                 type="text"
