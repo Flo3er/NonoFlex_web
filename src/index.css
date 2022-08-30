@@ -30,7 +30,8 @@ input:focus {
 .texthint {
   color: #7a7a7d;
 }
-.primary {
+.primary,
+.textColor {
   color: #1f6de2;
 }
 .primaryDark {
@@ -38,6 +39,12 @@ input:focus {
 }
 .secondary {
   color: #e2f1ff;
+}
+.secondaryDarkk {
+  color: #b0becc;
+}
+.error {
+  color: #e21f1f;
 }
 .back-primary {
   background-color: #1f6de2;
@@ -47,7 +54,7 @@ input:focus {
 }
 
 .row {
-  margin-left: 260px;
+  margin-left: 280px;
 }
 
 .fs14 {
@@ -56,6 +63,9 @@ input:focus {
 .fs10 {
   font-size: 10px;
 }
+.fs20 {
+  font-size: 20px;
+}
 
 .btn-primary {
   border: 5px solid #1f6de2;
@@ -63,15 +73,52 @@ input:focus {
 .btnadd {
   background-image: url("./assets/image/add.png");
   background-size: cover;
-  width: 13.5px;
-  height: 13.5px;
+  width: 24px;
+  height: 24px;
+}
+.btnaddBlue {
+  background-image: url("./assets/image/add\(blue\).png");
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
 }
 .btnList {
   background-image: url("./assets/image/list.png");
   background-size: cover;
-  width: 17.5px;
-  height: 9.65px;
+  width: 24px;
+  height: 24px;
   margin-right: 10px;
+}
+.btnListBlue {
+  background-image: url("./assets/image/list\(blue\).png");
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+}
+.btnList2 {
+  background-image: url("./assets/image/format_line_spacing.png");
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+}
+.btnClose {
+  color: #fff;
+  background-color: #1f6de2;
+  font-size: 16px;
+  width: 130px;
+  height: 40px;
+  padding: 6px 12px;
+}
+.btnError {
+  font-size: 16px;
+  font-weight: 400;
+  margin-right: 15px;
+}
+.btnArrowRight {
+  background-image: url("./assets/image/arrow_right\(blue\).png");
 }
 
 /* @media screen and (max-width:950px){

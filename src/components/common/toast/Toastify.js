@@ -5,12 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 // SampleText.js에서 text를 받아와 toast창에 출력
 const Toastify = ({ text }) => {
-  // tostify 알람 실행 함수 생성
   const notify = () => {
     toast.success(text, {
-      // 상단 가운데 위치
       position: toast.POSITION.TOP_CENTER,
-      // 2초 후 toast off
       autoClose: 2000,
       // 진행 시간 바 숨김
       hideProgressBar: true,

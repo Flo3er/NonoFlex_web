@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
   z-index: 999;
-  width: 260px;
-  border-right: 1px solid black;
+  width: 280px;
+  /* border-right: 1px solid black; */
   /* border-right: 완성 후 제거할 것 */
 }
 .head {
@@ -85,6 +85,7 @@
 .depth1 > li:hover > a {
   transition: all 0.1s;
   background-color: #f2f9ff;
+  border-radius: 8px;
 }
 .depth1 > li:hover > a > .emo {
   color: #1f6de2;
@@ -96,6 +97,7 @@
 }
 .depth1 > li.on .liA {
   background-color: #e2f1ff;
+  border-radius: 8px 8px 0 0;
 }
 .depth1 > li.on .liA .emo {
   color: #1f6de2;
@@ -108,26 +110,44 @@
 .depth1 > li .depth2 {
   display: none;
 }
+.depth1 > li .depth2 li {
+  background-color: #e2f1ff;
+}
+.depth1 > li .depth2 > li.active {
+  color: red;
+}
+.depth1 > li .depth2 li:last-child {
+  border-radius: 0 0 8px 8px;
+}
 .depth2 > li > a {
   padding: 8px;
   display: flex;
   align-items: center;
   position: relative;
-  background-color: #e2f1ff;
 }
 .depth1 > li .depth2 > li:hover > a {
   background-color: #f2f9ff;
 }
 .depth1 > li .depth2 > li > a .arrow {
-  position: absolute;
+  /* position: absolute;
   left: 15px;
-  display: none;
+  display: none; */
 }
 .depth1 > li .depth2 > li:hover > a .arrow {
-  display: inline-block;
+  /* display: inline-block; */
 }
 .depth1 > li .depth2 > li > a p {
   padding-left: 50px;
+}
+.depth1 > li .depth2 > li > a p::before {
+  /* content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../assets/image/arrow_right\(blue\).png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat; */
 }
 
 /* 네비메뉴 공통작업 */

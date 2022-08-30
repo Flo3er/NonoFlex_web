@@ -14,7 +14,7 @@ const Modal = ({ onClose, children }) => {
   return (
     <ModalContainer>
       <div className="overlay">
-        <div className="modalWrap" ref={modalRef}>
+        <div className="modalWrap bR8" ref={modalRef}>
           <div className="contents">{children}</div>
         </div>
       </div>

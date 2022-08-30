@@ -1,5 +1,5 @@
 .main {
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   /* border-bottom: 완성 후 제거할 것 */
 }
 .mainTop {
@@ -13,4 +13,44 @@
 .mainTop > p {
   margin-top: 10px;
   font-size: 14px;
+}
+
+/* noticList page's header */
+.notice-header {
+  padding: 0 120px;
+  border-bottom: 1px solid black;
+}
+.notice-main {
+  display: flex;
+  position: relative;
+}
+.searchBox {
+  width: 340px;
+  height: 50px;
+  background-color: #f1f4f8;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchBox > input {
+  height: 100%;
+  border: none;
+  background: none;
+  padding: 16px 17px;
+}
+.searchBox > div .close {
+  background-image: url(../../../assets/image/close.png);
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+}
+.searchBox > div .search {
+  background-image: url(../../../assets/image/search.png);
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  margin: 0px 13px 0px 6px;
 }
