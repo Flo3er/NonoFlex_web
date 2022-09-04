@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Header.css";
 
 const NoticeHeader = () => {
   const [text, setText] = useState("");

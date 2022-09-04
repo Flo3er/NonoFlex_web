@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Modal from "./Modal";
 import { AiOutlineClose } from "react-icons/ai";

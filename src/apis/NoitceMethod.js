@@ -1,4 +1,4 @@
-import Instance from "./NoticeInstance";
+import Instance from "./ApiInstance";
 
 // Notice 생성(post)
 async function NoticePost(
