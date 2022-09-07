@@ -1,0 +1,8 @@
+.loginbody{
+    /* flex-direction: column; */
+    background-color: #0043AF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
