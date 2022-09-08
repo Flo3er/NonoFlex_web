@@ -1,0 +1,39 @@
+.modal {
+    margin: auto;
+}
+
+.topArea {
+    display: flex;
+    justify-content: space-between;
+}
+
+.companyAddBody {
+    height: 520px;
+    /* background-color: blue; */
+}
+
+.companyAddBody > ul> li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.typeButton > button {
+    border: 1px solid black;
+    border-collapse: separate;
+}
+
+.typeButton > button:focus {
+    background-color: aquamarine;
+}
+
+.typeButton > button:hover{
+    color:blue;
+}
+
+.receiving {
+    margin-right: 0;
+}
+
+.saveButton {
+    text-align: center;
+}
