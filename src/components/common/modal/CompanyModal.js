@@ -28,7 +28,7 @@ const CompanyModal = ({ onClose }) => {
                 category: category
             };
             dispatch(save(companyData));
-            CompanyMethod.CompanyPost(name, type, category);
+            // CompanyMethod.CompanyPost(name, type, category);
             console.log(companyData);
             setName("");
             setType("");
@@ -53,10 +53,6 @@ const CompanyModal = ({ onClose }) => {
     const outputButton = () => {
         setType("OUTPUT");
     };
-
-    const onClick = () => {
-        CompanyMethod.CompanyGet();
-    }
 
     return (
         <Modal onClose={onClose}>
@@ -97,9 +93,6 @@ const CompanyModal = ({ onClose }) => {
                             />
                         </li>
                     </ul>
-                    <div>
-                        <button onClick={onClick}>클릭</button>
-                    </div>
                     <div className="saveButton">
                         <button onClick={onSave}>저장하기</button>
                     </div>

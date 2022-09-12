@@ -22,6 +22,8 @@ export const companySlice = createSlice({
     save: (state, action) => {
       console.log(action);
       console.log(current(state));
+      // CompanyMethod.CompanyPost(name, type, category);
+
       return {
         // 초기값에 생성한 lastId값에 +1
         lastId: state.lastId + 1,
