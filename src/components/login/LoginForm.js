@@ -32,6 +32,7 @@ const loginform = () => {
   }
 }, [cookies.rememberEmail])
  const Onlogin = () =>{
+
     setEmailCertification(true)
     if(regExpid.test(email) && regExppw.test(password)){
         Logininfosand();
@@ -68,7 +69,6 @@ const loginform = () => {
     const handleOnChange = (e) => {
       setIsRemember(e.target.checked);
       if(e.target.checked){
-
         setCookie('rememberEmail', email, {maxAge: 2000});
         console.log(email)
       } else {
@@ -116,7 +116,7 @@ const loginform = () => {
           <label for="cbtest" className='idch'></label>
           <p>아이디 저장</p>
           <div className='sign'>
-            <Link to="" className='liA'>회원가입</Link>
+            <Link to="/register" className='liA'>회원가입</Link>
             <Link to="" className='liA'>비밀번호 찾기</Link>
           </div>
         </div>

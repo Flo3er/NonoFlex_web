@@ -1,0 +1,162 @@
+.registerform{
+  /* margin: 0 auto; */
+  width: 620px;
+  height: 720px;
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-evenly;
+}
+.registerform > h2{
+  /* background-color: bisque; */
+  margin-top: 5%;
+  margin-left: 33%;
+  margin-right: 33%;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.registerinfo{
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.registerform > ul > li{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;;
+  align-content: stretch;
+  width: 520px;
+  height: 50px;
+  margin: 2.5%;
+}
+.shorttext{
+  font-size: 14.5px;
+  padding: 1.5%;
+  text-align: left;
+  margin-top: 1%;
+}
+.longtext{
+  font-size: 11px;
+  padding: 1.5%;
+  text-align: left;
+  margin-top: 1%;
+}
+.infoinputbox{
+  width: 420px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 2%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+}
+.uninfoinputbox{
+  width: 420px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 2%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+.idcheck{
+  width: 280px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 2%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+}
+.unidcheck{
+  width: 280px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 2%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+.emailcheck{
+  width: 220px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 2%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+}
+.unemailcheck{
+  width: 280px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 2%;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+.emailcheckbtn{
+  width: 120px;
+  height: 50px;
+  color: #1F6DE2;
+  background: #FFFFFF;
+  border: 1px solid #1F6DE2;
+  border-radius: 8px;
+}
+
+.emailChecktext{
+  /* height: 10px; */
+  margin-left: 79%;
+  text-align: right;
+  font-size: 8px;
+  color:red;
+}
+.passwordChecktext{
+  /* height: 10px; */
+  margin-left: 77%;
+  text-align: right;
+  font-size: 8px;
+  color:red;
+}
+.passwordarticleChecktext{
+  /* height: 10px; */
+  margin-left: 82%;
+  text-align: right;
+  font-size: 8px;
+  color:red;
+}
+.unemailcheckbtn{
+  width: 120px;
+  height: 50px;
+  color: #E2F1FF;
+  background: #FFFFFF;
+  border: 1px solid #E2F1FF;
+  border-radius: 8px;
+}
+.certificationtimer{
+  width: 280px;
+  height: 50px;
+  background-color: #F1F4F8;
+  color: #1F6DE2;
+  padding-left: 2%;
+  font-size: 15px;
+  font-style: italic;
+  border-radius: 10px;
+  border: none;
+  z-index: 999;
+
+}
+.registersubmit{
+  width: 520px;
+  height: 60px;
+  background-color: #1F6DE2;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  
+}

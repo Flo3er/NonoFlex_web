@@ -5,7 +5,7 @@ import Toolkit from './pages/toolkit/Toolkitpage';
 import Notice from './pages/notice/NoticePage';
 import storage from './pages/storage/StoragePage';
 import Login from './pages/login/Login';
-
+import Register from './pages/login/Register';
 function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ function App() {
           <Route path='/notice' component={Notice} />
           <Route path='/storage' component={storage} />
           <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
         </Switch>
       </div>
     </Router>
