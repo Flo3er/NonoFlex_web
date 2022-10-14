@@ -1,16 +1,35 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
-import { IoIosArrowForward } from "react-icons/io";
-import { CgHome } from "react-icons/cg";
-import { BiBox, BiFile } from "react-icons/bi";
-import { AiOutlineSetting } from "react-icons/ai";
 import logo from "../../../assets/image/logo.png";
+import homeBlue from "../../../assets/image/homeBlue.png";
+import productBlue from "../../../assets/image/productBlue.png";
+import descriptionBlue from "../../../assets/image/descriptionBlue.png";
+import settingsBlue from "../../../assets/image/settingsBlue.png";
+import rightArrow from "../../../assets/image/arrowRight.png";
 
-const Sidebar = () => {
+const Sidebar = props => {
   const [click, setClick] = useState(0);
+  const [btnActive, setBtnActive] = useState(props.index);
 
-  const tabClickkHandler = index => {
+  const main = [
+    { page: "/", title: "홈" },
+    { page: "/noticeList", title: "공지사항 목록" },
+    { page: "/", title: "입/출고 현황" },
+  ];
+  const product = [
+    { page: "/", title: "물품 목록" },
+    { page: "/", title: "새 물품 추가" },
+    { page: "/", title: "물품 상태 관리" },
+  ];
+
+  const toggleActive = e => {
+    setBtnActive(() => {
+      return e.target.value;
+    });
+  };
+
+  const tabClickHandler = index => {
     setClick(index);
   };
 
@@ -28,123 +47,129 @@ const Sidebar = () => {
         </h1>
         <div className="userinfo">
           <h3>OOO님(작업)</h3>
-          <Link to="" className="bR8 primary">
+          <Link to="/" className="bR8 primary">
             마이페이지
           </Link>
         </div>
         <div className="mainNav">
           <ul className="depth1">
             <li
-              onClick={() => tabClickkHandler(0)}
+              onClick={() => tabClickHandler(0)}
               className={click === 0 ? "on" : ""}
             >
               <Link to="/" className="liA">
-                <CgHome className="emo" />
+                <img src={homeBlue} className="imgStyle emo" />
                 <p className="liP">메인 페이지</p>
               </Link>
               <ul className="depth2">
-                <li>
-                  <Link to="/notice">
-                    <IoIosArrowForward className="arrow" />
-                    <p>공지사항 목록</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="">
-                    <IoIosArrowForward className="arrow" />
-                    <p>참여자 작업 현황</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="">
-                    <IoIosArrowForward className="arrow" />
-                    <p>입&#47;출고 현황</p>
-                  </Link>
-                </li>
+                {main.map((item, index) => {
+                  return (
+                    <div>
+                      <li value={index} onClick={toggleActive}>
+                        <Link
+                          to={item.page}
+                          className={
+                            "btn" + (index == btnActive ? "active" : "")
+                          }
+                        >
+                          <img
+                            src={rightArrow}
+                            className={
+                              index == btnActive
+                                ? "show_arrow imgStyle"
+                                : "noShow"
+                            }
+                          />
+                          <p>{item.title}</p>
+                        </Link>
+                      </li>
+                    </div>
+                  );
+                })}
               </ul>
             </li>
             <li
-              onClick={() => tabClickkHandler(1)}
+              onClick={() => tabClickHandler(1)}
               className={click === 1 ? "on" : ""}
             >
               <Link to="" className="liA">
-                <BiBox className="emo" />
+                <img src={productBlue} className="imgStyle emo" />
                 <p className="liP">물품 관리</p>
               </Link>
               <ul className="depth2">
-                <li>
-                  <Link to="">
-                    <IoIosArrowForward className="arrow" />
-                    <p>물품 목록</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="">
-                    <IoIosArrowForward className="arrow" />
-                    <p>새 물품 추가</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="">
-                    <IoIosArrowForward className="arrow" />
-                    <p>물품 상태 관리</p>
-                  </Link>
-                </li>
+                {product.map((item, index) => {
+                  return (
+                    <div>
+                      <li value={index} onClick={toggleActive}>
+                        <Link
+                          to={item.page}
+                          className={
+                            "btn" + (index == btnActive ? "active" : "")
+                          }
+                        >
+                          <img
+                            src={rightArrow}
+                            className={
+                              index == btnActive
+                                ? "show_arrow imgStyle"
+                                : "noShow"
+                            }
+                          />
+                          <p>{item.title}</p>
+                        </Link>
+                      </li>
+                    </div>
+                  );
+                })}
               </ul>
             </li>
             <li
-              onClick={() => tabClickkHandler(2)}
+              onClick={() => tabClickHandler(2)}
               className={click === 2 ? "on" : ""}
             >
               <Link to="" className="liA">
-                <BiFile className="emo" />
+                <img src={descriptionBlue} className="imgStyle emo" />
                 <p className="liP">문서 관리</p>
               </Link>
               <ul className="depth2">
                 <li>
                   <Link to="/busList">
-                    <IoIosArrowForward className="arrow" />
                     <p>1</p>
                   </Link>
                 </li>
                 <li>
                   <Link to="">
-                    <IoIosArrowForward className="arrow" />
                     <p>2</p>
                   </Link>
                 </li>
                 <li>
                   <Link to="">
-                    <IoIosArrowForward className="arrow" />
                     <p>3</p>
                   </Link>
                 </li>
               </ul>
             </li>
             <li
-              onClick={() => tabClickkHandler(3)}
+              onClick={() => tabClickHandler(3)}
               className={click === 3 ? "on" : ""}
             >
               <Link to="" className="liA">
-                <AiOutlineSetting className="emo" />
+                <img src={settingsBlue} className="imgStyle emo" />
                 <p className="liP">관리자 설정</p>
               </Link>
               <ul className="depth2">
                 <li>
                   <Link to="/busList">
-                    <IoIosArrowForward className="arrow" />
                     <p>1</p>
                   </Link>
                 </li>
                 <li>
                   <Link to="">
-                    <IoIosArrowForward className="arrow" />
                     <p>2</p>
                   </Link>
                 </li>
                 <li>
                   <Link to="">
-                    <IoIosArrowForward className="arrow" />
                     <p>3</p>
                   </Link>
                 </li>

@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
   z-index: 999;
-  width: 260px;
-  border-right: 1px solid black;
+  width: 280px;
+  /* border-right: 1px solid black; */
   /* border-right: 완성 후 제거할 것 */
 }
 .head {
@@ -73,74 +73,94 @@
   align-items: center;
 }
 .depth1 {
-  height: 100vh;
+  /* height: 100vh; */
 }
 .depth1 > li {
   margin-bottom: 5px;
   width: 220px;
+  border-radius: 8px;
+}
+.depth1 > li a {
+  border-radius: 8px;
 }
 .depth1 > li > a > p {
-  padding: 10px 0;
+  padding: 13px 0;
 }
 .depth1 > li:hover > a {
   transition: all 0.1s;
   background-color: #f2f9ff;
+  border-radius: 8px;
 }
 .depth1 > li:hover > a > .emo {
-  color: #1f6de2;
+  /* display: none; */
+  filter: none;
 }
 
 /* depth1 클릭 시 작업 (depth2보이기, 배경주기) */
 .depth1 > li:last-child {
   margin-bottom: 0;
 }
+.depth1 > li.on {
+  height: 172px;
+  background-color: #e2f1ff;
+  border-radius: 8px;
+}
 .depth1 > li.on .liA {
   background-color: #e2f1ff;
 }
 .depth1 > li.on .liA .emo {
-  color: #1f6de2;
+  filter: none;
 }
 .depth1 > li.on .depth2 {
   display: block;
 }
 
 /* .depth2작업 */
-.depth1 > li .depth2 {
+.depth2 {
   display: none;
+  border-radius: 0 0 8px 8px;
 }
-.depth2 > li > a {
-  padding: 8px;
-  display: flex;
-  align-items: center;
+.depth2 li {
+  height: 40px;
   position: relative;
-  background-color: #e2f1ff;
 }
-.depth1 > li .depth2 > li:hover > a {
-  background-color: #f2f9ff;
-}
-.depth1 > li .depth2 > li > a .arrow {
-  position: absolute;
-  left: 15px;
-  display: none;
-}
-.depth1 > li .depth2 > li:hover > a .arrow {
+.depth2 li > a {
   display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding-left: 54px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
-.depth1 > li .depth2 > li > a p {
-  padding-left: 50px;
+.depth2 li > a p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.depth2 li > .btnactive {
+  color: #1f6de2;
+  position: relative;
 }
 
 /* 네비메뉴 공통작업 */
 .liA {
   display: flex;
   align-items: center;
-  padding: 2%;
 }
 .emo {
-  margin: 0 10px;
+  margin: 0 15px;
+  filter: invert(1) brightness(0);
 }
-.small {
-  width: 17px;
+.noShow {
+  display: none;
+}
+.show_arrow {
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* 반응형 화면 구현 */
@@ -155,3 +175,7 @@
     }
     .liP{display:none;}
 } */
+
+#selected {
+  color: red;
+}

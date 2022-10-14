@@ -1,0 +1,10 @@
+.toastBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  min-width: 420px;
+  min-height: 60px;
+  border: 1px solid black;
+  display: block;
+}

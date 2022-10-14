@@ -1,0 +1,150 @@
+.noticeListBody {
+  height: calc(100vh - 180px);
+}
+
+/* 좌측 리스트 화면 */
+.listFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+.noticeListBody .full-list {
+  width: 540px;
+  min-height: 650px;
+  max-height: 650px;
+  padding: 5px 0;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.noticeListBody .full-list::-webkit-scrollbar {
+  /* display: none;*/
+}
+.noticeListBody .full-list .depth1 {
+  display: flex;
+  flex-direction: column;
+}
+.noticeListBody .full-list .depth1 .depth1Li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 60px;
+  cursor: pointer;
+  padding: 20px 15px;
+  color: black;
+}
+.noticeListBody .full-list .depth1 .changeDepth1Li {
+  background-color: red;
+}
+.noticeListBody .full-list .depth1 .depth1Li:hover {
+  background-color: #e2f1ff;
+}
+.noticeListBody .full-list .depth1 .depth1Li .list-left {
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.noticeListBody .full-list .depth1 .depth1Li .list-right {
+  width: 70px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.noticeListBody .full-list .depth1 .depth1Li .list-right .go-right {
+  text-align: right;
+}
+
+/* 우측 상세보기 화면 */
+.noticeListBody .choice-notice {
+  border: 1px solid #b0becc;
+  width: 780px;
+  min-height: 650px;
+  /* padding: 30px; */
+  margin-left: 30px;
+}
+.noticeListBody .choice-notice .list-up {
+  display: flex;
+  justify-content: space-between;
+}
+.noticeListBody .choice-notice .list-up .strong {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 500px;
+}
+.noticeListBody .choice-notice .list-up .right-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.noticeListBody .choice-notice .content {
+  margin-top: 10px;
+  min-height: 480px;
+  width: 100%;
+}
+.noticeListBody .choice-notice .viewList {
+  justify-content: flex-start;
+  padding: 30px;
+}
+.noticeListBody .choice-notice .viewList input {
+  font-weight: 700;
+}
+.noticeListBody .choice-notice .viewList .btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.nopage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 650px;
+  font-weight: 400;
+}
+
+/* btn 위치 변경하면서 div.position_change로 한번 더 묶어줌 */
+.position_change {
+  position: relative;
+}
+.upBtn {
+  margin-bottom: 15px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* drop down menu css */
+.display_menu {
+  display: inline-block;
+  position: absolute;
+  bottom: 85%;
+  right: 0;
+  width: 180px;
+  height: 132px;
+  cursor: pointer;
+  z-index: 9999;
+}
+.display_menu > ul {
+  background: #f1f4f8;
+  padding: 15px;
+  border: 1px solid black;
+}
+.display_menu > ul li {
+  display: flex;
+  align-items: center;
+}
+.arrow {
+  margin-left: 12px;
+}

@@ -1,7 +1,12 @@
+@font-face {
+  src: url(./assets/font/Noto_Sans_KR/NotoSansKR-Regular.otf);
+  font-family: "noto_sans";
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "noto_sans";
 }
 ul {
   list-style: none;
@@ -18,20 +23,39 @@ button {
 input:focus {
   outline: none;
 }
+input,
+textarea {
+  background-color: white;
+  border: none;
+  resize: none;
+}
+.pL145 {
+  padding-left: 145px;
+}
+/* 화면 좌측 margin */
+.row {
+  margin-left: 280px;
+}
 
-/* 공통 클래스 작업 */
+/* 마진 작업 (공통적으로 많이 쓰이는 것만) */
 .mL10 {
   margin-left: 10px;
 }
+/* border radius 거의 공통으로 쓰임 */
 .bR8 {
   border-radius: 8px;
 }
 
-.texthint {
+/* font color 작업 */
+.textHint {
   color: #7a7a7d;
 }
-.primary {
+.primary,
+.textColor {
   color: #1f6de2;
+}
+.textDark {
+  color: #2e2e2e;
 }
 .primaryDark {
   color: #0043af;
@@ -39,41 +63,112 @@ input:focus {
 .secondary {
   color: #e2f1ff;
 }
+.secondaryDarkk {
+  color: #b0becc;
+}
+.error {
+  color: #e21f1f;
+}
+
+/* background color 작업 */
 .back-primary {
   background-color: #1f6de2;
 }
 .back-secondary {
   background-color: #e2f1ff;
 }
-
-.row {
-  margin-left: 260px;
+.back-primaryDark {
+  background-color: #0043af;
 }
 
+/* font size 작업 */
+.fs12 {
+  font-size: 12px;
+}
 .fs14 {
   font-size: 14px;
 }
 .fs10 {
   font-size: 10px;
 }
+.fs20 {
+  font-size: 20px;
+}
 
+/* button 작업들 */
 .btn-primary {
   border: 5px solid #1f6de2;
 }
-.btnadd {
-  background-image: url("./assets/image/add.png");
+.btnaddBlue {
+  background-image: url("./assets/image/addBlue.png");
   background-size: cover;
-  width: 13.5px;
-  height: 13.5px;
 }
 .btnList {
   background-image: url("./assets/image/list.png");
   background-size: cover;
-  width: 17.5px;
-  height: 9.65px;
+  width: 24px;
+  height: 24px;
   margin-right: 10px;
+}
+.btnListBlue {
+  background-image: url("./assets/image/listBlue.png");
+  background-size: cover;
+}
+.btnList2 {
+  background-image: url("./assets/image/format_line_spacing.png");
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+}
+.btnCloseImg {
+  background-image: url("./assets/image/close.png");
+  background-size: cover;
+}
+.btnClose {
+  color: #fff;
+  background-color: #1f6de2;
+  font-size: 16px;
+  width: 130px;
+  height: 40px;
+  padding: 6px 12px;
+}
+.btnError {
+  font-size: 16px;
+  font-weight: 400;
+  margin-right: 15px;
+}
+/* src(=img) 공통 작업 */
+.imgStyle {
+  width: 24px;
+  height: 24px;
 }
 
 /* @media screen and (max-width:950px){
     .row{margin-left:200px;}
 } */
+
+/* 토스트창 디자인 작업 */
+.Toastify__toast-container {
+}
+.Toastify__toast {
+  color: white;
+  background-color: #0043af;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 420px;
+  height: 60px;
+  padding: 15px 20px;
+}
+.Toastify__close-button--light {
+  opacity: 1;
+  color: white;
+  line-height: 42px;
+  /* display: inline-block;
+  width: 24px;
+  height: 100%; */
+}
+.Toastify__close-button > svg {
+}
