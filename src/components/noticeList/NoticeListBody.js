@@ -41,7 +41,7 @@ const NoticeListBody = props => {
   const [category, setCategory] = useState("생성 날짜");
   const [arrow, setArrow] = useState(false); //true일 때 오름차순, flase일 때 내림차순
 
-  const [isIndex, setIsIndex] = useState("");
+  const [isIndex, setIsIndex] = useState(null);
 
   // scroll event 관련
   function handleScroll() {
@@ -60,7 +60,7 @@ const NoticeListBody = props => {
     };
     getData();
   }, [column, order, searchValue, size]);
-  console.log(list);
+  // console.log(list);
 
   const onClickButton = () => {
     setIsOpen(true);
@@ -75,7 +75,7 @@ const NoticeListBody = props => {
   const handleContent = event => {
     setContent(event.target.value);
   };
-
+  console.log(isIndex);
   function onClickList(index) {
     const listIndex = list[index];
     // console.log(listIndex);

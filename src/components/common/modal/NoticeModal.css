@@ -50,7 +50,10 @@
 }
 .modal > section form > footer .checking {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+}
+.modal > section form > footer .checking input {
+  display: none;
 }
 
 /* checkbox css 작업 */
