@@ -22,7 +22,7 @@
   overflow-y: scroll;
 }
 .noticeListBody .full-list::-webkit-scrollbar {
-  /* display: none;*/
+  width: 1px;
 }
 .noticeListBody .full-list .depth1 {
   display: flex;
@@ -39,9 +39,6 @@
   color: black;
 }
 .noticeListBody .full-list .depth1 .changeDepth1Li {
-  background-color: red;
-}
-.noticeListBody .full-list .depth1 .depth1Li:hover {
   background-color: #e2f1ff;
 }
 .noticeListBody .full-list .depth1 .depth1Li .list-left {
