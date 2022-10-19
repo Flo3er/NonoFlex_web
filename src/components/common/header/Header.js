@@ -12,6 +12,7 @@ const Header = props => {
 
   const onReset = () => {
     setSearch("");
+    props.setSearchValue("");
   };
 
   // 값이 없을 때도 setSearchValue 보여줘야함 (props.setSearchValue("")으로 해결)
@@ -19,10 +20,8 @@ const Header = props => {
     e.preventDefault();
     if (search === null || search === "") {
       props.setSearchValue("");
-      console.log("no");
     } else {
       props.setSearchValue(search);
-      console.log(search);
     }
   };
 

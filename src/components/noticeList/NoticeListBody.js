@@ -75,12 +75,12 @@ const NoticeListBody = props => {
   const handleContent = event => {
     setContent(event.target.value);
   };
-  console.log(isIndex);
+
   function onClickList(index) {
     const listIndex = list[index];
     // console.log(listIndex);
     setIsIndex(index);
-    console.log(index);
+    // console.log(index);
     setViewList(listIndex);
 
     // 날짜 YYYY-MM-DD를 YYYY년 MM월 DD일로 변경하기
@@ -182,6 +182,8 @@ const NoticeListBody = props => {
             </div>
           )}
           <div className="full-list" id="full-list" onScroll={handleScroll}>
+            {/* searchValue 검색했을 때 맞는 제목이 하나도 없을 때 조건식 */}
+            {searchValue !== title ? (<div>ddd</div>):(<div>ggg</div>)}
             <ul className="depth1">
               {list &&
                 list.map((list, index) => (
@@ -202,7 +204,7 @@ const NoticeListBody = props => {
                     // style={{ color: listStyle }}
                   >
                     <div className="list-left">
-                      <p className="list-data">{list.title}</p>
+                      <p className="list-data textDark">{list.title}</p>
                     </div>
                     <div className="list-right fs10 primaryDark">
                       <p>{list.writer}</p>
@@ -238,7 +240,7 @@ const NoticeListBody = props => {
                 <div className="list-up">
                   <input
                     type="text"
-                    className="strong"
+                    className="strong textDark"
                     value={title}
                     onChange={handleTitle}
                     disabled
@@ -249,7 +251,7 @@ const NoticeListBody = props => {
                   </div>
                 </div>
                 <textarea
-                  className="content"
+                  className="content textDark"
                   value={content}
                   onChange={handleContent}
                   disabled

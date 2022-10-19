@@ -49,7 +49,7 @@ function MainText() {
   };
 
   return (
-    <div>
+    <div className="mainText">
       {recentData !== "" && (
         <div className="mainData">
           <div className="subData">
@@ -75,13 +75,13 @@ function MainText() {
               onClick={onClickBody}
             >
               <div className="noticeTop">
-                <h3>{recentData.title}</h3>
+                <h3 className="textDark">{recentData.title}</h3>
                 {recentData.focus === true ? (
                   <BsCircleFill className="primaryDark" />
                 ) : null}
               </div>
               <div className="noticeInfo">
-                <p className="fs10 info-content">{recentData.content}</p>
+                <p className="fs10 info-content textDark">{recentData.content}</p>
                 <div className="info-detail">
                   {/*  처음엔 createAt이 , 수정 시 updateAt이 나오게 조건문 작성하기! */}
                   {/* p안에 p를 둬서 생기는 오류 ↓*/}

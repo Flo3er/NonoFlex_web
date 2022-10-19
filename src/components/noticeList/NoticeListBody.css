@@ -7,16 +7,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* justify-content: space-between; */
+  padding:0 30px;
   overflow: hidden;
   height: 100%;
+  width:100%;
   position: relative;
 }
 .noticeListBody .full-list {
-  width: 540px;
+  /* min-width: 320px; */
   min-height: 650px;
   max-height: 650px;
   padding: 5px 0;
-  height: 100%;
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -61,7 +63,7 @@
 /* 우측 상세보기 화면 */
 .noticeListBody .choice-notice {
   border: 1px solid #b0becc;
-  width: 780px;
+  /* width: 780px; */
   min-height: 650px;
   /* padding: 30px; */
   margin-left: 30px;
@@ -112,6 +114,14 @@
 /* btn 위치 변경하면서 div.position_change로 한번 더 묶어줌 */
 .position_change {
   position: relative;
+}
+.position_change:nth-child(1){
+  min-width: 320px;
+  width: 540px;
+}
+.position_change:nth-child(2){
+  min-width: 540px;
+  width: 780px;
 }
 .upBtn {
   margin-bottom: 15px;
