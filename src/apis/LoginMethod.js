@@ -82,6 +82,7 @@ async function Code (email, password) {
         "password": password,
       });
       console.log(response.data);
+      return response;
   } catch (error) {
       console.log(error);
   }
@@ -90,11 +91,26 @@ async function Code (email, password) {
 
 async function Token (code) {
   try {
-      const response = await Instance.post('/api/v1/auth/code',{
+      const response = await Instance.post('/api/v1/auth/token',{
         "grant_type": "authorization_code",
         "code": code
       });
       console.log(response.data);
+      return response;
+  } catch (error) {
+      console.log(error);
+  }
+  // console.log(response.data);
+};
+
+async function RefreshToken (RefreshToken) {
+  try {
+      const response = await Instance.post('/api/v1/auth/token',{
+        "grant_type": "authorization_code",
+        "refresh_token": ""
+      });
+      console.log(response.data);
+      return response;
   } catch (error) {
       console.log(error);
   }
@@ -107,7 +123,8 @@ const LoginMethod = {
   EmailVerify,
   Join,
   Code,
-  Token
+  Token,
+  RefreshToken
 }
 
 export default LoginMethod;

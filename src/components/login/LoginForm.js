@@ -31,11 +31,11 @@ const loginform = () => {
     console.log("이거 언제 나옴?")
   }
 }, [cookies.rememberEmail])
- const Onlogin = () =>{
+ const Onlogin = async(email, password) =>{
 
     setEmailCertification(true)
     if(regExpid.test(email) && regExppw.test(password)){
-        Logininfosand();
+        const response = await LoginMethod.Code(email, password);
         console.log(token);
     }else{
         if (!regExpid.test(email) && !regExppw.test(password)){alert("이메일, 비밀번호 형식 오류")}
