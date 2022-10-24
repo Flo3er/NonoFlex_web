@@ -1,7 +1,7 @@
 .registerform{
   /* margin: 0 auto; */
-  width: 620px;
-  height: 720px;
+  width: 700px;
+  height: 760px;
   background-color: #fff;
   border-radius: 15px;
   display: flex;
@@ -28,38 +28,57 @@
 .registerform > ul > li{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;;
+  /* justify-content: space-between; */
   align-content: stretch;
-  width: 520px;
+  width: 600px;
   height: 50px;
-  margin: 2.5%;
+  margin-bottom: 7%;
+  /* align-items: center; */
+  /* line-height: 50px; */
 }
-.shorttext{
-  font-size: 14.5px;
-  padding: 1.5%;
+
+.textbox{
+  width: 100px;
+  line-height: 50px;
+  height: 50px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-size: 15px;
+  vertical-align: middle;
   text-align: left;
-  margin-top: 1%;
 }
-.longtext{
-  font-size: 11px;
-  padding: 1.5%;
-  text-align: left;
-  margin-top: 1%;
-}
-.infoinputbox{
-  width: 420px;
+.shortinfoinputbox{
+  width: 215px;
   height: 50px;
   background-color: #F1F4F8;
-  padding-left: 2%;
+  padding-left: 15px;
   font-size: 15px;
   border-radius: 10px;
   border: none;
 }
-.uninfoinputbox{
-  width: 420px;
+.unshortinfoinputbox{
+  width: 213px;
   height: 50px;
   background-color: #F1F4F8;
-  padding-left: 2%;
+  padding-left: 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+.longinfoinputbox{
+  width: 355px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: none;
+}
+.unlonginfoinputbox{
+  width: 353px;
+  height: 50px;
+  background-color: #F1F4F8;
+  padding-left: 15px;
   font-size: 15px;
   border-radius: 10px;
   border: 1px solid red;
@@ -103,29 +122,77 @@
 .emailcheckbtn{
   width: 120px;
   height: 50px;
+  margin-left: 10px;
   color: #1F6DE2;
   background: #FFFFFF;
   border: 1px solid #1F6DE2;
   border-radius: 8px;
+  font-family: 'Noto Sans KR';
+  font-size: 16px;
 }
+/* ******************버튼 상태 스타일 */
+.defaultbtn{
+  width: 120px;
+  height: 50px;
+  margin-left: 10px;
+  color: #1F6DE2;
+  background: #FFFFFF;
+  border: 1px solid #1F6DE2;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Noto Sans KR';
+  font-size: 16px;
+}
+.defaultbtn:hover{
+  background: #E2F1FF;
+  border: 1px solid #1F6DE2;
+}
+.disabledbtn{
+  width: 120px;
+  height: 50px;
+  margin-left: 10px;
+  color: #E2F1FF;
+  background: #FFFFFF;
+  border: 1px solid #E2F1FF;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Noto Sans KR';
+  font-size: 16px;
+}
+.pressrdbtn{
+  width: 120px;
+  height: 50px;
+  margin-left: 10px;
+  color: #FFFFFF;
+  background: #1F6DE2;
+  border: 1px solid #1F6DE2;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Noto Sans KR';
+  font-size: 16px;
+}
+/* ******************버튼 상태 스타일 */
 
 .emailChecktext{
   /* height: 10px; */
-  margin-left: 79%;
+  height: 8px;
+  width: 470px;
+  /* margin-left: 62%; */
   text-align: right;
   font-size: 8px;
   color:red;
 }
 .passwordChecktext{
   /* height: 10px; */
-  margin-left: 77%;
+  margin-left: 58%;
   text-align: right;
+
   font-size: 8px;
   color:red;
 }
 .passwordarticleChecktext{
   /* height: 10px; */
-  margin-left: 82%;
+  margin-left: 62%;
   text-align: right;
   font-size: 8px;
   color:red;
@@ -133,30 +200,40 @@
 .unemailcheckbtn{
   width: 120px;
   height: 50px;
+  margin-left: 10px;
   color: #E2F1FF;
   background: #FFFFFF;
   border: 1px solid #E2F1FF;
   border-radius: 8px;
 }
 .certificationtimer{
-  width: 280px;
+  width: 140px;
   height: 50px;
-  background-color: #F1F4F8;
+
+  line-height: 50px;
   color: #1F6DE2;
-  padding-left: 2%;
+  
+  text-align: right;
+
   font-size: 15px;
   font-style: italic;
-  border-radius: 10px;
+  border-radius: 16px;
   border: none;
   z-index: 999;
 
 }
 .registersubmit{
-  width: 520px;
+  width: 600px;
   height: 60px;
   background-color: #1F6DE2;
   color: #fff;
   border-radius: 5px;
   border: none;
   
+}
+
+.dlatl{
+  width: 140px;
+  height: 50px;
+  background-color:aqua;
 }
