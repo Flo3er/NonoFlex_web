@@ -1,0 +1,12 @@
+.textButton {
+    font-size: 14px;
+    color: #1F6DE2;
+    font-weight: 400;
+    text-decoration: none;
+    margin: 8px;
+}
+
+.textButton:hover {
+    color: #1957B5;
+    font-weight: 700;
+}

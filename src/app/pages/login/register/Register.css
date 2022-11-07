@@ -1,0 +1,44 @@
+.register {
+    background-color: #0043AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}
+
+.registerBody {
+    width: 700px;
+    height: 760px;
+    background-color: white;
+    border-radius: 10px;
+    display: block;
+}
+
+.title {
+    text-align: center;
+    font-weight: 700;
+}
+
+/* .bodyComponent {
+    width: 80%;
+    height: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+} */
+
+.componentTitle {
+    width: 40px;
+    text-align: left;
+    display: inline;
+}
+
+.textField {
+    width: 400px;
+    height: 40px;
+    display: inline;
+    vertical-align: middle;
+}

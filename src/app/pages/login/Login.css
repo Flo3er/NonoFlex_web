@@ -1,0 +1,100 @@
+.login {
+  /* flex-direction: column; */
+  background-color: #0043AF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+}
+
+.loginBody {
+  width: 420px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  display: block;
+}
+
+/* .toastBody {
+  background-color: #E2F1FF;
+} */
+
+.bodyComponent {
+  width: 360px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginLogo {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.topSpace {
+  height: 60px;
+  width: auto;
+}
+
+.emailCheck {
+  color: #e21f1f;
+  font-size: 8px;
+  font-weight: 400;
+  margin-left: 16px;
+}
+
+.passwordCheck {
+  color: #e21f1f;
+  font-size: 8px;
+  font-weight: 400;
+  margin-left: 16px;
+}
+
+.saveUserId {
+  width: 50%;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.saveUserIdLabel {
+  color: #1F6DE2;
+  font-weight: 400;
+  font-size: 14px;
+  font-style: normal;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+input[type="checkbox"] {
+  display:none;
+
+}
+input[type="checkbox"] +label {
+  width: 16px;
+  height: 16px;
+  background: #E2F1FF;
+
+  border: 2px solid #1F6DE2;
+  border-radius: 6px;
+  display: inline-block;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+  background: #1F6DE2;
+  border-radius: 6px;
+  
+}
+
+.registerAndChangePassword {
+  width: 50%;
+  height: 50px;
+  text-align: right;
+  display: inline-block;
+}

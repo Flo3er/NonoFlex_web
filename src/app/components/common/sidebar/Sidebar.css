@@ -1,0 +1,11 @@
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 280px;
+    border-right: 1px solid black;
+    background-color: yellow;
+    /* border-right: 완성 후 제거할 것 */
+}

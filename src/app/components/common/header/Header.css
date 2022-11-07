@@ -1,0 +1,6 @@
+.header {
+     /* border-bottom: 완성 후 제거할 것 */
+    border-bottom: 1px solid black;
+    height: 180px;
+    background-color: blue;
+}

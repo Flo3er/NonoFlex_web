@@ -1,0 +1,12 @@
+.splash{
+    background-color: #0043AF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.splashLogo {
+    width: 100;
+    height: 100;
+}
