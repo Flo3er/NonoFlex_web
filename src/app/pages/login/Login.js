@@ -60,6 +60,14 @@ const Login = () => {
                     accessToken: response.accessToken.access_token,
                     refreshToken: response.accessToken.refresh_token
                 }));
+                toast.success("Login Success", {
+                    autoClose: 3000,
+                    position: toast.POSITION.TOP_CENTER,
+                    bodyClassName: "toastBody",
+                    hideProgressBar: true,
+                    closeButton: false,
+                    theme: "colored"
+                });
             } else {
                 toast.error("["+response.errorCode+"]"+response.errorMessage, {
                     autoClose: 3000,
@@ -143,13 +151,13 @@ const Login = () => {
                         <label className="saveUserIdLabel">아이디 저장</label>
                     </div>
                     <div className="registerAndChangePassword">
-                        <TextButton onClick="" value="회원 가입" />
+                        <TextButton onClick="/register" value="회원 가입" />
                         <br />
                         <TextButton onClick="" value="비밀번호 변경하기" />
                     </div>
                 </div>
                 <br />
-                <div className="bodyComponent">
+                <div className="loginButton">
                     <PrimaryButton onClick={pressLoginButton} value="Login" />
                 </div>
             </div>

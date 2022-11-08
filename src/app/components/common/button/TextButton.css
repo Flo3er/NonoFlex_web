@@ -4,6 +4,7 @@
     font-weight: 400;
     text-decoration: none;
     margin: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .textButton:hover {

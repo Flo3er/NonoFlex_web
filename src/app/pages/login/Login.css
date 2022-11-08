@@ -17,10 +17,6 @@
   display: block;
 }
 
-/* .toastBody {
-  background-color: #E2F1FF;
-} */
-
 .bodyComponent {
   width: 360px;
   height: auto;
@@ -97,4 +93,12 @@ input[type="checkbox"]:checked + label {
   height: 50px;
   text-align: right;
   display: inline-block;
+}
+
+.loginButton {
+  width: 80%;
+  height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

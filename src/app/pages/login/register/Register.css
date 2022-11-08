@@ -19,26 +19,83 @@
 .title {
     text-align: center;
     font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-/* .bodyComponent {
+.bodyComponent {
     width: 80%;
-    height: 40px;
+    height: auto;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    
-} */
+    list-style:none;
+    padding-left: 0px;
+}
+
+.bodyComponent > li {
+    height: 60px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
 .componentTitle {
-    width: 40px;
     text-align: left;
-    display: inline;
-}
-
-.textField {
-    width: 400px;
     height: 40px;
     display: inline;
-    vertical-align: middle;
+    float: left;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.textFieldBox {
+    width: 82%;
+    display: inline;
+    height: 40px;
+    text-align: right;
+    margin-left: auto;
+    float: right;
+}
+
+.emailTextFieldBox {
+    width: 58%;
+    display: inline;
+    height: 40px;
+    text-align: right;
+    margin-left: 60px;
+    margin-right: auto;
+    float: left;
+}
+
+.emailCheckButton {
+    width: 120px;
+    display: inline;
+    height: 50px;
+    text-align: right;
+    margin-left: auto;
+    float: right;
+}
+
+.emailAuthTextFieldBox {
+    width: 58%;
+    display: inline;
+    height: 40px;
+    text-align: right;
+    margin-left: 30px;
+    margin-right: auto;
+    float: left;
+}
+
+.emailAuthCheckButton {
+    width: 120px;
+    display: inline;
+    height: 50px;
+    text-align: right;
+    margin-left: auto;
+    float: right;
+}
+
+.registerButton {
+    width: 100%;
+    height: 60px;
+    display: block;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
 }
