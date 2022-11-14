@@ -31,9 +31,7 @@
 }
 
 .bodyComponent > li {
-    height: 60px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    height: 40px;
 }
 
 .componentTitle {
@@ -51,6 +49,13 @@
     text-align: right;
     margin-left: auto;
     float: right;
+}
+
+.invalidDataInform {
+    color: #e21f1f;
+  font-size: 8px;
+  font-weight: 400;
+  margin-left: 120px;
 }
 
 .emailTextFieldBox {

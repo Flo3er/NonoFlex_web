@@ -12,6 +12,11 @@
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.loginPrimaryButton:hover {
+.loginPrimaryButton:enabled:hover {
     background-color: #1957B5;
+}
+
+.loginPrimaryButton:disabled {
+    background-color: #E2F1FF;
+
 }

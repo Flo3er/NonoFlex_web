@@ -32,7 +32,7 @@ async function getAccessToken(code) {
         console.log(response.data);
         return {
             isSuccess: true,
-            accessToken: response.data
+            token: response.data
         }
     } catch (error) {
         return {
@@ -43,8 +43,95 @@ async function getAccessToken(code) {
     }
 }
 
+async function checkDuplicateEmail(email) {
+    try {
+        const response = await NonoAPI.post('/api/v1/auth/email/duplicate',{
+            "email": email,
+            "type": "JOIN"
+        });
+        console.log(response.data);
+        return {
+            isSuccess: true,
+            result: response.data
+        }
+    } catch (error) {
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
+async function sendEmailAuthorization(email, type) {
+    try {
+        const response = await NonoAPI.post('/api/v1/auth/email/check',{
+            "email": email,
+            "type": type
+        });
+        console.log(response.data);
+        return {
+            isSuccess: true,
+            result: response.data
+        };
+    } catch (error) {
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        };
+    }
+}
+
+async function verifyEmailAuthorization(email, code) {
+    try {
+        const response = await NonoAPI.post('/api/v1/auth/email/verify',{
+            "email": email,
+            "code": code
+        });
+        console.log(response.data);
+        return {
+            isSuccess: true,
+            result: response.data
+        };
+    } catch (error) {
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        };
+    }
+}
+
+async function regitser(name, email, password, code) {
+    try {
+        const response = await NonoAPI.post('/api/v1/auth/join',{
+            "name": name,
+            "email": email,
+            "password": password,
+            "code": code
+          });
+
+          console.log(response.data)
+          return {
+            isSuccess: true,
+            result: response.data
+          }
+    } catch (error) {
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
 const AuthenticationAPI = {
     login,
+    checkDuplicateEmail,
+    sendEmailAuthorization,
+    verifyEmailAuthorization,
+    regitser,
 }
 
 export default AuthenticationAPI;

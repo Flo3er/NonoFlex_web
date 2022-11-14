@@ -32,6 +32,7 @@ const TextField = (props) => {
                         value={props.value}
                         className='inputBox'
                         onChange={({ target: { value } }) => props.onChange(value)}
+                        readOnly={props.readOnly}
                         placeholder={props.placeholder}
                     />
 

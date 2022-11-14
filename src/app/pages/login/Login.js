@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../features/login/LoginSlice";
 import AuthenticationAPI from "../../../apis/login/Authentication";
+import NonoToast from "../../components/common/toast/Toast.js";
 
 const Login = () => {
     const [userId, setUserId] = useState("");
@@ -29,7 +30,6 @@ const Login = () => {
             updateCheckedSaveUserId(true);
         }
     }, [cookies.rememberEmail])
-
 
     const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
     const regExpPassword = /^[a-zA-Z\\d`~!@#$%^&*()-_=+]{10,20}$/
@@ -57,45 +57,20 @@ const Login = () => {
                 dispatch(login({
                     userId: userId,
                     password: password,
-                    accessToken: response.accessToken.access_token,
-                    refreshToken: response.accessToken.refresh_token
+                    accessToken: response.token.access_token,
+                    refreshToken: response.token.refresh_token
                 }));
-                toast.success("Login Success", {
-                    autoClose: 3000,
-                    position: toast.POSITION.TOP_CENTER,
-                    bodyClassName: "toastBody",
-                    hideProgressBar: true,
-                    closeButton: false,
-                    theme: "colored"
-                });
+                NonoToast.success("로그인에 성공하였습니다.");
             } else {
-                toast.error("["+response.errorCode+"]"+response.errorMessage, {
-                    autoClose: 3000,
-                    position: toast.POSITION.TOP_CENTER,
-                    bodyClassName: "toastBody",
-                    hideProgressBar: true,
-                    closeButton: false,
-                    theme: "colored"
-                });
+                NonoToast.error("["+response.errorCode+"]"+response.errorMessage);
             }
-
-
-
-
             if (isCheckeSaveduserId) {
                 setCookie('rememberEmail', userId, { maxAge: 2000 });
             } else {
                 removeCookie('rememberEmail');
             }
         } else {
-            toast.error("로그인 정보가 올바르지 않습니다.", {
-                autoClose: 3000,
-                position: toast.POSITION.TOP_CENTER,
-                bodyClassName: "toastBody",
-                hideProgressBar: true,
-                closeButton: false,
-                theme: "colored"
-            });
+            NonoToast.error("로그인 정보가 올바르지 않습니다.");
         }
     }
 
