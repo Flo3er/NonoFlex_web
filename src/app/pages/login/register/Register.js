@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "./Register.css"
 import AuthenticationAPI from "../../../../apis/login/Authentication";
 import NonoToast from "../../../components/common/toast/Toast.js";
-import Utils from "../../../../features/utils/utils";
+import Utils from "../../../../features/utils/Utils.js";
 import { useLocation } from 'react-router-dom';
 
 const Register = (props) => {
