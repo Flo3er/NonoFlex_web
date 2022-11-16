@@ -2,17 +2,18 @@ import PrimaryButton from "../../components/common/button/PrimaryButton";
 import TextField from "../../components/login/TextField";
 import "./Login.css"
 import logo from '../../../assets/images/logo.png';
-import { useEffect, useImperativeHandle } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from "react-redux";
 import TextButton from "../../components/common/button/TextButton";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../features/login/LoginSlice";
 import AuthenticationAPI from "../../../apis/login/Authentication";
 import NonoToast from "../../components/common/toast/Toast.js";
+import Utils from "../../../features/utils/Utils";
 
 const Login = () => {
     const [userId, setUserId] = useState("");
@@ -32,7 +33,7 @@ const Login = () => {
     }, [cookies.rememberEmail])
 
     const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
-    const regExpPassword = /^[a-zA-Z\\d`~!@#$%^&*()-_=+]{10,20}$/
+    const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
     const onChangeUserId = event => {
         setUserId(event);
@@ -60,7 +61,12 @@ const Login = () => {
                     accessToken: response.token.access_token,
                     refreshToken: response.token.refresh_token
                 }));
+                // token값 session에 저장.
+                sessionStorage.setItem("accessToken", response.token.access_token,);
+                sessionStorage.setItem("refreshToken", response.token.refresh_token);
                 NonoToast.success("로그인에 성공하였습니다.");
+                await Utils.timeout(2000);
+                window.location.replace("./main");
             } else {
                 NonoToast.error("["+response.errorCode+"]"+response.errorMessage);
             }

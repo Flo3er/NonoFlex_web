@@ -3,12 +3,11 @@ import PrimaryButton from "../../../components/common/button/PrimaryButton";
 import TextField from "../../../components/login/TextField";
 import RoundButton from "../../../components/common/button/RoundButton";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import "./Register.css"
 import AuthenticationAPI from "../../../../apis/login/Authentication";
 import NonoToast from "../../../components/common/toast/Toast.js";
 import Utils from "../../../../features/utils/Utils.js";
-import { useLocation } from 'react-router-dom';
 
 const Register = (props) => {
     const [userName, setUserName] = useState("");
@@ -27,8 +26,6 @@ const Register = (props) => {
 
     const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/
     const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-
-    const location = useLocation();
 
     const onChangeUserName = event => {
         setUserName(event);

@@ -6,7 +6,7 @@ const Main = () => {
         <div>
             <Header />
             <div>
-                <Sidebar />
+                <Sidebar value="/main"/>
             </div>
         </div>
     );

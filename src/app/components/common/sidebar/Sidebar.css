@@ -4,8 +4,205 @@
     top: 0;
     left: 0;
     z-index: 999;
-    width: 280px;
+    width: 240px;
     border-right: 1px solid black;
-    background-color: yellow;
+    background-color: #FFFFFF;
+    margin-left: 20px;
     /* border-right: 완성 후 제거할 것 */
+}
+
+p {
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    color: #2E2E2E;
+}
+
+.company {
+    display: block;
+    margin-top: 45px;
+    width: 100%;
+}
+
+.companyLogo {
+    display: inline-block;
+    width: 50px;
+    height: 61px;
+}
+
+.companyInfo {
+    width: 150px;
+    display: inline-block;
+}
+
+.companyInfo>hr {
+    border: 1px solid #F96D39;
+    padding: 0%;
+    margin: 0%;
+    margin-bottom: 5px;
+}
+
+.companyName {
+    font-weight: 500;
+    font-size: 20px;
+    display: inline;
+}
+
+.productName {
+    font-weight: 350;
+    font-size: 14px;
+    display: inline;
+}
+
+.user {
+    width: 95%;
+    height: 50px;
+    display: block;
+    margin-top: 30px;
+}
+
+.userName {
+    display: inline-block;
+    width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 5px;
+    margin-bottom: auto;
+}
+
+.userNameSufix {
+    font-size: 14px;
+    width: 20px;
+    display: inline-block;
+    overflow: hidden;
+    text-align: top;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.myPageButton {
+    width: 90px;
+    height: 35px;
+    display: block;
+    float: right;
+}
+
+.menu {
+    width: 100%;
+    margin-top: 45px;
+}
+
+.menu>ul {
+    width: 100%;
+    height: auto;
+    display: block;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.menu>ul>li {
+    width: 95%;
+    text-decoration: none;
+    text-align: start;
+}
+
+.menu>ul>li:hover {
+    cursor: pointer;
+}
+
+.menu ul>li>a {
+    text-decoration: none;
+}
+
+.menuBox {}
+
+.selectedMenuBox {
+    background-color: #e2f1ff;
+    border-radius: 8px;
+}
+
+.menuImage {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: auto;
+}
+
+.menuImage>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menuText {
+    margin-left: 15px;
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.selectedMenuText {
+    margin-left: 15px;
+    margin-top: 15px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    color: #1F6DE2;
+    vertical-align: top;
+}
+
+.subMenu {
+    width: 100%;
+    height: auto;
+    display: block;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.subMenu>li {
+    width: 95%;
+    height: 40px;
+    text-decoration: none;
+    text-align: start;
+}
+
+.subMenuImage {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.subMenuImage>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.subMenuText {
+    margin-left: 15px;
+    display: inline;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.selectedSubMenuText {
+    margin-left: 15px;
+    display: inline;
+    text-decoration: none;
+    color: #1F6DE2;
+    vertical-align: top;
 }
