@@ -1,6 +1,6 @@
 .mainHeader {
     height: 180px;
-    width: 100vw;
+    width: calc(100vw-290px);
     margin-left: 290px;
 }
 .headerTitle {

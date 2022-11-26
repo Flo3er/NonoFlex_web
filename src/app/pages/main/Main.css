@@ -3,8 +3,8 @@
 }
 
 .pageBody {
-    width: 100vw;
-    height: 100vh;
+    width: calc(100vw-290px);
+    height: calc(100vh-180px);
     margin-left: 290px;
 }
 
