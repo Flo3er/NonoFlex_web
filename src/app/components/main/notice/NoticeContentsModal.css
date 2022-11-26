@@ -1,0 +1,108 @@
+.noticeAddModalBody {
+    width: 600px;
+    height: 600px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.noticeTitleBox {
+    display: flex;
+    height: 36px;
+    width: 100%;
+}
+
+.noticeTitleBox>input {
+    flex-grow: 1;
+    border-color: transparent;
+    line-height: 100%;
+}
+
+.noticeTitleBox>input:read-only {
+    pointer-events: none;
+}
+
+.noticeTitleBox>img {
+    width: 32px;
+    height: 32px;
+    padding: 2px;
+    border-radius: 15px;
+}
+
+.noticeTitleBox>img:hover {
+    background-color: #F2F9FF;
+}
+
+.noticeTitleBox>img:active {
+    background-color: #E2F1FF;
+}
+
+.noticeBodyBox {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.noticeBodyBox>textarea {
+    padding: 16px;
+    line-height: 100%;
+    width: 100%;
+    height: 93%;
+    flex-grow: 1;
+    text-align: start;
+    vertical-align: top;
+    border: 1px solid #B0BECC;
+    border-radius: 8px;
+    text-align: start;
+    resize: none;
+}
+
+.noticeBodyBox>textarea:read-only {
+    pointer-events: none;
+}
+
+.noticeBodyTail {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.checkBoxBlock {
+    display: flex;
+    align-items: center;
+}
+.checkBox {
+    width: 20px;
+    height: 20px;
+    background-color: #E2F1FF;
+    border: 2px solid #1F6DE2;
+    border-radius: 6px;
+    display: inline-block;
+}
+.checkedCheckBox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1F6DE2;
+    border-radius: 6px;
+    display: inline-block;
+    background-color: #1F6DE2;
+}
+
+.checkBoxText {
+    margin-left: 8px;
+   display: inline-block;
+   font-size: 14px;
+   font-weight: 350;
+}
+
+.emptySpace {
+    flex-grow: 1;
+}
+
+.noticeAddModalSaveButton {
+    height: 100%;
+    width: 130px;
+    margin-left: 30px;
+}

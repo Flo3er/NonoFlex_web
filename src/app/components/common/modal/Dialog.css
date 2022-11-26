@@ -1,0 +1,81 @@
+.dialogBody {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.dialogTitle {
+    padding-top: 20px;
+    height: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.dialogTitle>span {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.diloagBodyContents {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.dialogBody>p {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.dialogTail {
+    height: 48px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1px;
+}
+.dialogTail>div {
+    flex-grow: 1;
+    cursor: pointer;
+    border: 1px solid #F1F4F8;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    
+}
+
+.dialogTailCancelButton {
+    border-radius: 0px 0px 0px 8px;
+}
+
+.dialogTailOKButton {
+    border-radius: 0px 0px 8px 0px;
+}
+
+.dialogTailWarningButton {
+    border-radius: 0px 0px 8px 0px;
+}
+
+.dialogTailOKButton>span {
+    color: #0043AF;
+}
+
+.dialogTailWarningButton>span {
+   color: #E21F1F;
+}
+
+.dialogTail>div>span {
+    height: 48px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
