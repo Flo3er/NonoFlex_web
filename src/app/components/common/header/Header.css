@@ -1,7 +1,10 @@
 .mainHeader {
     height: 180px;
-    width: calc(100vw-290px);
-    margin-left: 290px;
+    width: 100%;
+    /* min-width: 700px;
+    max-width: min(1400px, calc(100% - 200px)); */
+    /* width: calc(100vw-290px); */
+    /* margin-left: 290px; */
 }
 .headerTitle {
     padding-top: 40px;

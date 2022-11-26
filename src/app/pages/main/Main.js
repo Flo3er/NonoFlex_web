@@ -93,37 +93,40 @@ const Main = () => {
                     onClickClose={onCloseNoticeContentsModal}
                 />
             </Modal>
+            <div className="page">
+                <Sidebar value="/main" />
+                <div className="contentsPage">
+                    <Header title="노노유통"
+                        desc="환영합니다! 현재 유통 상황을 알 수 있어요!" />
+                    <div className="pageBody">
+                        <div className="MainNotice">
+                            <div className="mainNoticeTitle">
+                                <p className="mainNoticeTitleText" >공지사항</p>
+                                <img src={ListBlue} alt="list" className="mainIconButton" onClick={onclickListButton} />
+                                <img src={AddBlue} alt="add" className="mainIconButton" onClick={onCLickNoticeAddButton} />
 
-            <Header title="노노유통"
-                desc="환영합니다! 현재 유통 상황을 알 수 있어요!" />
-            <Sidebar value="/main" />
-            <div className="pageBody">
-                <div className="MainNotice">
-                    <div className="mainNoticeTitle">
-                        <p className="mainNoticeTitleText" >공지사항</p>
-                        <img src={ListBlue} alt="list" className="mainIconButton" onClick={onclickListButton} />
-                        <img src={AddBlue} alt="add" className="mainIconButton" onClick={onCLickNoticeAddButton} />
-
+                            </div>
+                            {!isEmptyNotice ?
+                                <div className="mainNoticeBody" onClick={onCLickNoticeContentsButton}>
+                                    <div className="mainNoticeBodyTitle">
+                                        <span>{recentNoticeData.title}</span>
+                                        {recentNoticeData.focus ? <img src={noticeAlert} alt="alert" /> : <p></p>}
+                                    </div>
+                                    <div className="mainNoticeBodyData">
+                                        <span>{recentNoticeData.content}</span>
+                                    </div>
+                                    <div className="mainNoticeBodyTail">
+                                        <p className="mainNoticeBodyTailDate">{recentNoticeData.updatedAt}</p>
+                                        <p className="mainNoticeBodyTailAuthor">&nbsp;&nbsp;{recentNoticeData.writer}</p>
+                                    </div>
+                                </div>
+                                :
+                                <div className="mainNoticeBody" onClick={onCLickNoticeAddButton}>
+                                    <span className="mainNoticeEmptyString"> 새로운 공지 사항을 입력해 보세요! </span>
+                                </div>
+                            }
+                        </div>
                     </div>
-                    {!isEmptyNotice ?
-                        <div className="mainNoticeBody" onClick={onCLickNoticeContentsButton}>
-                            <div className="mainNoticeBodyTitle">
-                                <span>{recentNoticeData.title}</span>
-                                {recentNoticeData.focus ? <img src={noticeAlert} alt="alert" /> : <p></p>}
-                            </div>
-                            <div className="mainNoticeBodyData">
-                                <span>{recentNoticeData.content}</span>
-                            </div>
-                            <div className="mainNoticeBodyTail">
-                                <p className="mainNoticeBodyTailDate">{recentNoticeData.updatedAt}</p>
-                                <p className="mainNoticeBodyTailAuthor">&nbsp;&nbsp;{recentNoticeData.writer}</p>
-                            </div>
-                        </div>
-                        :
-                        <div className="mainNoticeBody" onClick={onCLickNoticeAddButton}>
-                            <span className="mainNoticeEmptyString"> 새로운 공지 사항을 입력해 보세요! </span>
-                        </div>
-                    }
                 </div>
             </div>
         </div>
