@@ -1,6 +1,17 @@
-.header {
-     /* border-bottom: 완성 후 제거할 것 */
-    border-bottom: 1px solid black;
+.mainHeader {
     height: 180px;
-    background-color: blue;
+    width: 100vw;
+    margin-left: 290px;
+}
+.headerTitle {
+    padding-top: 40px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #2e2e2e;
+}
+
+.headerDesc{
+    font-size: 14px;
+    font-weight: 350;
+    color: #2e2e2e;
 }

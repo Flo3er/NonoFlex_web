@@ -3,12 +3,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
     width: 240px;
-    border-right: 1px solid black;
     background-color: #FFFFFF;
     margin-left: 20px;
-    /* border-right: 완성 후 제거할 것 */
 }
 
 p {
@@ -99,12 +96,14 @@ p {
     display: block;
     list-style: none;
     padding-left: 0px;
+    
 }
 
 .menu>ul>li {
     width: 95%;
     text-decoration: none;
-    text-align: start;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
 }
 
 .menu>ul>li:hover {
@@ -115,7 +114,10 @@ p {
     text-decoration: none;
 }
 
-.menuBox {}
+.menuBox:hover {
+    background-color: #F2F9FF;
+    border-radius: 8px;
+}
 
 .selectedMenuBox {
     background-color: #e2f1ff;
@@ -128,7 +130,7 @@ p {
     overflow: hidden;
     position: relative;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-top: 15px;
     margin-bottom: auto;
 }
@@ -165,6 +167,7 @@ p {
     display: block;
     list-style: none;
     padding-left: 0px;
+    padding-bottom: 8px;
 }
 
 .subMenu>li {
@@ -174,13 +177,30 @@ p {
     text-align: start;
 }
 
+.subMenuItem {
+    background-color: #e2f1ff;
+    width: 95%;
+    height: 40px;
+    border-radius: 8px;
+    list-style: none;
+    text-decoration: none;
+    margin-left: 10px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+}
+.subMenuItem:hover {
+    background-color: #F2F9FF;
+}
+
 .subMenuImage {
     width: 24px;
     height: 24px;
     overflow: hidden;
     position: relative;
-    display: inline-block;
-    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
 }
 
 .subMenuImage>img {
@@ -196,7 +216,6 @@ p {
     margin-left: 15px;
     display: inline;
     text-decoration: none;
-    vertical-align: top;
 }
 
 .selectedSubMenuText {
@@ -204,5 +223,4 @@ p {
     display: inline;
     text-decoration: none;
     color: #1F6DE2;
-    vertical-align: top;
 }

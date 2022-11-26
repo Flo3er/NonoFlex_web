@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from "react-redux";
-import TextButton from "../../components/common/button/TextButton";
+import TextLinkButton from "../../components/common/button/TextLinkButton";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -64,6 +64,8 @@ const Login = () => {
                 // token값 session에 저장.
                 sessionStorage.setItem("accessToken", response.token.access_token,);
                 sessionStorage.setItem("refreshToken", response.token.refresh_token);
+                sessionStorage.setItem("expired", response.token.expires_in);
+                sessionStorage.setItem("refresh_expried", response.token.refresh_token_expires_in)
                 NonoToast.success("로그인에 성공하였습니다.");
                 await Utils.timeout(2000);
                 window.location.replace("./main");
@@ -132,9 +134,9 @@ const Login = () => {
                         <label className="saveUserIdLabel">아이디 저장</label>
                     </div>
                     <div className="registerAndChangePassword">
-                        <TextButton onClick="/register" value="회원 가입" />
+                        <TextLinkButton onClick="/register" value="회원 가입" />
                         <br />
-                        <TextButton onClick="" value="비밀번호 변경하기" />
+                        <TextLinkButton onClick="" value="비밀번호 변경하기" />
                     </div>
                 </div>
                 <br />

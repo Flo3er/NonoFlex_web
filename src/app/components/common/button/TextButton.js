@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import "./TextButton.css"
 
 const TextButton = props => {
+    const onClickButton = () => {
+       props.onclick();
+    }
+
     return (
-        <Link
-            to={props.onClick}
-            className="textButton">{
-                props.value}
-        </Link>
+        <div
+            onClick={onClickButton}
+            className={props.warning ? "warningButton" : "textButton"}>
+            {props.value}
+        </div>
     );
 }
 

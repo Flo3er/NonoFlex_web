@@ -43,6 +43,28 @@ async function getAccessToken(code) {
     }
 }
 
+async function refreshToken(token) {
+    try {
+        const response = await NonoAPI.post(
+            "/api/v1/auth/token", {
+                "grant_type": "refresh_token",
+                "refresh_token": token,
+            }
+        );
+        console.log(response.data);
+        return {
+            isSuccess: true,
+            token: response.data
+        }
+    } catch (error) {
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message,
+        };
+    }
+}
+
 async function checkDuplicateEmail(email) {
     try {
         const response = await NonoAPI.post('/api/v1/auth/email/duplicate',{
@@ -132,6 +154,7 @@ const AuthenticationAPI = {
     sendEmailAuthorization,
     verifyEmailAuthorization,
     regitser,
+    refreshToken,
 }
 
 export default AuthenticationAPI;

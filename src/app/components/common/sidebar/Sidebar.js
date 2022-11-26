@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 
 import logo from "../../../../assets/images/logo.png";
 import homeBlue from "../../../../assets/images/homeBlue.png";
+import homeBlack from "../../../../assets/images/home.png";
 import productBlue from "../../../../assets/images/productBlue.png";
+import productBlack from "../../../../assets/images/product.png";
 import descriptionBlue from "../../../../assets/images/descriptionBlue.png";
+import descriptionBlack from "../../../../assets/images/description.png";
 import settingsBlue from "../../../../assets/images/settingsBlue.png";
+import settingsBlack from "../../../../assets/images/settings.png";
 import rightArrow from "../../../../assets/images/arrowRight.png";
 import RoundButton from "../button/RoundButton";
 import { useEffect, useState } from "react";
@@ -16,10 +20,14 @@ import Utils from "../../../../features/utils/Utils";
 const SideBar = props => {
   const [userName, updateUserName] = useState("이름");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  // const loginUser = useSelector(state => state.login.loginUser);
 
   useEffect(() => {
     // 사용자 이름 설정
     const accessToken = sessionStorage.getItem("accessToken");
+    if (accessToken === "") {
+      window.location.replace("./login");
+    }
     const tokenData = Utils.parseJwt(accessToken);
     updateUserName(tokenData.username);
     // 페이지 당 선택한 인덱스 설정.
@@ -29,7 +37,7 @@ const SideBar = props => {
   const main = [
     { page: "/main", title: "홈" },
     { page: "/notice/list", title: "공지사항 목록" },
-    { page: "/status", title: "입/출고 현황" },
+    // { page: "/status", title: "입/출고 현황" },
   ];
   const product = [
     { page: "/product/list", title: "물품 목록" },
@@ -43,7 +51,10 @@ const SideBar = props => {
     { page: "/document/print", title: "문서 출력" }
   ];
   const setting = [
-    { page: "/settings/user", title: "사용자 설정" }
+    { page: "/settings/user", title: "사용자 관리" },
+    { page: "/settings/participant", title: "참여자 관리" },
+    { page: "/settings/company", title: "거래처 관리" },
+    { page: "/settings/ask", title: "개발자 문의" },
   ];
 
   const onClickMainMenu = (index) => {
@@ -51,24 +62,24 @@ const SideBar = props => {
   }
 
   function updateInitialSelectedIndex() {
-    main.map((item) => {
-      if (item.page == props.value) {
+    main.map((item, index) => {
+      if (item.page === props.value) {
         setSelectedIndex(0);
       }
     });
 
     product.map((item) => {
-      if (item.page == props.value) {
+      if (item.page === props.value) {
         setSelectedIndex(1);
       }
     });
     document.map((item) => {
-      if (item.page == props.value) {
+      if (item.page === props.value) {
         setSelectedIndex(2);
       }
     });
     setting.map((item) => {
-      if (item.page == props.value) {
+      if (item.page === props.value) {
         setSelectedIndex(3);
       }
     });
@@ -78,7 +89,7 @@ const SideBar = props => {
     <div className="sidebar">
       <div className="company">
         <Link to="/">
-          <img src={logo} className="companyLogo"></img>
+          <img src={logo} alt='logo' className="companyLogo"></img>
           <div className="companyInfo">
             <p className="companyName">화성시니어클럽</p>
             <hr />
@@ -97,23 +108,25 @@ const SideBar = props => {
         <ul>
           <li
             onClick={() => onClickMainMenu(0)}
-            className={selectedIndex == 0 ? "selectedMenuBox" : "menuBox"}>
+            className={selectedIndex === 0 ? "selectedMenuBox" : "menuBox"}>
             <div className="menuImage" >
-              <img src={homeBlue} />
+              <img src={selectedIndex === 0 ? homeBlue : homeBlack} alt="home" />
             </div>
-            <p className={selectedIndex == 0 ? "selectedMenuText" : "menuText"}>메인 페이지</p>
+            <p className={selectedIndex === 0 ? "selectedMenuText" : "menuText"}>메인 페이지</p>
             <div hidden={selectedIndex !== 0}>
               <ul
                 className="subMenu">
                 {
                   main.map((item, index) => {
                     return (
-                      <li>
+                      <li key={"main" + index}>
                         <Link to={item.page}>
-                          <div className="subMenuImage" >
-                            <img src={rightArrow} hidden={props.value !== item.page} />
+                          <div className=" subMenuItem">
+                            <div className="subMenuImage" >
+                              <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
+                            </div>
+                            <p className={props.value === item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
                           </div>
-                          <p className={props.value == item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
                         </Link>
                       </li>
                     );
@@ -123,30 +136,93 @@ const SideBar = props => {
             </div>
           </li>
           <li onClick={() => onClickMainMenu(1)}
-            className={selectedIndex == 1 ? "selectedMenuBox" : "menuBox"}>
+            className={selectedIndex === 1 ? "selectedMenuBox" : "menuBox"}>
             <div>
               <div className="menuImage" >
-                <img src={productBlue} />
+                <img src={selectedIndex === 1 ? productBlue : productBlack} alt="product" />
               </div>
-              <p className={selectedIndex == 1 ? "selectedMenuText" : "menuText"}>물품 관리</p>
+              <p className={selectedIndex === 1 ? "selectedMenuText" : "menuText"}>물품 관리</p>
+              <div hidden={selectedIndex !== 1}>
+                <ul
+                  className="subMenu">
+                  {
+                    product.map((item, index) => {
+                      return (
+                        <li key={"product" + index}>
+                          <Link to={item.page}>
+                            <div className=" subMenuItem">
+                              <div className="subMenuImage" >
+                                <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
+                              </div>
+                              <p className={props.value === item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
+                            </div>
+                          </Link>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              </div>
             </div>
           </li>
           <li onClick={() => onClickMainMenu(2)}
-            className={selectedIndex == 2 ? "selectedMenuBox" : "menuBox"}>
+            className={selectedIndex === 2 ? "selectedMenuBox" : "menuBox"}>
             <div>
               <div className="menuImage" >
-                <img src={descriptionBlue} />
+                <img src={selectedIndex === 2 ? descriptionBlue : descriptionBlack} alt="document" />
               </div>
-              <p className={selectedIndex == 2 ? "selectedMenuText" : "menuText"}>문서 관리</p>
+              <p className={selectedIndex === 2 ? "selectedMenuText" : "menuText"}>문서 관리</p>
+              <div hidden={selectedIndex !== 2}>
+                <ul
+                  className="subMenu">
+                  {
+                    document.map((item, index) => {
+                      return (
+                        <li key={"document" + index}>
+                          <Link to={item.page}>
+                            <div className=" subMenuItem">
+                              <div className="subMenuImage" >
+                                <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
+                              </div>
+                              <p className={props.value === item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
+                            </div>
+                          </Link>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              </div>
             </div>
           </li>
           <li onClick={() => onClickMainMenu(3)}
-            className={selectedIndex == 3 ? "selectedMenuBox" : "menuBox"}>
+            className={selectedIndex === 3 ? "selectedMenuBox" : "menuBox"}>
             <div >
               <div className="menuImage" >
-                <img src={settingsBlue} />
+                <img src={selectedIndex === 3 ? settingsBlue : settingsBlack} alt="setting" />
               </div>
-              <p className={selectedIndex == 3 ? "selectedMenuText" : "menuText"}>관리자 설정</p>
+              <p className={selectedIndex === 3 ? "selectedMenuText" : "menuText"}>관리자 설정</p>
+              <div hidden={selectedIndex !== 3}>
+                <ul
+                  className="subMenu">
+                  {
+                    setting.map((item, index) => {
+                      return (
+                        <li key={"setting" + index}>
+                          <Link to={item.page}>
+                            <div className=" subMenuItem">
+                              <div className="subMenuImage" >
+                                <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
+                              </div>
+                              <p className={props.value === item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
+                            </div>
+                          </Link>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              </div>
             </div>
           </li>
         </ul>

@@ -1,0 +1,127 @@
+:root {
+    --toastify-color-success: #0043AF;
+}
+
+.pageBody {
+    width: 100vw;
+    height: 100vh;
+    margin-left: 290px;
+}
+
+.MainNotice {
+    width: 350px;
+    height: 250px;
+}
+
+.mainNoticeTitle {
+    width: 100%;
+    height: 60px;
+    display: block;
+}
+
+.mainNoticeTitleText {
+    height: 30px;
+    width: 280px;
+    display: inline-block;
+}
+
+.mainNoticeTitleText>p {
+    font-weight: 400;
+    font-family: 'Noto Sans KR';
+    font-size: 16px;
+    color: #212121;
+}
+
+.mainIconButton {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 3px;
+}
+
+.mainNoticeBody {
+    width: 300px;
+    height: 200px;
+    background-color: #e2f1ff;
+    border-radius: 8px;
+    border: solid 1px #B0BECC;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.mainNoticeBodyTitle {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    margin-top: 10px;
+}
+
+.mainNoticeBodyTitle>span {
+    flex-grow: 1;
+    line-height: 20px;
+    font-weight: 400;
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    color: #212121;
+    display: inline-block;
+
+}
+
+.mainNoticeBodyTitle>img {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.mainNoticeBodyData {
+    width: 100%;
+    height: 58%;
+    display: block;
+}
+
+.mainNoticeBodyData>span {
+    font-weight: 350;
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    color: #212121;
+}
+
+.mainNoticeBodyTail {
+    height: 30px;
+    vertical-align: bottom;
+    display: flex;
+}
+
+.mainNoticeBodyTailDate {
+    flex-grow: 1;
+    font-weight: 350;
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    display: inline-block;
+    text-align: end;
+    color: #7A7A7D;
+}
+
+.mainNoticeBodyTailAuthor {
+    width: auto;
+    color: #1F6DE2;
+    font-weight: 350;
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    display: inline-block;
+}
+
+.mainNoticeEmptyString {
+    height: 100%;
+    width: 100%;
+    line-height: 100%;
+    color: #7A7A7D;
+    font-weight: 350;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

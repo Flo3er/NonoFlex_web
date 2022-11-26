@@ -16,6 +16,5 @@
 }
 
 .roundButton:enabled:hover {
-    color: #1957B5;
-    border: 1px solid #1957B5;
+    background-color: #E2F1FF;
 }

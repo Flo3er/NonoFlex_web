@@ -1,10 +1,11 @@
 import "./Header.css"
 
-const Header = () => {
+const Header = props => {
 
     return (
-        <div className="header">
-          
+        <div className="mainHeader">
+           <p className="headerTitle">{props.title}</p>
+          <pre className="headerDesc">{props.desc}</pre>
         </div>
       );
 }

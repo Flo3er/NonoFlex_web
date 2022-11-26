@@ -5,6 +5,26 @@
     text-decoration: none;
     margin: 8px;
     font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+}
+
+.warningButton {
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    margin: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #E21F1F;
+    cursor: pointer;
+}
+
+.warningButton:hover {
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #ba1F1F;
 }
 
 .textButton:hover {

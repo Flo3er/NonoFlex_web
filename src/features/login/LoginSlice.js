@@ -1,5 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import AuthenticationAPI from '../../apis/login/Authentication';
 
 const initialState = {
     loginUser: {
@@ -15,8 +14,8 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action) => {
-            console.log(action.payload);
-            return action.payload;
+            state.loginUser = action.payload;
+            console.log(state.loginUser);
         }
     }
 })
