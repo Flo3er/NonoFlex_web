@@ -136,6 +136,9 @@
     color: #0043AF;
     text-align: end;
 }
+.noticeItemInfo>span {
+    margin-bottom: 4px;
+}
 
 .contentsSection {
     width: 60%;
@@ -183,6 +186,9 @@
     display: flex;
     flex-direction: column;
     text-align: end;
+}
+.noticeContentsTitleInfo>span {
+    margin-bottom: 4px;
 }
 
 .noticeWriter {

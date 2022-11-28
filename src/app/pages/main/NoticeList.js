@@ -256,7 +256,7 @@ const NoticeList = () => {
                                                         </div>
                                                     </div>
                                                     <div className="noticeContentsBody">
-                                                        <p>{selectedNoticeItem.content}</p>
+                                                        <pre>{selectedNoticeItem.content}</pre>
                                                     </div>
                                                     <div className="noticeContentsTail">
                                                         <TextButton value="공지사항 삭제"
