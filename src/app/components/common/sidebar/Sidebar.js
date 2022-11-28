@@ -85,6 +85,11 @@ const SideBar = props => {
     });
   }
 
+  const onClickLogout = () => {
+    sessionStorage.clear();
+    window.location.replace("/login");
+  }
+
   return (
     <div className="sidebar">
       <div className="company">
@@ -101,7 +106,7 @@ const SideBar = props => {
         <p className="userName">{userName}</p>
         <p className="userNameSufix">님</p>
         <div className="myPageButton">
-          <RoundButton value="마이페이지" />
+          <RoundButton value="로그아웃" onClick={onClickLogout}/>
         </div>
       </div>
       <div className="menu">
