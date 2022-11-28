@@ -26,23 +26,21 @@ const TextField = (props) => {
     }
 
     return (
-            <div className={props.isValidData ? 'normalInputBox' : 'wrongInputBox'}>
-                {/* <form action=""> */}
-                    <input type={props.type === "password" ? passwordType : props.type}
-                        value={props.value}
-                        className='inputBox'
-                        onChange={({ target: { value } }) => props.onChange(value)}
-                        readOnly={props.readOnly}
-                        placeholder={props.placeholder}
-                    />
+        <div className={props.isValidData ? 'normalInputBox' : 'wrongInputBox'}>
+            <input type={props.type === "password" ? passwordType : props.type}
+                value={props.value}
+                className='inputBox'
+                onChange={({ target: { value } }) => props.onChange(value)}
+                readOnly={props.readOnly}
+                placeholder={props.placeholder}
+            />
 
-                    <img src={Visibility} 
-                    alt='' 
-                    className='visibliltyicon'
-                     onClick={changeShowPassword}
-                      hidden={(props.type !== "password")} />
-                {/* </form> */}
-            </div>
+            <img src={Visibility}
+                alt=''
+                className='visibliltyicon'
+                onClick={changeShowPassword}
+                hidden={(props.type !== "password")} />
+        </div>
     );
 }
 

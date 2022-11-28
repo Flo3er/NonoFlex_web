@@ -21,13 +21,14 @@ async function checkToken() {
             return false;
         } else {
             const refreshToken = sessionStorage.getItem("refreshToken");
+            console.log("refreshToken:" + refreshToken);
             const response = await AuthenticationAPI.refreshToken(refreshToken);
             if (response.isSuccess) {
                 // token값 session에 저장.
                 sessionStorage.setItem("accessToken", response.token.access_token,);
                 sessionStorage.setItem("refreshToken", response.token.refresh_token);
                 sessionStorage.setItem("expired", response.token.expires_in);
-                sessionStorage.setItem("refresh_expried", response.token.refresh_token_expires_in);
+                sessionStorage.setItem("refresh_expired", response.token.refresh_token_expires_in);
                 return true;
             } else {
                 console.log("error" + response.errorMessage);
@@ -50,8 +51,10 @@ function isExpiredAccessToken() {
 }
 
 function isExpiredRefreshToken() {
-    const expried = sessionStorage.getItem("refresh_expried");
+    const expried = sessionStorage.getItem("refresh_expired");
+    console.log("refresh: " + expried);
     const current = getCurrentUnixTime();
+    console.log("current: " + current);
     if (expried >= current) {
         return false;
     } else {

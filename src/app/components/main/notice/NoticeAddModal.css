@@ -16,6 +16,7 @@
     flex-grow: 1;
     border-color: transparent;
     line-height: 100%;
+    font-family: 'Noto Sans KR';
 }
 
 .noticeTitleBox>img {
@@ -49,6 +50,7 @@
     text-align: start;
     vertical-align: top;
     border: 1px solid #B0BECC;
+    font-family: 'Noto Sans KR';
     border-radius: 8px;
     text-align: start;
     resize: none;

@@ -4,11 +4,14 @@ import PrimaryButton from "../../../components/common/button/PrimaryButton.js"
 import { useState } from "react"
 import NonoToast from "../../common/toast/Toast"
 import NoticeAPI from "../../../../apis/notice/Notice"
+import { useDispatch } from "react-redux"
+import { selectNotice } from "../../../../features/main/NoticeSlice"
 
 const NoticeAddModal = (props) => {
     const [isCheckedFocus, updateCheckedFocus] = useState(false);
     const [noticeTitle, setNoticeTitle] = useState("");
     const [noticeBody, setNoticeBody] = useState("");
+    const dispatch = useDispatch();
 
     const onClickClose = () => {
         // updateCheckedFocus(false);
@@ -45,6 +48,7 @@ const NoticeAddModal = (props) => {
             updateCheckedFocus(false);
             setNoticeTitle("");
             setNoticeBody("");
+            dispatch(selectNotice(response.data));
             onClickClose();
         } else {
             NonoToast.error(response.errorMessage ?? "공지사항 등록에 실패했습니다.");

@@ -4,27 +4,30 @@ import PrimaryButton from "../../../components/common/button/PrimaryButton.js"
 import { useEffect, useState } from "react"
 import NonoToast from "../../common/toast/Toast"
 import NoticeAPI from "../../../../apis/notice/Notice"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Modal from "../../common/modal/Modal"
 import TextButton from "../../common/button/TextButton"
 import Dialog from "../../common/modal/Dialog.js"
+import { selectNotice, updateNoticeItem } from "../../../../features/main/NoticeSlice"
 
 const NoticeContentsModal = (props) => {
-    const [isReadOnly, updateReadOnly] = useState(true);
+    const [isReadOnly, updateReadOnly] = useState(props.isReadOnly);
     const [isCheckedFocus, updateCheckedFocus] = useState(false);
     const [noticeTitle, setNoticeTitle] = useState("");
     const [noticeBody, setNoticeBody] = useState("");
     const [isOpenRemoveModal, updateOpenRemoveModal] = useState(false);
 
-    const recentNoticeData = useSelector((state) => state.notice.recentItem);
+    const notice = useSelector((state) => state.notice.selectedItem);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        updateReadOnly(true);
-        setNoticeTitle(recentNoticeData.title ?? "");
-        setNoticeBody(recentNoticeData.content ?? "");
-        updateCheckedFocus(recentNoticeData.focus ?? false);
+        console.log(notice);
+        updateReadOnly(props.isReadOnly);
+        setNoticeTitle(notice.title ?? "");
+        setNoticeBody(notice.content ?? "");
+        updateCheckedFocus(notice.focus ?? false);
 
-    }, [recentNoticeData]);
+    }, [notice, props.isReadOnly]);
 
     const onClickClose = () => {
         updateReadOnly(true);
@@ -48,8 +51,8 @@ const NoticeContentsModal = (props) => {
     }
 
     const confirmRemoveNoticeDialog = async () => {
-        console.log(recentNoticeData);
-        const response = await NoticeAPI.removeNotice(recentNoticeData.noticeId);
+        console.log(notice);
+        const response = await NoticeAPI.removeNotice(notice.noticeId);
         if (response.isSuccess) {
             NonoToast.success("공지사항을 삭제헸습니다.");
             updateOpenRemoveModal(false);
@@ -74,9 +77,10 @@ const NoticeContentsModal = (props) => {
                 return;
             }
 
-            const response = await NoticeAPI.editNotice(recentNoticeData.noticeId, noticeTitle, noticeBody, isCheckedFocus);
+            const response = await NoticeAPI.editNotice(notice.noticeId, noticeTitle, noticeBody, isCheckedFocus);
             if (response.isSuccess) {
-                NonoToast.success("새로운 공지사항이 등록되었습니다.");
+                NonoToast.success("공지사항이 업데이트 되었습니다.");
+                dispatch(updateNoticeItem(response.data));
                 updateCheckedFocus(false);
                 setNoticeTitle("");
                 setNoticeBody("");

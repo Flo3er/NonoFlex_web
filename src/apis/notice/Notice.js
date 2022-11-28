@@ -1,17 +1,20 @@
+import Utils from "../../features/utils/Utils";
 import NonoAPI from "../NonoApi";
 
 async function getRecentNotice() {
     try {
-        const response = await NonoAPI.get(
-            "/api/v1/notice/recent", {}
-        );
-
-        console.log(response.data);
-        return {
-            isSuccess: true,
-            data: response.data
-        };
-
+        if (await Utils.checkToken()) {
+            const response = await NonoAPI.get(
+                "/api/v1/notice/recent", {}
+            );
+            console.log(response.data);
+            return {
+                isSuccess: true,
+                data: response.data
+            };
+        } else {
+            window.location.replace("/login");
+        }
     } catch (error) {
         return {
             isSuccess: false,
@@ -23,6 +26,7 @@ async function getRecentNotice() {
 
 async function addNewNotice(title, body, isFocus) {
     try {
+        if(await Utils.checkToken()) { 
         const response = await NonoAPI.post("/api/v1/notice", {
             title: title,
             content: body,
@@ -33,6 +37,9 @@ async function addNewNotice(title, body, isFocus) {
             isSuccess: true,
             data: response.data
         }
+    } else {
+        window.location.replace("/login");
+    }
     } catch (error) {
         console.log(error);
         return {
@@ -45,11 +52,15 @@ async function addNewNotice(title, body, isFocus) {
 
 async function removeNotice(noticeId) {
     try {
+        if(await Utils.checkToken()) {
         const response = await NonoAPI.delete("/api/v1/notice/" + noticeId, {});
         return {
             isSuccess: true,
             data: response.data
         }
+    } else {
+        window.location.replace("/login");
+    }
     } catch (error) {
         console.log(error);
         return {
@@ -62,6 +73,7 @@ async function removeNotice(noticeId) {
 
 async function editNotice(noticeId, title, body, isFocus) {
     try {
+        if(await Utils.checkToken()) {
         const response = await NonoAPI.put("/api/v1/notice/" + noticeId, {
             title: title,
             content: body,
@@ -72,6 +84,41 @@ async function editNotice(noticeId, title, body, isFocus) {
             isSuccess: true,
             data: response.data
         }
+    } else {
+        window.location.replace("/login");
+    }
+    } catch (error) {
+        console.log(error);
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
+async function getNoticeList(column, order, query, page) {
+    try {
+        const params = {
+            content: true,
+            // column: column,
+            order: order,
+            query: query,
+            size: 20,
+            page: page ?? 1
+        };
+        if (await Utils.checkToken()) {
+        const response = await NonoAPI.get("/api/v1/notice", {
+            params,
+        });
+        console.log(response.data)
+        return {
+            isSuccess: true,
+            data: response.data
+        }
+    } else {
+        window.location.replace("/login");
+    }
     } catch (error) {
         console.log(error);
         return {
@@ -86,7 +133,8 @@ const NoticeAPI = {
     getRecentNotice,
     addNewNotice,
     removeNotice,
-    editNotice
+    editNotice,
+    getNoticeList
 }
 
 export default NoticeAPI;

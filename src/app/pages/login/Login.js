@@ -65,7 +65,7 @@ const Login = () => {
                 sessionStorage.setItem("accessToken", response.token.access_token,);
                 sessionStorage.setItem("refreshToken", response.token.refresh_token);
                 sessionStorage.setItem("expired", response.token.expires_in);
-                sessionStorage.setItem("refresh_expried", response.token.refresh_token_expires_in)
+                sessionStorage.setItem("refresh_expired", response.token.refresh_token_expires_in)
                 NonoToast.success("로그인에 성공하였습니다.");
                 await Utils.timeout(2000);
                 window.location.replace("./main");

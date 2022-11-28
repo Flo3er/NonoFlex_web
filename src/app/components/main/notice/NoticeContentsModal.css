@@ -16,6 +16,7 @@
     flex-grow: 1;
     border-color: transparent;
     line-height: 100%;
+    font-family: 'Noto Sans KR';
 }
 
 .noticeTitleBox>input:read-only {
@@ -57,6 +58,7 @@
     border-radius: 8px;
     text-align: start;
     resize: none;
+    font-family: 'Noto Sans KR';
 }
 
 .noticeBodyBox>textarea:read-only {

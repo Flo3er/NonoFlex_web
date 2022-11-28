@@ -1,0 +1,207 @@
+.emptyNoticeContentsPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.emptyNoticeContentsPage>p {
+    color: #7A7A7D;
+    font-size: 20px;
+    font-weight: 400;
+}
+.emptyListAddNoticeButton {
+    width: 130px;
+    height: 50px;
+}
+
+.noticeListPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.topButtonSection {
+    height: 24px;
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.emptySpace {
+    flex-grow: 1;
+}
+
+.listSection {
+    width: 40%;
+    min-width: 320px;
+    max-width: 540px;
+    height: 650px;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.sortButton {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sortButton>span {
+    color: #0043AF;
+    font-size: 12px;
+    font-weight: 350;
+}
+
+.sortButton>img {
+    width: 20px;
+    height: 20px;
+}
+
+.listContentsSection {
+    width: 100%;
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+}
+
+.emptyNoticeListContents {
+    width: 100%;
+    height: 650px;
+    height: calc(100% - 40px);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyNoticeListContents>p {
+    color: #7A7A7D;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.listContentsSection>ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.listContentsSection>ul>li {
+    height: 60px;
+    width: 100%;
+    margin-bottom: 2.5px;
+    margin-top: 2.5px;
+    display: flex;
+    align-items: center;
+}
+
+.noticeItemTitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #2E2E2E;
+    flex-grow: 1;
+}
+
+.noticeItemInfo {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 350;
+    color: #0043AF;
+    text-align: end;
+}
+
+.contentsSection {
+    width: 60%;
+    min-width: 540px;
+    max-width: 780px;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.noticeAddButton {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.noticeContentSection {
+    /* height: calc(100% - 40px); */
+    height: 600px;
+    border: 1px solid #B0BECC;
+    border-radius: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.noticeContentsTitle {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.noticeContentsTitleString {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2E2E2E;
+    flex-grow: 1;
+}
+
+.noticeContentsTitleInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+
+.noticeWriter {
+    color: #0043AF;
+}
+
+.notiewCreateAt {
+    color: #7A7A7D;
+}
+
+.noticeContentsBody {
+    font-size: 16px;
+    font-weight: 400;
+    color: #2E2E2E;
+    flex-grow: 1;
+}
+
+.noticeContentsTail {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.noticeEditButton {
+    width: 130px;
+    height: 40px;
+}
+
+.emptyNoticeContents {
+    width: 100%;
+    height: 650px;
+    height: calc(100% - 40px);
+    border: 1px solid #B0BECC;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyNoticeContents>p {
+    color: #7A7A7D;
+    font-size: 20px;
+    font-weight: 400;
+}
