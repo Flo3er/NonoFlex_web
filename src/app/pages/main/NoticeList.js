@@ -214,7 +214,9 @@ const NoticeList = () => {
                                                             noticeList.map((item, index) => {
                                                                 return (
                                                                     <li key={"list" + item.noticeId + index}
-                                                                        onClick={() => onClickItem(item.noticeId)}>
+                                                                    className={item.noticeId === selectedNoticeItem.noticeId ? "selectedListContentsSectionItem" : "listContentsSectionItem"}
+                                                                        onClick={() => onClickItem(item.noticeId)}
+                                                                        >
                                                                         <div className="noticeItemTitle">
                                                                             <span >{item.title}</span>
                                                                         </div>
