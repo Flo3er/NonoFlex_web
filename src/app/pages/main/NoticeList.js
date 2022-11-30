@@ -17,7 +17,7 @@ import PrimaryButton from "../../components/common/button/PrimaryButton";
 import TextButton from "../../components/common/button/TextButton";
 import NoticeContentsModal from "../../components/main/notice/NoticeContentsModal";
 import Dialog from "../../components/common/modal/Dialog";
-import { remove, search } from "../../../features/main/SearchSlice";
+import { removeSearchValue, search } from "../../../features/main/SearchSlice";
 import RoundButton from "../../components/common/button/RoundButton";
 
 const NoticeList = () => {
@@ -44,7 +44,7 @@ const NoticeList = () => {
         } else {
             const fetchData = async () => {
                 if (await Utils.checkToken()) {
-                    dispatch(remove());
+                    dispatch(removeSearchValue());
                     dispatch(clearNoticeItem());
                     // await getNoticeList("");
                 } else {
@@ -197,15 +197,15 @@ const NoticeList = () => {
                                     <div className="listSection">
                                         <div className="topButtonSection">
                                             <div className="emptySection" />
-                                            <div className="sortButton" onClick={onCLickSortButton}>
+                                            <div className="noticeSortButton" onClick={onCLickSortButton}>
                                                 <span>{getSortString()}</span>
                                                 <img src={currentSort.order === "asc" ? ArrowUp : ArrowDown} />
                                             </div>
                                         </div>
-                                        <div className="listContentsSection" onScroll={onScrollNoticeList}>
+                                        <div className="noticeListContentsSection" onScroll={onScrollNoticeList}>
                                             {
                                                 (noticeList.length === 0 && searchData !== "") ?
-                                                    <div>
+                                                    <div className="emptyNoticeListContents">
                                                         <p>검색 결과가 존재하지 않습니다.</p>
                                                     </div>
                                                     :
@@ -213,8 +213,8 @@ const NoticeList = () => {
                                                         {
                                                             noticeList.map((item, index) => {
                                                                 return (
-                                                                    <li key={"list" + item.noticeId + index}
-                                                                    className={item.noticeId === selectedNoticeItem.noticeId ? "selectedListContentsSectionItem" : "listContentsSectionItem"}
+                                                                    <li key={"noticeList" + item.noticeId + index}
+                                                                    className={item.noticeId === selectedNoticeItem.noticeId ? "selectedNoticeListContentsSectionItem" : "noticeListContentsSectionItem"}
                                                                         onClick={() => onClickItem(item.noticeId)}
                                                                         >
                                                                         <div className="noticeItemTitle">

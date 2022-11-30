@@ -46,24 +46,24 @@
     margin-right: 10px;
 }
 
-.sortButton {
+.noticeSortButton {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.sortButton>span {
+.noticeSortButton>span {
     color: #0043AF;
     font-size: 12px;
     font-weight: 350;
 }
 
-.sortButton>img {
+.noticeSortButton>img {
     width: 20px;
     height: 20px;
 }
 
-.listContentsSection {
+.noticeListContentsSection {
     width: 100%;
     height: calc(100% - 40px);
     overflow-y: scroll;
@@ -85,12 +85,12 @@
     font-weight: 400;
 }
 
-.listContentsSection>ul {
+.noticeListContentsSection>ul {
     list-style: none;
     padding-left: 0px;
 }
 
-.listContentsSectionItem {
+.noticeListContentsSectionItem {
     height: 60px;
     width: calc(100% - 30px);
     margin-bottom: 2.5px;
@@ -102,10 +102,10 @@
     padding-right: 15px;
 }
 
-.listContentsSectionItem:hover {
+.noticeListContentsSectionItem:hover {
     background-color: #F2F9FF;
 }
-.selectedListContentsSectionItem {
+.selectedNoticeListContentsSectionItem {
     height: 60px;
     width: calc(100% - 30px);
     margin-bottom: 2.5px;
@@ -117,7 +117,7 @@
     padding-right: 15px;
     background-color: #E2F1FF;
 }
-.selectedListContentsSectionItem:hover {
+.selectedNoticeListContentsSectionItem:hover {
     background-color: #E2F1FF;
 }
 

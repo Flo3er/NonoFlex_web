@@ -3,11 +3,16 @@ import "./SearchField.css"
 import Close from "../../../../assets/images/close.png"
 import Search from "../../../../assets/images/search.png"
 import { useDispatch, useSelector } from "react-redux";
-import { remove, search } from "../../../../features/main/SearchSlice";
+import { removeSearchValue, search } from "../../../../features/main/SearchSlice";
 
 const SearchField = (props) => {
     const dispatch = useDispatch();
     const [inputText, setInputText] = useState("");
+
+    const searchData = useSelector((state) => state.search.value);
+    useEffect(() => {
+        setInputText(searchData);
+    }, [searchData]);
 
     const onChangeTextField = (value) => {
         setInputText(value);
@@ -15,7 +20,7 @@ const SearchField = (props) => {
 
     const onClickRemoveButton = () => {
         setInputText("");
-        dispatch(remove());
+        dispatch(removeSearchValue());
     }
 
     const onClickSearchButton = () => {
