@@ -9,7 +9,7 @@
     width: 45%;
     min-width: 320px;
     max-width: 540px;
-    height: 650px;
+    height: 600px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -67,7 +67,6 @@
 }
 .emptyProductListSection {
     width: 100%;
-    height: 650px;
     height: calc(100% - 40px);
     border-radius: 8px;
     display: flex;
@@ -205,12 +204,11 @@
     font-size: 12px;
 }
 .productContentDetailTitle>img {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
 }
 .productContentDetailContentsBox {
-    width: 100%;
-    height: calc(100% - 24px);
+    /* height: calc(100% - 24px); */
     border-radius: 8px;
     background-color: #F1F4F8;
     padding: 15px;
@@ -223,7 +221,7 @@
     margin-bottom: 8px;
 }
 .productDetailRowBox>span {
-    width: 60px;
+    width: calc(100% - 60px);
     font-weight: 350;
     font-size: 12px;
 }
@@ -231,15 +229,112 @@
     width: 60px;
 }
 .productDetailRowTitleBox>span {
-    width: 60px;
+    width: 100%;
     font-weight: 350;
     font-size: 12px;
 }
 
 .productContentRecordSection {
-    width: clac(100% - 40px);
+    width: 100%;
     height: calc(100% - 209px);
-    background-color: aquamarine;
-   
+   margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
+.productContentRecordTitle {
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+.productContentRecordTitle>span {
+    font-weight: 350;
+    font-size: 12px;
+    color: #0B005C;
+}
+.productContentRecordTitle>img {
+    width: 18px;
+    height: 18px;
+}
+.productRecordCurrentMonth {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.productRecordList {
+    width: 100%;
+    height: calc(100% - 54px);
+}
+.productRecordList>ul {
+    list-style: none;
+    padding-left: 0px;
+}
+.productRecordList>li {
+    width: 100%;
+    height: 60px;
+}
+.productRecordListItemBox {
+    display: flex;
+    align-items: center;
+}
+.recordItemDate {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #2E2E2E;
+}
+.productRecordListDateTitle {
+    font-weight: 500;
+    font-size: 15px;
+    color: #6A9BFF;
+    margin-right: 25px;
+    margin-left: 30px;
+}
+.productRecordListWriterTitle {
+    font-weight: 500;
+    font-size: 15px;
+    color: #6A9BFF;
+    margin-right: 25px;
+    margin-left: 30px;
+}
+.productRecordListQuantityTitle {
+    font-weight: 500;
+    font-size: 15px;
+    color: #6A9BFF;
+    margin-right: 25px;
+    margin-left: 30px;
+}
+.productRecordListStockTitle {
+    width: 60px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #6A9BFF;
+    margin-right: 25px;
+    margin-left: 20px;
+    text-align: right;
+}
+.recordItemQuantityOutput {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #E21F1F;
+}
+.recordItemQuantityInput {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1F6DE2;
+}
+.recordItemStock {
+    margin-left: 30px;
+    margin-right: 20px;
+    width: 60px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #2E2E2E;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-lines: 1;
 }

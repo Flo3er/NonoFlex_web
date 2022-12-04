@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     itemList: [],
     selectedItem: {},
+    selectedItemRecordList: [],
     metaData: {
         count: 0,
         lastpage: false,
@@ -21,13 +22,15 @@ export const productSlice = createSlice({
                 return {
                     itemList: action.payload.productList,
                     metaData: action.payload.meta,
-                    selectedItem: state.selectedItem
+                    selectedItem: state.selectedItem,
+                    selectedItemRecordList: state.selectedItemRecordList
                 };
             } else {
                 return {
                     itemList: state.itemList.concat(action.payload.productList),
                     metaData: action.payload.meta,
-                    selectedItem: state.selectedItem
+                    selectedItem: state.selectedItem,
+                    selectedItemRecordList: state.selectedItemRecordList
                 }
             }
         },
@@ -38,12 +41,21 @@ export const productSlice = createSlice({
             return {
                 metaData: state.metaData,
                 itemList: state.itemList,
-                selectedItem: {}
+                selectedItem: {},
+                selectedItemRecordList: []
+            }
+        },
+        updateProductRecordList: (state, action) => {
+            return {
+                metaData: state.metaData,
+                itemList: state.itemList,
+                selectedItem: state.selectedItem,
+                selectedItemRecordList: action.payload
             }
         }
     }
 });
 
-export const {updateProductList, selectedProduct, clearSelectedProduct} = productSlice.actions;
+export const {updateProductList, selectedProduct, clearSelectedProduct, updateProductRecordList} = productSlice.actions;
 
 export default productSlice.reducer;

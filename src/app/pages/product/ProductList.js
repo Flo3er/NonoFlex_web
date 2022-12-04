@@ -3,6 +3,9 @@ import Header from "../../components/common/header/Header.js"
 import Sidebar from "../../components/common/sidebar/Sidebar.js"
 import AddBlue from "../../../assets/images/addBlue.png"
 import Sort from "../../../assets/images/sorting.png"
+import EditBlue from "../../../assets/images/editBlue.png"
+import ArrowBackward from "../../../assets/images/arrowBackward.png"
+import ArrowForward from "../../../assets/images/arrowForward.png"
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux"
 import Utils from "../../../features/utils/Utils.js"
@@ -10,15 +13,17 @@ import NonoToast from "../../components/common/toast/Toast.js"
 import { useEffect, useState } from "react"
 import { removeSearchValue } from "../../../features/main/SearchSlice.js"
 import ProductAPI from "../../../apis/product/product"
-import { selectedProduct, updateProductList } from "../../../features/product/productSlice"
+import { selectedProduct, updateProductList, updateProductRecordList } from "../../../features/product/productSlice"
 
 const ProductList = () => {
     const [isLoading, updateLoading] = useState(false);
+    const [selectedRecordMonth, setSelectedRecordMonth] = useState(new Date().getMonth());
 
     const dispatch = useDispatch();
     const searchData = useSelector((state) => state.search.value);
     const productList = useSelector((state) => state.product.itemList);
     const selectedProductItem = useSelector((state) => state.product.selectedItem);
+    const recordList = useSelector((state) => state.product.selectedItemRecordList.recordList);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -47,6 +52,15 @@ const ProductList = () => {
         fetchData();
     }, [searchData]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            if (selectedProductItem.productId !== undefined) {
+                await getRecordList(selectedProductItem.productId, null, selectedRecordMonth);
+            }
+        }
+        fetchData();
+    }, [selectedProductItem]);
+
     async function getProductList(query, page) {
         updateLoading(true);
         const response = await ProductAPI.getProductList(query, "name", "desc", page)
@@ -56,8 +70,21 @@ const ProductList = () => {
         updateLoading(false);
     }
 
+    async function getRecordList(month) {
+        updateLoading(true);
+        const response = await ProductAPI.getRecordList(selectedProductItem.productId, null, month);
+        if (response.isSuccess) {
+            dispatch(updateProductRecordList(response.data));
+        }
+        updateLoading(false);
+    }
+
     const onClickProductAddButton = () => {
         window.location.replace("/product/new")
+    }
+
+    const onClickProductEditButton = () => {
+
     }
 
     const onClickSortButton = () => {
@@ -67,6 +94,8 @@ const ProductList = () => {
     const onClickProductItem = (product) => {
         dispatch(selectedProduct(product));
     }
+
+
 
 
     return (
@@ -143,52 +172,94 @@ const ProductList = () => {
                                             <div className="productContentDetailTitle">
                                                 <span>상세정보</span>
                                                 <div className="emptySection" />
-                                                <img src={AddBlue} alt="add"
-                                                    className="productEditButton"
-                                                    onClick={onClickProductAddButton} />
+                                                <img src={EditBlue} alt="edit"
+                                                    onClick={onClickProductEditButton} />
                                             </div>
                                             <div className="productContentDetailContentsBox">
                                                 <div className="productDetailRowBox">
                                                     <div className="productDetailRowTitleBox">
-                                                    <span>제품명</span>
-                                                    </div> 
+                                                        <span>제품명</span>
+                                                    </div>
                                                     <span>{selectedProductItem.name}</span>
                                                 </div>
                                                 <div className="productDetailRowBox">
                                                     <div className="productDetailRowTitleBox">
-                                                    <span>제품코드</span>
-                                                    </div> 
+                                                        <span>제품코드</span>
+                                                    </div>
                                                     <span>{selectedProductItem.productCode}</span>
                                                 </div>
                                                 <div className="productDetailRowBox">
                                                     <div className="productDetailRowTitleBox">
-                                                    <span>분류</span>
-                                                    </div> 
+                                                        <span>분류</span>
+                                                    </div>
                                                     <span>{selectedProductItem.category}</span>
                                                 </div>
                                                 <div className="productDetailRowBox">
                                                     <div className="productDetailRowTitleBox">
-                                                    <span>보관방법</span>
-                                                    </div> 
+                                                        <span>보관방법</span>
+                                                    </div>
                                                     <span>{selectedProductItem.storageType}</span>
                                                 </div>
                                                 <div className="productDetailRowBox">
                                                     <div className="productDetailRowTitleBox">
-                                                    <span>제조사</span>
-                                                    </div> 
+                                                        <span>제조사</span>
+                                                    </div>
                                                     <span>{selectedProductItem.maker}</span>
                                                 </div>
                                                 <div className="productDetailRowBox">
                                                     <div className="productDetailRowTitleBox">
-                                                    <span>규격</span>
-                                                    </div> 
+                                                        <span>규격</span>
+                                                    </div>
                                                     <span>{selectedProductItem.unit}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="productContentRecordSection">
+                                        <div className="productContentRecordTitle">
+                                            <span>상세정보</span>
+                                            <div className="emptySection" />
+                                            <img src={ArrowBackward} alt="backward"
+                                                onClick={onClickProductEditButton} />
+                                            <span className="productRecordCurrentMonth"> {selectedRecordMonth}월</span>
+                                            <img src={ArrowForward} alt="forward"
+                                                onClick={onClickProductEditButton} />
+                                        </div>
+                                        <div className="productListTitle">
+                                            <span className="productRecordListDateTitle">날짜</span>
+                                            <div className="emptySection" />
+                                            <span className="productRecordListWriterTitle">작성자</span>
+                                            <span className="productRecordListQuantityTitle">변화량</span>
+                                            <span className="productRecordListStockTitle">재고</span>
+                                        </div>
+                                        <div className="productRecordList">
+                                            {
+                                                (recordList === undefined || recordList.length === 0) ?
+                                                    <div className="emptyProductListSection">
+                                                        <p>내역이 존재하지 않습니다.</p>
+                                                    </div>
+                                                    :
+                                                    <ul>
+                                                        {
+                                                            recordList.map((item, index) => {
+                                                                return (
+                                                                    <li key={"recordList" + item.recordId + index}>
+                                                                        <div className="productRecordListItemBox">
+                                                                            <span className="recordItemDate">{item.date}</span>
+                                                                            <div className="emptySection" />
+                                                                            <span className={item.type === "OUTPUT" ? "recordItemQuantityOutput" : "recordItemQuantityInput"} >
+                                                                                {item.type === "OUTPUT" ? "-" : "+"}{item.quantity}
+                                                                            </span>
+                                                                            <span className="recordItemStock">{item.stock} {selectedProductItem.unit}</span>
 
+                                                                        </div>
+                                                                    </li>
+                                                                )
+                                                            })
+                                                        }
+                                                    </ul>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
