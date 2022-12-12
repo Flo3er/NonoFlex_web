@@ -54,7 +54,7 @@ const Login = () => {
     const pressLoginButton = async () => {
         if (isValidUserId && isValidPassword) {
             const response = await AuthenticationAPI.login(userId, password);
-            if(response.isSuccess) {
+            if (response.isSuccess) {
                 dispatch(login({
                     userId: userId,
                     password: password,
@@ -70,7 +70,7 @@ const Login = () => {
                 await Utils.timeout(2000);
                 window.location.replace("./main");
             } else {
-                NonoToast.error("["+response.errorCode+"]"+response.errorMessage);
+                NonoToast.error("[" + response.errorCode + "]" + response.errorMessage);
             }
             if (isCheckeSaveduserId) {
                 setCookie('rememberEmail', userId, { maxAge: 2000 });
@@ -87,11 +87,11 @@ const Login = () => {
             <ToastContainer />
             <div className="loginBody">
                 <div className="topSpace" />
-                <div className="bodyComponent">
+                <div className="loginBodyComponent">
                     <img src={logo} className="loginLogo" />
                 </div>
                 <div className="topSpace" />
-                <div className="bodyComponent">
+                <div className="loginBodyComponent">
                     <TextField isValidData={isValidUserId}
                         type="text"
                         value={userId}
@@ -99,13 +99,14 @@ const Login = () => {
                         onChange={value => {
                             onChangeUserId(value);
                         }} />
+                </div>
+                <div className="emailCheckBox">
                     {
                         !isValidUserId ?
                             <p className="emailCheck">이메일 형식이 아닙니다.</p> : <p></p>
                     }
                 </div>
-                <br />
-                <div className="bodyComponent">
+                <div className="loginBodyComponent">
                     <TextField isValidData={isValidPassword}
                         type="password"
                         placeholder="Password"
@@ -113,13 +114,15 @@ const Login = () => {
                         onChange={value => {
                             onChangePassword(value);
                         }} />
+                </div>
+                <div className="passwordCheckBox">
                     {
                         !isValidPassword ?
                             <p className="passwordCheck">올바른 비밀번호 양식이 아닙니다.</p> : <p></p>
                     }
                 </div>
-                <br />
-                <div className="bodyComponent">
+                
+                <div className="loginBodyComponent">
                     <div className="saveUserId">
                         <input
                             className="saveUserIdCheckBox"

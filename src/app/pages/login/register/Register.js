@@ -310,7 +310,7 @@ const Register = (props) => {
                     <li>
                         {
                             !isPasswordConfirm ?
-                                <p className="invalidDataInform">기존에 입력한 비밀번호와 다릅니다.</p> : <p></p>
+                                <span className="invalidDataInform">기존에 입력한 비밀번호와 다릅니다.</span> : <p></p>
                         }
                     </li>
                     <li>

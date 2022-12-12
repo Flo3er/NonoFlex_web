@@ -31,3 +31,11 @@
     color: #1957B5;
     font-weight: 700;
 }
+
+.textButton:disabled {
+    cursor: not-allowed;
+}
+
+.warningButton:disabled {
+    cursor: not-allowed;
+}

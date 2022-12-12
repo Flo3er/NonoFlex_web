@@ -28,24 +28,24 @@
     display: block;
     list-style:none;
     padding-left: 0px;
+    margin-left: auto;
+  margin-right: auto;
 }
 
 .bodyComponent > li {
-    height: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .componentTitle {
-    text-align: left;
-    height: 40px;
-    display: inline;
-    float: left;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
 .textFieldBox {
     width: 82%;
     display: inline;
-    height: 40px;
+    height: 50px;
     text-align: right;
     margin-left: auto;
     float: right;
@@ -56,12 +56,13 @@
   font-size: 8px;
   font-weight: 400;
   margin-left: 120px;
+  height: 80%;
 }
 
 .emailTextFieldBox {
     width: 58%;
     display: inline;
-    height: 40px;
+    height: 50px;
     text-align: right;
     margin-left: 60px;
     margin-right: auto;
@@ -80,7 +81,7 @@
 .emailAuthTextFieldBox {
     width: 58%;
     display: inline;
-    height: 40px;
+    height: 50px;
     text-align: right;
     margin-left: 30px;
     margin-right: auto;

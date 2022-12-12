@@ -59,11 +59,12 @@
 .productListSection {
     width: 100%;
     height: calc(100% - 40px);
-    overflow-y: scroll;
+    
 }
 .productListSection>ul {
     list-style: none;
     padding-left: 0px;
+    overflow-y: scroll;
 }
 .emptyProductListSection {
     width: 100%;
@@ -131,6 +132,20 @@
     margin-left: 10px;
 }
 
+.emptyProductContentsSection {
+    width: 100%;
+    height: calc(100% - 40px);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #B0BECC;
+}
+.emptyProductContentsSection>p {
+    color: #7A7A7D;
+    font-size: 20px;
+    font-weight: 400;
+}
 
 .productContentsSection {
     width: 55%;
@@ -313,12 +328,20 @@
     margin-left: 20px;
     text-align: right;
 }
+.recordItemWriter {
+    margin-left: 30px;
+    margin-right: 20px;
+    font-weight: 400;
+    color: #2E2E2E;
+    font-size: 16px;
+}
 .recordItemQuantityOutput {
     margin-left: 30px;
     margin-right: 20px;
     font-weight: 700;
     font-size: 16px;
     color: #E21F1F;
+    width: 40px;
 }
 .recordItemQuantityInput {
     margin-left: 30px;
@@ -326,6 +349,7 @@
     font-weight: 700;
     font-size: 16px;
     color: #1F6DE2;
+    width: 40px;
 }
 .recordItemStock {
     margin-left: 30px;

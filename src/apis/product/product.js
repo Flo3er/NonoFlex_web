@@ -1,7 +1,7 @@
 import Utils from "../../features/utils/Utils"
 import NonoAPI from "../NonoApi"
 
-async function getProductList(query, column, order, page) {
+async function getProductList(query , column, order, page) {
     try {
         const params = {
             query: query,
@@ -41,6 +41,7 @@ async function getRecordList(productId, year, month) {
             month: month ?? currentTime.getMonth(),
         };
         if (await Utils.checkToken()) {
+            console.log("month : " + params.month);
             const response = await NonoAPI.get(
                 "/api/v1/product/" + productId + "/record",
                 params

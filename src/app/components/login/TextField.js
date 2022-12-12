@@ -33,6 +33,7 @@ const TextField = (props) => {
                 onChange={({ target: { value } }) => props.onChange(value)}
                 readOnly={props.readOnly}
                 placeholder={props.placeholder}
+                onBlur={props.onFocusOut}
             />
 
             <img src={Visibility}

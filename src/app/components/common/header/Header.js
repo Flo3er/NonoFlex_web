@@ -5,6 +5,7 @@ const Header = props => {
 
   return (
     <div className="mainHeader">
+      <div className="headerLeftEmptySpace" />
       <div>
         <p className="headerTitle">{props.title}</p>
         <pre className="headerDesc">{props.desc}</pre>

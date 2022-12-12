@@ -10,6 +10,7 @@
     font-weight: 700;
     position: relative;
     font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
 }
 
 .loginPrimaryButton:enabled:hover {
@@ -18,5 +19,6 @@
 
 .loginPrimaryButton:disabled {
     background-color: #E2F1FF;
+    cursor:not-allowed
 
 }

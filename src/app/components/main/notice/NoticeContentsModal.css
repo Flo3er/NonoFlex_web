@@ -48,7 +48,6 @@
 
 .noticeBodyBox>textarea {
     padding: 16px;
-    line-height: 100%;
     width: 100%;
     height: 93%;
     flex-grow: 1;

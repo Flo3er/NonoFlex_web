@@ -8,11 +8,13 @@
     font-weight: bold;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .roundButton:disabled {
     color: #E2F1FF;
     border: 1px solid #E2F1FF;
+    cursor:not-allowed;
 }
 
 .roundButton:enabled:hover {
