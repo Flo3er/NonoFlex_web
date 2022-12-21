@@ -125,9 +125,10 @@ const NoticeList = () => {
 
     const onScrollNoticeList = (event) => {
         const scrollY = event.target.scrollTop;
-        console.log(event.target.scrollTop);
+        console.log(scrollY);
 
-        if (scrollY >= 600 * noticeMetaData.page) {
+        if (scrollY >= 40 * noticeMetaData.page) {
+            console.log(noticeMetaData.lastPage);
             if (!noticeMetaData.lastPage && !isLoading) {
                 getNoticeList(searchData, (noticeMetaData.page + 1));
             }

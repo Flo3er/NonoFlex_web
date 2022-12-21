@@ -1,30 +1,34 @@
-import "./ProductNew.css"
+import "./ProductEdit.css"
 import { ToastContainer } from "react-toastify";
 import Header from "../../components/common/header/Header.js"
 import Sidebar from "../../components/common/sidebar/Sidebar.js"
 import AssentialPoint from "../../../assets/images/assentialPoint.png"
 import EmptyImage from "../../../assets/images/emptyImage.png"
 import TextField from "../../components/login/TextField.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PrimaryButton from "../../components/common/button/PrimaryButton";
 import NonoToast from "../../components/common/toast/Toast";
 import Modal from "../../components/common/modal/Modal";
 import Dialog from "../../components/common/modal/Dialog";
 import UtilAPI from "../../../apis/etc/util";
 import ProductAPI from "../../../apis/product/Product";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Utils from "../../../features/utils/Utils";
+import { selectedProduct } from "../../../features/product/productSlice";
 
-const ProductNew = () => {
+const ProductEdit = () => {
     const [productName, setProductName] = useState("");
     const [isValidProductName, updateValidProductName] = useState(true);
     const [productImageName, setProductImageName] = useState("");
     const [productImage, setProductImage] = useState(null);
     const [productDescription, setProductDescription] = useState("");
+    const [productBarCode, setProductBarCode] = useState("");
     const [productCode, setProductCode] = useState("");
     const [isValidProductCode, updateValidProductCode] = useState(true);
-    const [productCategory, setProductCategorySelection] = useState("선택");
+    const [productCategory, setProductCategorySelection] = useState("");
     const [isValidProductCategory, updateValidProductCategory] = useState(false)
-    const [productSaveType, setProductSaveTypeSelection] = useState("NONE");
+    const [productSaveType, setProductSaveTypeSelection] = useState("");
     const [isValidProductSaveType, updateValidProductSaveType] = useState(false)
     const [productUnit, setProductUnit] = useState("");
     const [isValidProductUnit, updateValidProductUnit] = useState(true);
@@ -35,6 +39,8 @@ const ProductNew = () => {
     const [productOutputPrice, setProductOutputPrice] = useState(0);
     const [isEnableSaveButton, updateEnableSaveButton] = useState(false);
     const [isOpenSaveProductConfirm, updateOpenSaveProductConfirm] = useState(false);
+    const [productActiveType, setProductActiveType] = useState(true);
+
     const productSaveTypeList = [
         { value: "선택", code: "NONE" },
         { value: "실온", code: "ROOM" },
@@ -52,8 +58,75 @@ const ProductNew = () => {
         "기타"
     ]
 
-    const navigate = useNavigate();
+    const productActiveTypeList = [
+        { value: "활성", code: true },
+        { value: "비활성", code: false }
+    ]
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const selectedProductItem = useSelector((state) => state.product.selectedItem);
+    useEffect(() => {
+        const accessToken = sessionStorage.getItem("accessToken")
+        if (accessToken === "" || accessToken === null) {
+            window.location.replace("/login");
+        } else {
+            const fetchData = async () => {
+                if (await Utils.checkToken()) {
+                    const productId = selectedProductItem.productId;
+                    if (productId !== null) {
+                        const response = await ProductAPI.getProductItem(productId);
+                        if (response.isSuccess) {
+                            dispatch(selectedProduct(response.data))
+                        } else {
+                            NonoToast.error(response.errorMessage);
+                            await Utils.timeout(1000);
+                            navigate("/product/list");
+                        }
+                    }
+                } else {
+                    console.log("token expired");
+                    NonoToast.error("로그인 유효기간이 만료되었습니다.");
+                    await Utils.timeout(1000);
+                    window.location.replace("/login");
+                }
+            }
+            fetchData();
+        }
+        console.log(selectedProductItem);
+    }, []);
+
+    useEffect(() => {
+        onChangeProductName(selectedProductItem.name);
+        setProductDescription(selectedProductItem.description);
+        onChangeProductCode(selectedProductItem.productCode);
+        setProductCategorySelection(selectedProductItem.category);
+        productCategoryValidation(selectedProductItem.category);
+        setProductSaveTypeSelection(selectedProductItem.storageType);
+        productSaveTypeValidation(selectedProductItem.storageType);
+        onChangeProductUnit(selectedProductItem.unit);
+        onChangeProductMaker(selectedProductItem.maker);
+        onChangeProductStock(selectedProductItem.stock);
+        onChangeProductInputPrice(selectedProductItem.inputPrice);
+        onChangeProductOutputPrice(selectedProductItem.outputPrice);
+        if (selectedProductItem.barcode === "") {
+            setProductBarCode(null);
+        } else {
+            setProductBarCode(selectedProductItem.barcode);
+        }
+        setProductActiveType(selectedProductItem.active);
+        updateSaveButtonValidation();
+
+        console.log(isValidProductName);
+        console.log(isValidProductCode);
+        console.log(isValidProductUnit);
+        console.log(isValidProductCategory);
+        console.log(isValidProductSaveType);
+        console.log(isValidProductMaker);
+        console.log(isEnableSaveButton);
+        console.log(productImage);
+
+    }, [selectedProductItem]);
 
     const onChangeProductName = (value) => {
         setProductName(value);
@@ -128,17 +201,9 @@ const ProductNew = () => {
         const price = Number(value)
         setProductOutputPrice(price)
     }
+
     const updateSaveButtonValidation = () => {
         const isValidSaveButton = isValidProductName && isValidProductCode && isValidProductUnit && isValidProductCategory && isValidProductSaveType && isValidProductMaker
-        // console.log(isValidProductName);
-        // console.log(isValidProductCode);
-        // console.log(isValidProductUnit);
-        // console.log(isValidProductCategory);
-        // console.log(isValidProductSaveType);
-        // console.log(isValidProductMaker);
-        // console.log(isValidSaveButton);
-        // console.log(productImage);
-
         updateEnableSaveButton(isValidSaveButton);
     }
     function checkValidation() {
@@ -209,7 +274,9 @@ const ProductNew = () => {
             const uploadImageResponse = await UtilAPI.uploadImage(productImage);
             if (uploadImageResponse.isSuccess) {
                 const fileId = uploadImageResponse.data.fileId;
-                const response = await ProductAPI.addProduct(productCode,
+                const response = await ProductAPI.updateProduct(
+                    selectedProductItem.productId,
+                    productCode,
                     productName,
                     productDescription,
                     productCategory,
@@ -219,21 +286,26 @@ const ProductNew = () => {
                     productStock,
                     productInputPrice,
                     productOutputPrice,
+                    productActiveType,
                     fileId);
 
                 if (response.isSuccess) {
-                    NonoToast.success("물품 등록에 성공했습니다.");
-                    navigate(-1);
+                    NonoToast.success("물품 정보를 수정하였습니다.");
+                    await Utils.timeout(1000);
+                    navigate("/product/list");
+
                 } else {
-                    NonoToast.error("물품 등록에 실패했습니다.");
+                    NonoToast.error("물품 정보 수정에 실패했습니다.");
                     console.log(response.errorMessage);
                 }
             } else {
-                NonoToast.error("물품 등록에 실패했습니다.");
+                NonoToast.error("물품 정보 수정에 실패했습니다.");
                 console.log("image upload fail");
             }
         } else {
-            const response = await ProductAPI.addProduct(productCode,
+            const response = await ProductAPI.updateProduct(
+                selectedProductItem.productId,
+                productCode,
                 productName,
                 productDescription,
                 productCategory,
@@ -243,14 +315,29 @@ const ProductNew = () => {
                 productStock,
                 productInputPrice,
                 productOutputPrice,
+                productActiveType,
                 "");
 
             if (response.isSuccess) {
-                NonoToast.success("물품 등록에 성공했습니다.");
-                navigate(-1);
+                NonoToast.success("물품 정보를 수정하였습니다.");
+                await Utils.timeout(1000);
+                navigate("/product/list");
             } else {
-                NonoToast.error("물품 등록에 실패했습니다.");
+                NonoToast.error("물품 정보 수정에 실패했습니다.");
                 console.log(response.errorMessage);
+            }
+        }
+    }
+
+    const getSelectedImage = (image) => {
+        if (image === null || image === undefined) {
+            return EmptyImage
+        } else {
+            const getThumbnailUrl = image.thumbnailUrl;
+            if (getThumbnailUrl === null) {
+                return EmptyImage;
+            } else {
+                return image.thumbnailUrl;
             }
         }
     }
@@ -265,10 +352,10 @@ const ProductNew = () => {
                     confirm={confirmSaveProduct} />
             </Modal>
             <div className="page">
-                <Sidebar value="/product/new" />
+                <Sidebar value="/product/list" />
                 <div className="contentsPage">
-                    <Header title="새 물품 추가"
-                        desc="물품을 추가합니다." />
+                    <Header title="새 물품 수정"
+                        desc="물품을 수정합니다." />
                     <div className="pageBody">
                         <ul className="newProductItemForm">
                             <li>
@@ -298,7 +385,9 @@ const ProductNew = () => {
                                     </div>
 
                                 </div>
-                                <img src={EmptyImage} className="productImageItem" id="productImage" />
+                                <img src={productImage ?? getSelectedImage(selectedProductItem.image)}
+                                    className="productImageItem"
+                                    id="productImage" />
                             </li>
                             <li>
                                 <div className="productNameTitleBox">
@@ -309,6 +398,7 @@ const ProductNew = () => {
                                     <TextField
                                         type="text"
                                         isValidData={isValidProductName}
+                                        value={productName}
                                         onChange={value => {
                                             onChangeProductName(value);
                                         }}
@@ -324,6 +414,7 @@ const ProductNew = () => {
                                 <div className="productDescriptionTextField">
                                     <textarea
                                         onChange={(value) => onChangeProductDescription(value)}
+                                        value={productDescription}
                                         placeholder="물품 설명이 필요한 경우, 여기에 입력해 주세요!" />
                                 </div>
                             </li>
@@ -336,6 +427,7 @@ const ProductNew = () => {
                                     <TextField
                                         isValidData={isValidProductCode}
                                         type="text"
+                                        value={productCode}
                                         onChange={value => {
                                             onChangeProductCode(value);
                                         }}
@@ -349,7 +441,27 @@ const ProductNew = () => {
                                     <span>바코드</span>
                                 </div>
                                 <div className="productBarCodeTextField">
-                                    <span>바코드는 모바일 앱을 통해 추가가 가능합니다.</span>
+                                    <span>{productBarCode ?? "바코드는 모바일 앱을 통해 추가가 가능합니다."}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="productActiveTypeTitleBox">
+                                    <img src={AssentialPoint} className="assentialPointImage" />
+                                    <span>활성화</span>
+                                </div>
+                                <div className="productActiveTypeSelectBox">
+                                    <select className="productActiveTypeSelect"
+                                        value={productActiveType ?? true}
+                                        onChange={onChangeProductSaveTypeSelection}
+                                        onBlur={updateSaveButtonValidation}>
+                                        {
+                                            productActiveTypeList.map((item, index) => {
+                                                return (
+                                                    <option key={"productActiveType" + index} value={item.code}>{item.value}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
                                 </div>
                             </li>
                             <li>
@@ -359,6 +471,7 @@ const ProductNew = () => {
                                 </div>
                                 <div className="productCategorySelectBox">
                                     <select className="productCategorySelect"
+                                        value={productCategory ?? "선택"}
                                         onChange={onChangeProductCategorySelection}
                                         onBlur={updateSaveButtonValidation}>
                                         {
@@ -378,6 +491,7 @@ const ProductNew = () => {
                                 </div>
                                 <div className="productSaveTypeSelectBox">
                                     <select className="productSaveTypeSelect"
+                                        value={productSaveType ?? "NONE"}
                                         onChange={onChangeProductSaveTypeSelection}
                                         onBlur={updateSaveButtonValidation}>
                                         {
@@ -398,6 +512,7 @@ const ProductNew = () => {
                                 <div className="productUnitTextField">
                                     <TextField
                                         isValidData={isValidProductUnit}
+                                        value={productUnit}
                                         onChange={value => {
                                             onChangeProductUnit(value);
                                         }}
@@ -414,6 +529,7 @@ const ProductNew = () => {
                                 <div className="productMakerTextField">
                                     <TextField isValidData={true}
                                         type="text"
+                                        value={productMaker}
                                         onChange={value => {
                                             onChangeProductMaker(value);
                                         }}
@@ -429,6 +545,7 @@ const ProductNew = () => {
                                 <div className="productStockTextField">
                                     <TextField isValidData={true}
                                         type="text"
+                                        value={productStock}
                                         onChange={value => {
                                             onChangeProductStock(value);
                                         }}
@@ -439,7 +556,7 @@ const ProductNew = () => {
                             <li>
                                 <div className="productPriceTitleBox">
                                     <div className="assentialPointImage" />
-                                    <span>입고 금액</span>
+                                    <span>기준 입고 금액</span>
                                 </div>
                                 <div className="productPriceTextField">
                                     <TextField isValidData={true}
@@ -458,7 +575,7 @@ const ProductNew = () => {
                             <li>
                                 <div className="productPriceTitleBox">
                                     <div className="assentialPointImage" />
-                                    <span>출고 금액</span>
+                                    <span>기준 출고 금액</span>
                                 </div>
                                 <div className="productPriceTextField">
                                     <TextField isValidData={true}
@@ -492,4 +609,4 @@ const ProductNew = () => {
     );
 }
 
-export default ProductNew;
+export default ProductEdit;

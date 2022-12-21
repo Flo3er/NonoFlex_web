@@ -1,7 +1,7 @@
 import Utils from "../../features/utils/Utils"
 import NonoAPI from "../NonoApi"
 
-async function getProductList(query , column, order, page) {
+async function getProductList(query, column, order, page) {
     try {
         const params = {
             query: query,
@@ -44,7 +44,7 @@ async function getRecordList(productId, year, month) {
             console.log("month : " + params.month);
             const response = await NonoAPI.get(
                 "/api/v1/product/" + productId + "/record",
-                params
+                {params}
             );
             console.log(response.data);
             return {
@@ -63,8 +63,94 @@ async function getRecordList(productId, year, month) {
     }
 }
 
+async function addProduct(productCode, name, description, category, maker, unit, storageType, stock, inputPrice, outputPrice, imageId) {
+    try {
+        const response = await NonoAPI.post("/api/v1/product", {
+            productCode: productCode,
+            name: name,
+            description: description,
+            category: category,
+            maker: maker,
+            unit: unit,
+            storageType: storageType,
+            stock: stock,
+            inputPrice: inputPrice,
+            outputPrice: outputPrice,
+            imageFileId: imageId
+        });
+
+        console.log(response.data);
+
+        return {
+            isSuccess: true,
+            data: response.data
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        };
+    }
+}
+
+async function getProductItem(productId) {
+    try {
+        const response = await NonoAPI.get(
+            "/api/v1/product/" + productId
+        );
+
+        console.log(response.data);
+        return {
+            isSuccess: true,
+            data: response.data
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        };
+    }
+}
+
+async function updateProduct(productId, productCode, name, description, category, maker, unit, storageType, stock, price, activate, barcode, imageId) {
+    try {
+        const response = await NonoAPI.put("/api/v1/product/" + productId, {
+            productCode: productCode,
+            name: name,
+            description: description,
+            category: category,
+            maker: maker,
+            unit: unit,
+            storageType: storageType,
+            stock: stock,
+            price: price,
+            activate: activate,
+            barcode: barcode,
+            imageFileId: imageId
+        });
+
+        console.log(response.data);
+
+        return {
+            isSuccess: true,
+            data: response.data
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        };
+    }
+}
+
 const ProductAPI = {
-    getProductList, getRecordList
+    getProductList, getRecordList, addProduct, getProductItem, updateProduct
 }
 
 export default ProductAPI;

@@ -26,7 +26,7 @@ const SideBar = props => {
     // 사용자 이름 설정
     const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken === "") {
-      window.location.replace("./login");
+      window.location.replace("/login");
     }
     const tokenData = Utils.parseJwt(accessToken);
     updateUserName(tokenData.username);
@@ -125,7 +125,7 @@ const SideBar = props => {
                   main.map((item, index) => {
                     return (
                       <li key={"main" + index}>
-                        <Link to={item.page}>
+                        <Link to={item.page} state={undefined}>
                           <div className=" subMenuItem">
                             <div className="subMenuImage" >
                               <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
@@ -154,7 +154,7 @@ const SideBar = props => {
                     product.map((item, index) => {
                       return (
                         <li key={"product" + index}>
-                          <Link to={item.page}>
+                          <Link to={item.page} replace={true}>
                             <div className=" subMenuItem">
                               <div className="subMenuImage" >
                                 <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
@@ -184,7 +184,7 @@ const SideBar = props => {
                     document.map((item, index) => {
                       return (
                         <li key={"document" + index}>
-                          <Link to={item.page}>
+                          <Link to={item.page} replace={true}>
                             <div className=" subMenuItem">
                               <div className="subMenuImage" >
                                 <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />

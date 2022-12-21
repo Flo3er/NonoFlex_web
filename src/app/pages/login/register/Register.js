@@ -194,7 +194,7 @@ const Register = (props) => {
         if(response.isSuccess) {
             NonoToast.success("회원 가입에 성공하였습니다. 로그인 페이지로 이동합니다.");
             await Utils.timeout(2000); // 2초대기
-            window.location.replace("./login");
+            window.location.replace("/login");
         } else {
             NonoToast.error(response.errorMessage);
         }

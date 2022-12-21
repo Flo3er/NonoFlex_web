@@ -9,7 +9,7 @@ const initialState = {
         lastpage: false,
         page: 0,
         totalCount: 0,
-        totalPages: 0, 
+        totalPages: 0,
     },
 }
 
@@ -37,6 +37,23 @@ export const productSlice = createSlice({
         selectedProduct: (state, action) => {
             state.selectedItem = action.payload
         },
+        updateProductItem: (state, action) => {
+            const newProductList = state.itemList.map((item, index) => {
+                if (item.productId == action.payload.productId) {
+                    return action.payload
+                } else {
+                    return item;
+                }
+            });
+
+            return {
+                itemList: newProductList,
+                metaData: state.metaData,
+                selectedItem: state.selectedItem,
+                selectedItemRecordList: state.selectedItemRecordList
+            };
+
+        },
         clearSelectedProduct: (state, action) => {
             return {
                 metaData: state.metaData,
@@ -56,6 +73,6 @@ export const productSlice = createSlice({
     }
 });
 
-export const {updateProductList, selectedProduct, clearSelectedProduct, updateProductRecordList} = productSlice.actions;
+export const { updateProductList, selectedProduct, clearSelectedProduct, updateProductRecordList, updateProductItem } = productSlice.actions;
 
 export default productSlice.reducer;

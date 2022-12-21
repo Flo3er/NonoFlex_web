@@ -9,7 +9,7 @@
     width: 45%;
     min-width: 320px;
     max-width: 540px;
-    height: 600px;
+    height: 720px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -56,12 +56,14 @@
     margin-right: 15px;
     margin-left: 30px;
 }
-.productListSection {
+.productItemListSection {
     width: 100%;
+    height: 720px;
     height: calc(100% - 40px);
+    overflow-y: scroll;
     
 }
-.productListSection>ul {
+.productItemListSection>ul {
     list-style: none;
     padding-left: 0px;
     overflow-y: scroll;
@@ -134,7 +136,7 @@
 
 .emptyProductContentsSection {
     width: 100%;
-    height: calc(100% - 40px);
+    height: 700px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -161,7 +163,7 @@
     cursor: pointer;
 }
 .productContentSection {
-    height: 600px;
+    height: 650px;
     border: 1px solid #B0BECC;
     border-radius: 8px;
     padding-left: 20px;
@@ -361,4 +363,32 @@
     text-overflow: ellipsis;
     display: inline-block;
     max-lines: 1;
+}
+.recordYearSelectBox {
+    border-radius: 4px;
+    width: 70px;
+    height: 20px;
+    margin-right: 10px;
+    background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/20px;
+}
+.recordYearSelect {
+    color: #0B005C;
+    width: 100%;
+    background-color: transparent;
+    height: 100%;
+    border: 0px solid transparent;
+    /* for chrome */
+    -webkit-appearance: none;
+    /*for firefox*/
+    -moz-appearance: none;
+    /*default*/
+    appearance: none;
+}
+.recordYearSelect::-ms-expand {
+    display: none;
+    /*for IE10,11*/
+}
+
+.recordYearSelect:focus {
+    outline: none;
 }

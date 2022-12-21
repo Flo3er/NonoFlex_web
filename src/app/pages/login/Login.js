@@ -14,6 +14,7 @@ import { login } from "../../../features/login/LoginSlice";
 import AuthenticationAPI from "../../../apis/login/Authentication";
 import NonoToast from "../../components/common/toast/Toast.js";
 import Utils from "../../../features/utils/Utils";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [userId, setUserId] = useState("");
@@ -24,6 +25,7 @@ const Login = () => {
     const [cookies, setCookie, removeCookie] = useCookies(['rememberEmail']);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (cookies.rememberEmail !== undefined) {
@@ -68,7 +70,7 @@ const Login = () => {
                 sessionStorage.setItem("refresh_expired", response.token.refresh_token_expires_in)
                 NonoToast.success("로그인에 성공하였습니다.");
                 await Utils.timeout(2000);
-                window.location.replace("./main");
+                navigate("/main");
             } else {
                 NonoToast.error("[" + response.errorCode + "]" + response.errorMessage);
             }

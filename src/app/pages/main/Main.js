@@ -18,6 +18,7 @@ import AuthenticationAPI from "../../../apis/login/Authentication.js"
 import NoticeContentsModal from "../../components/main/notice/NoticeContentsModal.js"
 import { useDispatch, useSelector } from "react-redux"
 import { clearNoticeItem, recentNotice, selectNotice } from "../../../features/main/NoticeSlice.js"
+import { useNavigate } from "react-router-dom"
 
 const Main = () => {
     const [isEmptyNotice, updateEmptyNotice] = useState(true);
@@ -25,13 +26,14 @@ const Main = () => {
     const [isOpenNoticeContentsModal, updateOpenNoticeContentsModal] = useState(false);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const recentNoticeData = useSelector((state) => state.notice.recentItem);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
         if (accessToken === "" || accessToken === null) {
-            window.location.replace("./login");
+            window.location.replace("/login");
         } else {
             const fetchData = async () => {
                 if (await Utils.checkToken()) {
@@ -40,7 +42,7 @@ const Main = () => {
                     console.log("token expired");
                     NonoToast.error("로그인 유효기간이 만료되었습니다.");
                     await Utils.timeout(2000);
-                    // window.location.replace("./login");
+                    window.location.replace("/login");
                 }
             }
 
@@ -60,7 +62,7 @@ const Main = () => {
     }
 
     const onclickListButton = () => {
-        window.location.replace("./notice/list")
+       navigate("/notice/list")
     }
 
     const onCLickNoticeAddButton = () => {

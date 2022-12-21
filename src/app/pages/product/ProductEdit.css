@@ -231,6 +231,57 @@
     font-size: 16px;
 }
 
+.productActiveTypeTitleBox {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.productActiveTypeTitleBox>span {
+    width: 100px;
+    height: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.productActiveTypeSelectBox {
+    width: 210px;
+    height: 50px;
+    margin-left: 16px;
+    border-radius: 8px;
+    background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/30px #F1F4F8;
+}
+
+.productActiveTypeSelect {
+    width: 100%;
+    background-color: transparent;
+    height: 100%;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 0px solid transparent;
+    /* for chrome */
+    -webkit-appearance: none;
+    /*for firefox*/
+    -moz-appearance: none;
+    /*default*/
+    appearance: none;
+}
+
+.productActiveTypeSelect::-ms-expand {
+    display: none;
+    /*for IE10,11*/
+}
+
+.productActiveTypeSelect:focus {
+    outline: none;
+}
+
+
 .productCategoryTitleBox {
     width: 200px;
     height: 50px;
