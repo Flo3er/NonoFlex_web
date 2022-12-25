@@ -1,2 +1,1 @@
-# NonoFlex_web
-NonoFlex web project
+아키텍쳐 적용된 파일
