@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/yellowLogo.png';
 import Utils from '../../../features/utils/Utils';
 import './Splash.css'
 

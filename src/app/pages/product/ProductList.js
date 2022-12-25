@@ -188,14 +188,14 @@ const ProductList = () => {
                                     <div className="emptySection" />
                                     <span className="productListItemCountTitle">재고</span>
                                 </div>
-                                <div className="productItemListSection" onScroll={onScrollProductList}>
+                                <div className="productItemListSection">
                                     {
                                         (productList.length === 0 && searchData !== "") ?
                                             <div className="emptyProductListSection">
                                                 <p>검색 결과가 존재하지 않습니다.</p>
                                             </div>
                                             :
-                                            <ul>
+                                            <ul onScroll={onScrollProductList}>
                                                 {
                                                     productList.map((item, index) => {
                                                         return (

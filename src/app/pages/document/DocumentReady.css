@@ -1,0 +1,284 @@
+.documentReadyPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.documentReadyInfoSection {
+    width: 55%;
+    min-width: 540px;
+    max-width: 780px;
+    height: 720px;
+    display: flex;
+}
+
+.documentReadyForm {
+    width: 100%;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.documentReadyForm>li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.documnetReadyInfoTitleBox {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.documnetReadyInfoTitleBox>span {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2E2E2E;
+}
+
+.documentTypeBox {
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1F4F8;
+    border: 1px solid #1F6DE2;
+    cursor: pointer;
+}
+
+.documentTypeBox>span {
+    color: #1F6DE2;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.selectedDocumentTypeBox {
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F6DE2;
+    border: 1px solid #1F6DE2;
+    cursor: pointer;
+}
+
+.selectedDocumentTypeBox>span {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.documentDateInputBox {
+    background-color: #F1F4F8;
+    width: calc(100% - 200px);
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.documentDateInputButtonBox {
+    width: 24px;
+    height: 24px;
+    background: url('../../../assets/images/calendar.png') no-repeat 97% 50%/24px #F1F4F8;
+}
+
+.documentDateInputButton {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.documentDateInputButton::-webkit-calendar-picker-indicator {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.documentPartnerInputBox {
+    background-color: #F1F4F8;
+    width: calc(100% - 200px);
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.documentPartnerInputBox>span {
+    color: #7A7A7D;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.documentProductInputBox {
+    background-color: #F1F4F8;
+    width: calc(100% - 200px);
+    height: 350px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.emptyDocumentProductPlaceHolder {
+    color: #7A7A7D;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.documentProductInputBox>ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    padding-left: 0px;
+    overflow-y: scroll;
+}
+
+.settedDocumentProductList {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.documentProductItemSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.documentProductName {
+    font-size: 16px;
+    font-weight: 400;
+    color: #2E2E2E;
+}
+
+.documentProductCode {
+    font-size: 12px;
+    font-weight: 350;
+    color: #1F6DE2;
+}
+
+.documentProductInputCount {
+    font-size: 16px;
+    font-weight: 400;
+    color: #1F6DE2;
+    text-align: right;
+}
+.documentProductOutputCount {
+    font-size: 16px;
+    font-weight: 400;
+    color: #D43D3D;
+    text-align: right;
+}
+
+.documentProductPrice {
+    font-size: 14px;
+    font-weight: 350;
+    color: #7A7A7D;
+    text-align: right;
+}
+
+.saveDocumentButtonBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.saveDocumentButton {
+    width: 180px;
+    height: 50px;
+}
+
+.removeDocumentProduct {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+
+.documentReadyDetailSection {
+    width: 45%;
+    min-width: 320px;
+    max-width: 540px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #B0BECC;
+    border-radius: 8px;
+    margin-left: 30px;
+}
+
+.documentProductSearchBox {
+    height: 50px;
+    width: calc(100% - 30px);
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.documentProductListSection {
+    width: calc(100% - 30px);
+    height: calc(720px - 70px);
+    display: flex;
+}
+
+.documentProductListSection>ul {
+    width: 100%;
+    list-style: none;
+    padding-left: 0px;
+    overflow-y: scroll;
+}
+
+.documentProductListItem {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.documentProductListItemImage {
+    width: 54px;
+    height: 54px;
+    border: 1px solid #B0BECC;
+    border-radius: 8px;
+}
+
+.documentProductListItemName {
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.documentProductListItemInfoButton {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.documentProductListItemAddButton {
+    width: 24px;
+    height: 24px;
+    margin-left: 6px;
+    cursor: pointer;
+}

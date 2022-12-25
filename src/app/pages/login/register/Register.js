@@ -28,6 +28,7 @@ const Register = (props) => {
     const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
     const onChangeUserName = event => {
+        console.log(event)
         setUserName(event);
         userNameValidation(event);
         checkRegisterValidation();
@@ -121,7 +122,6 @@ const Register = (props) => {
     }
 
     const passwordValidation = (event) => {
-        console.log("password:" + event);
         const isValidPassword = regExpPassword.test(event);
         updateValidPassword(isValidPassword);
         if (password === passwordConfirm) {
@@ -133,8 +133,6 @@ const Register = (props) => {
 
     const onChanagePasswordConfirm = event => {
         setPasswordConfirm(event);
-        console.log(event)
-        console.log(password)
         if (event === password) {
             updatePasswordConfirm(true);
         } else {
@@ -217,9 +215,6 @@ const Register = (props) => {
                                 type="text"
                                 placeholder="User Name"
                                 onChange={value => {
-                                    onChangeUserName(value);
-                                }}
-                                onFocusOut={value => {
                                     onChangeUserName(value);
                                 }} />
                         </div>

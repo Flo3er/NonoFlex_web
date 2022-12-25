@@ -26,15 +26,15 @@
 }
 
 .loginLogo {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 .topSpace {
-  height: 60px;
+  height: 70px;
   width: auto;
 }
 .emailCheckBox {

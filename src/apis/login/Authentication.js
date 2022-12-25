@@ -4,8 +4,8 @@ async function login(userId, password) {
     try {
         const response = await NonoAPI.post(
             "/api/v1/auth/code", {
-            "email": userId,
-            "password": password
+            email: userId,
+            password: password
         }
         );
         console.log(response.data);
@@ -25,8 +25,8 @@ async function getAccessToken(code) {
     try {
         const response = await NonoAPI.post(
             "/api/v1/auth/token", {
-                "grant_type": "authorization_code",
-                "code": code,
+                grant_type: "authorization_code",
+                code: code,
             }
         );
         console.log(response.data);
@@ -47,8 +47,8 @@ async function refreshToken(token) {
     try {
         const response = await NonoAPI.post(
             "/api/v1/auth/token", {
-                "grant_type": "refresh_token",
-                "refresh_token": token,
+                grant_type: "refresh_token",
+                refresh_token: token,
             }
         );
         console.log(response.data);
@@ -68,8 +68,8 @@ async function refreshToken(token) {
 async function checkDuplicateEmail(email) {
     try {
         const response = await NonoAPI.post('/api/v1/auth/email/duplicate',{
-            "email": email,
-            "type": "JOIN"
+            email: email,
+            type: "JOIN"
         });
         console.log(response.data);
         return {
@@ -88,8 +88,8 @@ async function checkDuplicateEmail(email) {
 async function sendEmailAuthorization(email, type) {
     try {
         const response = await NonoAPI.post('/api/v1/auth/email/check',{
-            "email": email,
-            "type": type
+            email: email,
+            type: type
         });
         console.log(response.data);
         return {
@@ -108,8 +108,8 @@ async function sendEmailAuthorization(email, type) {
 async function verifyEmailAuthorization(email, code) {
     try {
         const response = await NonoAPI.post('/api/v1/auth/email/verify',{
-            "email": email,
-            "code": code
+            email: email,
+            code: code
         });
         console.log(response.data);
         return {
@@ -126,12 +126,16 @@ async function verifyEmailAuthorization(email, code) {
 }
 
 async function regitser(name, email, password, code) {
+    console.log(name)
+    console.log(email)
+    console.log(password)
+    console.log(code)
     try {
         const response = await NonoAPI.post('/api/v1/auth/join',{
-            "name": name,
-            "email": email,
-            "password": password,
-            "code": code
+            name: name,
+            email: email,
+            password: password,
+            code: code
           });
 
           console.log(response.data)
@@ -140,6 +144,7 @@ async function regitser(name, email, password, code) {
             result: response.data
           }
     } catch (error) {
+        console.log(error)
         return {
             isSuccess: false,
             errorCode: error.response.status,

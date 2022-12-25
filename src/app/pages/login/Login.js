@@ -1,7 +1,7 @@
 import PrimaryButton from "../../components/common/button/PrimaryButton";
 import TextField from "../../components/login/TextField";
 import "./Login.css"
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/yellowLogo.png';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useCookies } from 'react-cookie';
@@ -70,7 +70,7 @@ const Login = () => {
                 sessionStorage.setItem("refresh_expired", response.token.refresh_token_expires_in)
                 NonoToast.success("로그인에 성공하였습니다.");
                 await Utils.timeout(2000);
-                navigate("/main");
+                window.location.replace("/main");
             } else {
                 NonoToast.error("[" + response.errorCode + "]" + response.errorMessage);
             }
