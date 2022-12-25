@@ -62,6 +62,7 @@
     height: calc(100% - 40px);
 }
 .productItemListSection>ul {
+    height: 650px;
     list-style: none;
     padding-left: 0px;
     overflow-y: scroll;
