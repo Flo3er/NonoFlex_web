@@ -21,6 +21,9 @@ import ProductAPI from "../../../apis/product/Product.js";
 import { removeSearchValue } from "../../../features/main/SearchSlice.js";
 import { updateProductList } from "../../../features/product/productSlice.js";
 import DocumentList from "./DocumentList.js";
+import Modal from "../../components/common/modal/Modal";
+import DocumentProductModal from "../../components/document/DocumentProductModal";
+import { clearDocumentProduct, selectDocumentProduct, selectTempDocumentProduct } from "../../../features/document/DocumentProductSlice";
 
 const DocumentReady = () => {
     const [isSelectedDocumentInputType, updateDocumentType] = useState(true);
@@ -28,6 +31,7 @@ const DocumentReady = () => {
     const [isOpenChooseDocumentPartner, updateOpenChooseDocumentPartner] = useState(false);
     const [documentPartner, setDocumentPartner] = useState("");
     const [documentProduct, setDocumentProduct] = useState([]);
+    const [isOpenDocumentProductModal, updateDocumentProductModal] = useState(false);
     const [isLoading, updateLoading] = useState(false);
 
     const dispatch = useDispatch();
@@ -40,6 +44,7 @@ const DocumentReady = () => {
         });
         return filteredList;
     });
+    const documentProductItem = useSelector((state) => state.documentProduct.documentProductTempItem);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -66,6 +71,19 @@ const DocumentReady = () => {
         }
         fetchData();
     }, [searchData]);
+
+    useEffect(() => {
+        console.log(documentProductItem);
+        console.log(documentProduct);
+        if (documentProductItem.productId !== undefined) {
+            var updateDocumentProductList = documentProduct.copyWithin();
+            updateDocumentProductList.push(documentProductItem);
+            setDocumentProduct(updateDocumentProductList);
+
+            dispatch(clearDocumentProduct());
+        }
+
+    }, [documentProductItem])
 
     async function getProductList(query, page) {
         updateLoading(true);
@@ -113,16 +131,8 @@ const DocumentReady = () => {
 
     const onClickProductAddButton = (item) => {
         console.log(item);
-        const updatedDocumentProductItem = {
-            productId: item.productId,
-            productName: item.name,
-            productCode: item.productCode,
-            price: 1000,
-            count: 20
-        }
-        var updateDocumentProductList = documentProduct.copyWithin();
-        updateDocumentProductList.push(updatedDocumentProductItem);
-        setDocumentProduct(updateDocumentProductList);
+        dispatch(selectTempDocumentProduct(item));
+        updateDocumentProductModal(true);
     }
 
     const onClickRemoveDocumentProduct = (item) => {
@@ -137,9 +147,15 @@ const DocumentReady = () => {
         setDocumentProduct(updateDocumentProductList);
     }
 
+    const onCloseDocumentProductModal = () => {
+        updateDocumentProductModal(false);
+    }
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={isOpenDocumentProductModal} onClose= {onCloseDocumentProductModal}>
+                <DocumentProductModal onClickClose={onCloseDocumentProductModal} isTemp={true} />
+            </Modal>
             <div className="page">
                 <Sidebar value="/document/ready" />
                 <div className="contentsPage">

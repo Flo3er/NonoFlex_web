@@ -125,7 +125,7 @@ const SideBar = props => {
                   main.map((item, index) => {
                     return (
                       <li key={"main" + index}>
-                        <Link to={item.page} state={undefined}>
+                        <Link to={item.page} replace={true}>
                           <div className=" subMenuItem">
                             <div className="subMenuImage" >
                               <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />

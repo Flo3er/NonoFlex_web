@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import documentProductSlice from './document/DocumentProductSlice.js';
 import documentSlice from './document/DocumentSlice.js';
 import loginSlice from './login/LoginSlice.js';
 import noticeSlice from './main/NoticeSlice.js';
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   notice: noticeSlice,
   search: searchSlice,
   product: productSlice,
-  document: documentSlice
+  document: documentSlice,
+  documentProduct: documentProductSlice
 });
 
 export const store = configureStore({
