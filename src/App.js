@@ -14,6 +14,7 @@ import DocumentList from './app/pages/document/DocumentList.js';
 import DocumentReady from './app/pages/document/DocumentReady.js';
 import DocumentConfirm from './app/pages/document/DocumentConfirm.js';
 import NotFound from './app/pages/notfound/NotFound.js';
+import Company from './app/pages/settings/company/Company';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/document/list" element={<DocumentList />} />
             <Route path="/document/ready" element={<DocumentReady />} />
             <Route path="/document/confirm" element={<DocumentConfirm />} />
+            <Route path="/settings/company" element={<Company />} />
             <Route path="*" element={<Splash />}></Route>
           </Routes>
       </BrowserRouter>

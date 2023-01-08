@@ -54,7 +54,11 @@ const Main = () => {
         const response = await NoticeAPI.getRecentNotice();
         if (response.isSuccess) {
             dispatch(recentNotice(response.data));
-            updateEmptyNotice(false);
+            if (response.data.noticeId === null) {
+                updateEmptyNotice(true);
+            } else {
+                updateEmptyNotice(false);
+            }   
         } else {
             updateEmptyNotice(true);
             console.log(recentNotice.errorMessage);
@@ -121,7 +125,7 @@ const Main = () => {
                                         <span>{recentNoticeData.content}</span>
                                     </div>
                                     <div className="mainNoticeBodyTail">
-                                        <p className="mainNoticeBodyTailDate">{recentNoticeData.updatedAt}</p>
+                                        <p className="mainNoticeBodyTailDate">{(new Date(recentNoticeData.updatedAt)).toDateString()}</p>
                                         <p className="mainNoticeBodyTailAuthor">&nbsp;&nbsp;{recentNoticeData.writer}</p>
                                     </div>
                                 </div>

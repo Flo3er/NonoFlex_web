@@ -58,8 +58,69 @@ async function getDocument(documentId) {
     }
 }
 
+async function createTempDocument(date, type, companyId, recordList) {
+    try {
+        if (await Utils.checkToken()) {
+            console.log(date.toISOString());
+            const response = await NonoAPI.post(
+                "/api/v1/document/temp",
+                {
+                    date: date,
+                    type: type,
+                    companyId: companyId,
+                    recordList: recordList
+                }
+            )
+            console.log(response.data)
+            return {
+                isSuccess: true,
+                data: response.data
+            }
+        } else {
+            window.location.replace("/login");
+        }
+    } catch (error) {
+        console.log(error.response.data)
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
+async function createDocument(date, type, companyId, recordList) {
+    try {
+        if (await Utils.checkToken()) {
+            const response = await NonoAPI.post(
+                "/api/v1/document",
+                {
+                    date: date,
+                    type: type,
+                    companyId: companyId,
+                    recordList: recordList
+                }
+            )
+            console.log(response.data)
+            return {
+                isSuccess: true,
+                data: response.data
+            }
+        } else {
+            window.location.replace("/login");
+        }
+    } catch (error) {
+        console.log(error.response.data)
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
 const DocumentAPI = {
-    getDocumentList, getDocument
+    getDocumentList, getDocument, createTempDocument, createDocument
 }
 
 export default DocumentAPI;

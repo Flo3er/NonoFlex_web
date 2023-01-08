@@ -42,7 +42,8 @@
 .documentTypeBox {
     width: 120px;
     height: 50px;
-    border-radius: 8px;
+   border-bottom-left-radius: 8px;
+   border-top-left-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +61,8 @@
 .selectedDocumentTypeBox {
     width: 120px;
     height: 50px;
-    border-radius: 8px;
+    border-bottom-left-radius: 8px;
+   border-top-left-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,6 +72,44 @@
 }
 
 .selectedDocumentTypeBox>span {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.outputDocumentTypeBox {
+    width: 120px;
+    height: 50px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1F4F8;
+    border: 1px solid #1F6DE2;
+    cursor: pointer;
+}
+
+.outputDocumentTypeBox>span {
+    color: #1F6DE2;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.selectedOutputDocumentTypeBox {
+    width: 120px;
+    height: 50px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F6DE2;
+    border: 1px solid #1F6DE2;
+    cursor: pointer;
+}
+
+.selectedOutputDocumentTypeBox>span {
     color: #FFFFFF;
     font-size: 16px;
     font-weight: 400;
@@ -120,6 +160,22 @@
 }
 
 .documentPartnerInputBox>span {
+    color: #2e2e2e;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.documentPartnerInputEmptyBox {
+    background-color: #F1F4F8;
+    width: calc(100% - 200px);
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.documentPartnerInputEmptyBox>span {
     color: #7A7A7D;
     font-size: 16px;
     font-weight: 400;

@@ -1,0 +1,105 @@
+.chooseDocumentPartnerModalBody {
+    width: 430px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.chooseDocumentPartnerTitleSection {
+    width: 100%;
+    height: 80px;
+    background-color: #1F6DE2;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.chooseDocumentPartnerTitleSection>span {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    padding-left: 20px;
+}
+.chooseDocPartnerSearchField {
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 400px;
+    height: 50px;
+}
+.chooseDocumentPartnerBodySection {
+    width: 100%;
+    height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.chooseDocPartnerListSection {
+    width: 400px;
+    height: calc(100% - 120px);
+}
+.chooseDocPartnerListSection>ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    padding-left: 0px;
+    overflow-y: scroll;
+}
+.emptyDocumentPartnerListSection {
+    width: 100%;
+    height: calc(100% - 40px);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.emptyDocumentPartnerListSection>p {
+    color: #7A7A7D;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.chooseDocPartnerListItem {
+    width: calc(100% - 40px);
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.chooseDocPartnerListDisabledItem {
+    width: calc(100% - 40px);
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #E9EAEF;
+}
+.chooseDocPartnerListItem:hover {
+    background-color: #E2F1FF;
+}
+.docPartnerInputTag {
+    margin-top: 0px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #1F6DE2;
+}
+.docPartnerOutputTag {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #D43D3D;
+}
+.docPartnerName {
+    font-weight: 400;
+    font-size: 20px;
+}

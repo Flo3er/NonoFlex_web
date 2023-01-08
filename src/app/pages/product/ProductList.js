@@ -3,7 +3,7 @@ import Header from "../../components/common/header/Header.js"
 import Sidebar from "../../components/common/sidebar/Sidebar.js"
 import AddBlue from "../../../assets/images/addBlue.png"
 import Sort from "../../../assets/images/sorting.png"
-import EditBlue from "../../../assets/images/editBlue.png"
+import EditBlue from "../../../assets/images/edit.png"
 import EmptyImage from "../../../assets/images/emptyImage.png"
 import ArrowBackward from "../../../assets/images/arrowBackward.png"
 import ArrowForward from "../../../assets/images/arrowForward.png"
@@ -205,7 +205,7 @@ const ProductList = () => {
                                                                     item.active ? "prouctListItem" : "inactiveProductListItem"}
                                                                 onClick={() => onClickProductItem(item)}
                                                             >
-                                                                <img src={item.image.thumbnailUrl ?? EmptyImage} className="productListItemImage" />
+                                                                <img src={item.imageId ?? EmptyImage} className="productListItemImage" />
                                                                 <span className="productListItemName">{item.name}</span>
                                                                 <div className="emptySection" />
                                                                 <span className="productListItemCount">{item.stock} {item.unit}</span>
@@ -237,7 +237,7 @@ const ProductList = () => {
                                                 <div className="productContentsummary">
                                                     <span className="productContentName">{selectedProductItem.name}</span>
                                                     <span className="productContentCount">{selectedProductItem.stock} {selectedProductItem.unit}</span>
-                                                    <img src={selectedProductItem.image.thumbnailUrl ?? EmptyImage} className="productContentItemImage" />
+                                                    <img src={selectedProductItem.imageId ?? EmptyImage} className="productContentItemImage" />
                                                 </div>
                                                 <div className="productContentDetailInfo">
                                                     <div className="productContentDetailTitle">

@@ -1,0 +1,56 @@
+.companyNewModalPage {
+    width: 430px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.companyNewTitleSection {
+    width: 100%;
+    height: 80px;
+    background-color: #1F6DE2;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.companyNewTitleSection>span {
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    padding-left: 20px;
+}
+.companyNewTitleCloseButton {
+    width: 32px;
+    height: 32px;
+    margin: 24px;
+    cursor: pointer;
+}
+.companyNewContentsSection {
+    width: calc(100% - 45px);
+    height: calc(100% - 140px);
+    margin-left: 15px;
+    margin-right: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.companyNewItemSection {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.requiredPoint {
+    width: 20px;
+    height: 50px;
+}
+
+.createCompanyButtonBox {
+    width: calc(100% - 15px);
+    height: 50px;
+    margin-left: 15px;
+}

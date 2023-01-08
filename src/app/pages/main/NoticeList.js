@@ -213,6 +213,7 @@ const NoticeList = () => {
                                                     <ul>
                                                         {
                                                             noticeList.map((item, index) => {
+                                                                const createdAt = new Date(item.createdAt)
                                                                 return (
                                                                     <li key={"noticeList" + item.noticeId + index}
                                                                     className={item.noticeId === selectedNoticeItem.noticeId ? "selectedNoticeListContentsSectionItem" : "noticeListContentsSectionItem"}
@@ -223,7 +224,7 @@ const NoticeList = () => {
                                                                         </div>
                                                                         <div className="noticeItemInfo">
                                                                             <span>{item.writer}</span>
-                                                                            <span>{item.createdAt}</span>
+                                                                            <span>{createdAt.toDateString()}</span>
                                                                         </div>
                                                                     </li>
                                                                 );
@@ -253,7 +254,7 @@ const NoticeList = () => {
                                                         </div>
                                                         <div className="noticeContentsTitleInfo">
                                                             <span className="noticeWriter">{selectedNoticeItem.writer}</span>
-                                                            <span className="notiewCreateAt">{selectedNoticeItem.createdAt}</span>
+                                                            <span className="notiewCreateAt">{(new Date(selectedNoticeItem.createdAt)).toDateString()}</span>
                                                         </div>
                                                     </div>
                                                     <div className="noticeContentsBody">

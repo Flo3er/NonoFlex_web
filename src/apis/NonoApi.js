@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const NonoAPI = axios.create({
-    baseURL: "https://api.nonoflex.com",
+    baseURL: "http://santa-house.tplinkdns.com:3000",
     headers: {
         Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`
         }

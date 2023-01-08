@@ -128,6 +128,7 @@ const DocumentList = () => {
                                             <ul>
                                                 {
                                                     documentList.map((item, index) => {
+                                                        const createDate = new Date(item.createdAt)
                                                         return (
                                                             <li key={"documentList" + item.documentId + index}
                                                                 onClick={() => onClickDocumentItem(item)}
@@ -137,7 +138,7 @@ const DocumentList = () => {
                                                             >
                                                                 <div className="documentListItemFrontInfo">
                                                                     <span className="documentListCompanyName">{item.companyName}</span>
-                                                                    <span className="documentListDate">{item.createdAt}</span>
+                                                                    <span className="documentListDate">{createDate.toDateString()}</span>
                                                                 </div>
 
                                                                 <div className="emptySection" />
@@ -198,7 +199,7 @@ const DocumentList = () => {
                                                             <div className="documentDetailRowTitleBox">
                                                                 <span>작성일자</span>
                                                             </div>
-                                                            <span>{selectedDocumentItem.createdAt}</span>
+                                                            <span>{(new Date(selectedDocumentItem.createdAt)).toDateString()}</span>
                                                         </div>
                                                         <div className="documentDetailRowBox">
                                                             <div className="documentDetailRowTitleBox">

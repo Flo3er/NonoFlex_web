@@ -168,7 +168,7 @@ const ProductStatus = () => {
                                                         return (
                                                             <li key={"productList" + item.productId + index}
                                                                 className={item.active ? "prouctStatusListItem" : "inactiveProductStatusListItem"} >
-                                                                <img src={item.image.thumbnailUrl ?? EmptyImage} className="productListItemImage" />
+                                                                <img src={item.imageId ?? EmptyImage} className="productListItemImage" />
                                                                 <span className="productListItemName">{item.name}</span>
                                                                 <div className="emptySection" />
                                                                 <div className="deleteButtonBox">

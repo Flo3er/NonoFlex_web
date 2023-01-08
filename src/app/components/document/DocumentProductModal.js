@@ -11,12 +11,27 @@ import { updateDocumentProduct, updateTempDocumentProduct } from "../../../featu
 import NonoToast from "../common/toast/Toast"
 
 const DocumentProductModal = (props) => {
-    const [documentPrductPrice, setDocumentProductPrice] = useState("");
-    const [documentProductCount, setDocumentProductCount] = useState(0);
-    const [isOpen, setOpen] = useState(false)
-    const dispatch = useDispatch();
     const selectedproduct = useSelector((state) => state.documentProduct.selectedItem);
     const selectedTempProduct = useSelector((state) => state.documentProduct.selectedTempItem);
+    const [documentPrductPrice, setDocumentProductPrice] = useState("");
+    const [documentProductCount, setDocumentProductCount] = useState(0);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(props.isTemp) {
+           if(props.type === "INPUT") {
+            setDocumentProductPrice(selectedTempProduct.inputPrice);
+           } else {
+            setDocumentProductPrice(selectedTempProduct.outputPrice);
+           }
+        } else {
+            if(props.type === "INPUT") {
+                setDocumentProductPrice(selectedproduct.inputPrice);
+               } else {
+                setDocumentProductPrice(selectedproduct.outputPrice);
+               }
+        }
+    }, [selectedproduct, selectedTempProduct])
 
     const onClickCloseButton = () => {
         //TOOD: set documentProduct.
@@ -55,7 +70,7 @@ const DocumentProductModal = (props) => {
         }
 
         if(props.isTemp) {
-            const resultData = {
+             const resultData = {
                 productId: selectedTempProduct.productId,
                 productName: selectedTempProduct.name,
                 productCode: selectedTempProduct.productCode,

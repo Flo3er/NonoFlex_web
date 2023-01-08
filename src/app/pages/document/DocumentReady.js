@@ -24,12 +24,14 @@ import DocumentList from "./DocumentList.js";
 import Modal from "../../components/common/modal/Modal";
 import DocumentProductModal from "../../components/document/DocumentProductModal";
 import { clearDocumentProduct, selectDocumentProduct, selectTempDocumentProduct } from "../../../features/document/DocumentProductSlice";
+import ChooseDocumentPartnerModal from "../../components/document/ChooseDocumentPartnerModal";
+import { clearSelectedPartner } from "../../../features/document/DocumentPartnerSlice";
+import DocumentAPI from "../../../apis/document/Document";
 
 const DocumentReady = () => {
     const [isSelectedDocumentInputType, updateDocumentType] = useState(true);
-    const [documentDate, setDocumentDate] = useState(new Date().toDateString());
+    const [documentDate, setDocumentDate] = useState(new Date());
     const [isOpenChooseDocumentPartner, updateOpenChooseDocumentPartner] = useState(false);
-    const [documentPartner, setDocumentPartner] = useState("");
     const [documentProduct, setDocumentProduct] = useState([]);
     const [isOpenDocumentProductModal, updateDocumentProductModal] = useState(false);
     const [isLoading, updateLoading] = useState(false);
@@ -45,6 +47,7 @@ const DocumentReady = () => {
         return filteredList;
     });
     const documentProductItem = useSelector((state) => state.documentProduct.documentProductTempItem);
+    const documentPartner = useSelector((state) => state.documentPartner.selectedItem);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -95,32 +98,66 @@ const DocumentReady = () => {
     }
 
     const onClickDocumentInputButton = () => {
+        if (isSelectedDocumentInputType == false) {
+            dispatch(clearSelectedPartner());
+        }
         updateDocumentType(true);
     }
     const onClickDocumentOutputButton = () => {
+        if (isSelectedDocumentInputType == true) {
+            dispatch(clearSelectedPartner());
+        }
+
         updateDocumentType(false);
     }
     const onChangeDateInputData = (event) => {
-        setDocumentDate(event.target.valueAsDate.toDateString());
+        setDocumentDate(event.target.valueAsDate);
     }
     const onClickChooseDocumentPartner = () => {
         updateOpenChooseDocumentPartner(true);
-        console.log("open ChooseDocumentPartner");
-        // setDocumentPartner(event.target.value);
     }
-    const onClickSaveDocumentButton = () => {
-        NonoToast.error("준비중입니다.");
-        console.log("onClick Document save button")
+    const onCloseChooseDocumentPartner = () => {
+        updateOpenChooseDocumentPartner(false);
+    }
+    const onClickSaveDocumentButton = async () => {
+        if (documentPartner.companyId == undefined) {
+            NonoToast.error("거래처 정보를 입력해 주세요.");
+            return;
+        }
+
+        if (documentProduct.length == 0) {
+            NonoToast.error("거래 물품을 선택해 주세요.");
+            return;
+        }
+
+        const documentType = isSelectedDocumentInputType ? "INPUT" : "OUTPUT";
+        const recordList = documentProduct.map((item) => {
+            return {
+                productId: item.productId,
+                price: item.price,
+                quantity: item.count
+            }
+        })
+        console.log(recordList);
+        const response = await DocumentAPI.createTempDocument(documentDate, documentType, documentPartner.companyId, recordList);
+        if (response.isSuccess) {
+            NonoToast.success("예정서 작성에 성공하였습니다.");
+            window.location.replace("/document/list");
+            dispatch(clearSelectedPartner);
+            dispatch(clearDocumentProduct);
+        } else {
+            NonoToast.error("예정서 작성에 실패하였습니다.");
+        }
     }
 
-    const onScrollDocumentProductList = (event) => {
+    const onScrollDocumentProductList = async (event) => {
         const scrollY = event.target.scrollTop;
         // console.log(70 * (productList.length - 8) + "||" + scrollY);
 
         if (scrollY >= (70 * (productList.length - 8))) {
             // console.log(productMetaData.lastPage)
             if (!productMetaData.lastPage && !isLoading) {
-                getProductList(searchData, (productMetaData.page + 1));
+                await getProductList(searchData, (productMetaData.page + 1));
             }
         }
     }
@@ -153,8 +190,11 @@ const DocumentReady = () => {
     return (
         <div>
             <ToastContainer />
-            <Modal isOpen={isOpenDocumentProductModal} onClose= {onCloseDocumentProductModal}>
-                <DocumentProductModal onClickClose={onCloseDocumentProductModal} isTemp={true} />
+            <Modal isOpen={isOpenDocumentProductModal} onClose={onCloseDocumentProductModal}>
+                <DocumentProductModal onClickClose={onCloseDocumentProductModal} isTemp={true} type={isSelectedDocumentInputType ? "INPUT" : "OUTPUT"}/>
+            </Modal>
+            <Modal isOpen={isOpenChooseDocumentPartner} onClose={onCloseChooseDocumentPartner}>
+                <ChooseDocumentPartnerModal onClickClose={onCloseChooseDocumentPartner} type={isSelectedDocumentInputType ? "input" : "output"} />
             </Modal>
             <div className="page">
                 <Sidebar value="/document/ready" />
@@ -174,7 +214,7 @@ const DocumentReady = () => {
                                             onClick={onClickDocumentInputButton}>
                                             <span>입고서</span>
                                         </div>
-                                        <div className={isSelectedDocumentInputType ? "documentTypeBox" : "selectedDocumentTypeBox"}
+                                        <div className={isSelectedDocumentInputType ? "outputDocumentTypeBox" : "selectedOutputDocumentTypeBox"}
                                             onClick={onClickDocumentOutputButton}>
                                             <span>출고서</span>
                                         </div>
@@ -185,7 +225,7 @@ const DocumentReady = () => {
                                             <span>거래 날짜</span>
                                         </div>
                                         <div className="documentDateInputBox">
-                                            <span>{documentDate}</span>
+                                            <span>{documentDate.toDateString()}</span>
                                             <div className="emptySpace" />
                                             <div className="documentDateInputButtonBox">
                                                 <input type="date" className="documentDateInputButton" onChange={onChangeDateInputData} />
@@ -197,8 +237,8 @@ const DocumentReady = () => {
                                             <img src={AssentialPoint} className="assentialPointImage" />
                                             <span>거래처</span>
                                         </div>
-                                        <div className="documentPartnerInputBox" onClick={onClickChooseDocumentPartner}>
-                                            <span>거래처 정보를 입력해 주세요.</span>
+                                        <div className={documentPartner.companyId === undefined ? "documentPartnerInputEmptyBox" : "documentPartnerInputBox"} onClick={onClickChooseDocumentPartner}>
+                                            <span>{documentPartner.companyId === undefined ? "거래처 정보를 입력해 주세요." : documentPartner.name}</span>
                                         </div>
                                     </li>
                                     <li>
@@ -263,11 +303,11 @@ const DocumentReady = () => {
                                                     productList.map((item, index) => {
                                                         return (
                                                             <li key={"productList" + item.productId + index} className="documentProductListItem" >
-                                                                <img src={item.image.thumbnailUrl ?? EmptyImage} className="documentProductListItemImage" />
+                                                                <img src={item.image ?? EmptyImage} className="documentProductListItemImage" />
                                                                 <span className="documentProductListItemName">{item.name}</span>
                                                                 <div className="emptySpace" />
 
-                                                                <img src={Info} className="documentProductListItemInfoButton" onClick={() => onClickProductInfoButton(item)} />
+                                                                {/* <img src={Info} className="documentProductListItemInfoButton" onClick={() => onClickProductInfoButton(item)} /> */}
                                                                 <img src={Add} className="documentProductListItemAddButton" onClick={() => onClickProductAddButton(item)} />
                                                             </li>
                                                         )
