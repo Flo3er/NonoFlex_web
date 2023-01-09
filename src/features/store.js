@@ -7,6 +7,7 @@ import noticeSlice from './main/NoticeSlice.js';
 import searchSlice from './main/SearchSlice.js';
 import productSlice from './product/productSlice.js';
 import companySlice from './settings/companySlice.js';
+import userSlice from './settings/userSlice.js';
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   document: documentSlice,
   documentProduct: documentProductSlice,
   documentPartner: documentPartnerSlice,
-  company: companySlice
+  company: companySlice,
+  user: userSlice
 });
 
 export const store = configureStore({

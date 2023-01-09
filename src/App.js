@@ -15,6 +15,9 @@ import DocumentReady from './app/pages/document/DocumentReady.js';
 import DocumentConfirm from './app/pages/document/DocumentConfirm.js';
 import NotFound from './app/pages/notfound/NotFound.js';
 import Company from './app/pages/settings/company/Company';
+import DocumentPrint from './app/pages/document/DocumentPrint';
+import User from './app/pages/settings/user/User';
+import Participants from './app/pages/settings/user/Participants';
 
 function App() {
   return (
@@ -32,7 +35,10 @@ function App() {
             <Route path="/document/list" element={<DocumentList />} />
             <Route path="/document/ready" element={<DocumentReady />} />
             <Route path="/document/confirm" element={<DocumentConfirm />} />
+            <Route path="/document/print" element={<DocumentPrint />} />
             <Route path="/settings/company" element={<Company />} />
+            <Route path='/settings/user' element={<User />} />
+            <Route path='/settings/participant' element={<Participants />} />
             <Route path="*" element={<Splash />}></Route>
           </Routes>
       </BrowserRouter>

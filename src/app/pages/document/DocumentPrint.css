@@ -1,0 +1,127 @@
+.documentPrintPage {
+    display: flex;
+    width: 100%;
+    height: 650px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #B0BECC;
+    border-radius: 8px;
+}
+
+.documentPrintDescriptionBox {
+    margin: 10px;
+    background-color: #F1F4F8;
+    width: 100%;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.documentPrintDescriptionTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212121;
+    margin-left: 8px;
+    margin-top: 8px;
+}
+
+.documentPrintDescription {
+    font-size: 20px;
+    font-weight: 400;
+    color: #212121;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+.selectedMakeDateBox {
+    width: 80%;
+    height: 80px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.selectedMakeDateBox>span {
+    width: 120px;
+    height: 20px;
+    margin-right: 16px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1F6DE2;
+}
+
+.documentPrintSelectYear {
+    border-radius: 4px;
+    width: 120px;
+    height: 50px;
+    margin-right: 10px;
+    background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/20px #F1F4F8;
+}
+
+.documentPrintSelectMonth {
+    border-radius: 4px;
+    width: 120px;
+    height: 50px;
+    margin-right: 10px;
+    background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/20px #F1F4F8;
+}
+
+.recordYearSelect {
+    color: #0B005C;
+    width: 100%;
+    background-color: transparent;
+    height: 100%;
+    text-align: center;
+    border: 0px solid transparent;
+    /* for chrome */
+    -webkit-appearance: none;
+    /*for firefox*/
+    -moz-appearance: none;
+    /*default*/
+    appearance: none;
+}
+
+.recordYearSelect::-ms-expand {
+    display: none;
+    /*for IE10,11*/
+}
+
+.recordYearSelect:focus {
+    outline: none;
+}
+
+.recordMonthSelect {
+    color: #0B005C;
+    width: 100%;
+    background-color: transparent;
+    height: 100%;
+    text-align: center;
+    border: 0px solid transparent;
+    /* for chrome */
+    -webkit-appearance: none;
+    /*for firefox*/
+    -moz-appearance: none;
+    /*default*/
+    appearance: none;
+}
+
+.recordMonthSelect::-ms-expand {
+    display: none;
+    /*for IE10,11*/
+}
+
+.recordMonthSelect:focus {
+    outline: none;
+}
+
+.sendButtonBox {
+    width: 180px;
+    height: 50px;
+    margin-top: 16px;
+}

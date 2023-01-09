@@ -99,7 +99,7 @@ const DocumentList = () => {
                 <div className="contentsPage">
                     <Header title="문서 목록"
                         desc="입고/출고 문서의 목록입니다."
-                        isSearch={true} />
+                        isSearch={false} />
                     <div className="pageBody">
                         <div className="documentListPage">
                             <div className="documentListSection">
@@ -137,7 +137,7 @@ const DocumentList = () => {
                                                                     (item.active ?? true) ? "documentListItem" : "inactiveDocumentListItem"}
                                                             >
                                                                 <div className="documentListItemFrontInfo">
-                                                                    <span className="documentListCompanyName">{item.companyName}</span>
+                                                                    <span className="documentListCompanyName">{item.companyName ?? "삭제된 거래처"}</span>
                                                                     <span className="documentListDate">{createDate.toDateString()}</span>
                                                                 </div>
 

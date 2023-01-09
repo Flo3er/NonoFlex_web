@@ -119,8 +119,39 @@ async function createDocument(date, type, companyId, recordList) {
     }
 }
 
+async function extractDocument(year, month) {
+    const params = {
+        year: year,
+        month: month,
+    };
+    try {
+        if (await Utils.checkToken()) {
+            const response = await NonoAPI.get(
+                "/api/v1/document/excel",
+                {
+                    params
+                }
+            )
+            console.log(response.data)
+            return {
+                isSuccess: true,
+                data: response.data
+            }
+        } else {
+            window.location.replace("/login");
+        }
+    } catch (error) {
+        console.log(error.response.data)
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
 const DocumentAPI = {
-    getDocumentList, getDocument, createTempDocument, createDocument
+    getDocumentList, getDocument, createTempDocument, createDocument, extractDocument
 }
 
 export default DocumentAPI;

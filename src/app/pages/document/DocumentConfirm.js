@@ -215,7 +215,7 @@ const DocumentConfirm = () => {
                                             onClick={onClickDocumentInputButton}>
                                             <span>입고서</span>
                                         </div>
-                                        <div className={isSelectedDocumentInputType ? "documentTypeBox" : "selectedDocumentTypeBox"}
+                                        <div className={isSelectedDocumentInputType ? "outputDocumentTypeBox" : "selectedOutputDocumentTypeBox"}
                                             onClick={onClickDocumentOutputButton}>
                                             <span>출고서</span>
                                         </div>
@@ -308,7 +308,7 @@ const DocumentConfirm = () => {
                                                                 <span className="documentProductListItemName">{item.name}</span>
                                                                 <div className="emptySpace" />
 
-                                                                <img src={Info} className="documentProductListItemInfoButton" onClick={() => onClickProductInfoButton(item)} />
+                                                                {/* <img src={Info} className="documentProductListItemInfoButton" onClick={() => onClickProductInfoButton(item)} /> */}
                                                                 <img src={Add} className="documentProductListItemAddButton" onClick={() => onClickProductAddButton(item)} />
                                                             </li>
                                                         )
