@@ -11,7 +11,7 @@ import "./DocumentPrint.css"
 const DocumentPrint = () => {
     const dispatch = useDispatch();
     const [selectedRecordYear, setSelectedRecordYear] = useState(new Date().getFullYear());
-    const [selectedRecordMonth, selSelectedRecordMonth] = useState(new Date().getMonth());
+    const [selectedRecordMonth, selSelectedRecordMonth] = useState((new Date().getMonth() + 1));
     const searchYearArray = () => {
         const currentYear = new Date().getFullYear();
         const result = [];
