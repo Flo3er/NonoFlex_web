@@ -54,7 +54,7 @@ const SideBar = props => {
     { page: "/settings/user", title: "사용자 관리" },
     { page: "/settings/participant", title: "참여자 관리" },
     { page: "/settings/company", title: "거래처 관리" },
-    { page: "/settings/ask", title: "개발자 문의" },
+    // { page: "/settings/ask", title: "개발자 문의" },
   ];
 
   const onClickMainMenu = (index) => {

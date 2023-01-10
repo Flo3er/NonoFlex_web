@@ -153,6 +153,25 @@ async function regitser(name, email, password, code) {
     }
 }
 
+async function getParticipantCode(loginId) {
+    try {
+        console.log(loginId)
+        const response = await NonoAPI.post('/api/v1/auth/code/' + loginId);
+          console.log(response.data)
+          return {
+            isSuccess: true,
+            result: response.data
+          }
+    } catch (error) {
+        console.log(error)
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
 const AuthenticationAPI = {
     login,
     checkDuplicateEmail,
@@ -160,6 +179,7 @@ const AuthenticationAPI = {
     verifyEmailAuthorization,
     regitser,
     refreshToken,
+    getParticipantCode
 }
 
 export default AuthenticationAPI;

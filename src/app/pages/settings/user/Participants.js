@@ -21,6 +21,7 @@ import CompanyDeleteModal from "../../../components/settings/company/CompanyDele
 import UserDeleteModal from "../../../components/settings/user/UserDeleteModal";
 import UserEditModal from "../../../components/settings/user/UserEditModal";
 import UserNewModal from "../../../components/settings/user/UserNewModal";
+import UserInfoModal from "../../../components/settings/user/UserInfoModal";
 
 const Participants = () => {
     const [isLoading, updateLoading] = useState(false);
@@ -147,6 +148,9 @@ const Participants = () => {
             </Modal>
             <Modal isOpen={isOpenCreateUserItemDialog} onClose={onCloseCreateUserItemDialog}>
                 <UserNewModal onClose={onCloseCreateUserItemDialog} />
+            </Modal>
+            <Modal isOpen={isOpenUserItemInfoDialog} onClose={onCloseUserItemInfo}>
+                <UserInfoModal onClose={onCloseUserItemInfo} />
             </Modal>
             <ToastContainer />
             <div className="page">

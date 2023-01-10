@@ -1,0 +1,24 @@
+.userInfoQrCodeBox {
+    width: 390px;
+    height: calc(520px - 80px);
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+}
+.userCodeBox {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #E2F1FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.userCodeBox>span {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+}
