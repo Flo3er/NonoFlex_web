@@ -24,10 +24,36 @@
 .emptySection {
     flex-grow: 1;
 }
-.productSortButton {
+.productSortButtonBox {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    background:  url('../../../assets/images/sorting.png') no-repeat 97% 50%/24px;
+}
+.productSortButton {
+    width: 100%;
+    background-color: transparent;
+    color: transparent;
+    height: 100%;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 0px solid transparent;
+    /* for chrome */
+    -webkit-appearance: none;
+    /*for firefox*/
+    -moz-appearance: none;
+    /*default*/
+    appearance: none;
+}
+
+.productSortButton::-ms-expand {
+    display: none;
+    /*for IE10,11*/
+}
+
+.productSortButton:focus {
+    outline: none;
 }
 .productListTitle {
     height: 30px;

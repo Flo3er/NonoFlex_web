@@ -18,6 +18,7 @@ import Company from './app/pages/settings/company/Company';
 import DocumentPrint from './app/pages/document/DocumentPrint';
 import User from './app/pages/settings/user/User';
 import Participants from './app/pages/settings/user/Participants';
+import DocumentTempList from './app/pages/document/DocumentTempList';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/product/edit" element={<ProductEdit />} />
             <Route path="/product/status" element={<ProductStatus />} />
             <Route path="/document/list" element={<DocumentList />} />
+            <Route path='/document/list/temp' element={<DocumentTempList />} />
             <Route path="/document/ready" element={<DocumentReady />} />
             <Route path="/document/confirm" element={<DocumentConfirm />} />
             <Route path="/document/print" element={<DocumentPrint />} />

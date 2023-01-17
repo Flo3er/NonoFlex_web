@@ -44,7 +44,7 @@ async function getRecordList(productId, year, month) {
             console.log("month : " + params.month);
             const response = await NonoAPI.get(
                 "/api/v1/product/" + productId + "/record",
-                {params}
+                { params }
             );
             console.log(response.data);
             return {
@@ -116,7 +116,26 @@ async function getProductItem(productId) {
     }
 }
 
-async function updateProduct(productId, productCode, name, description, category, maker, unit, storageType, stock, price, activate, barcode, imageId) {
+async function updateProduct(
+    productId,
+    productCode,
+    name,
+    description,
+    category,
+    maker,
+    unit,
+    storageType,
+    stock,
+    inputPrice,
+    outputPrice,
+    activate,
+    barcode,
+    barcodeType,
+    image) {
+        console.log(productId + "|" + productCode + "|" +  name+ "|" +
+        description + "|" + category + "|" + maker + "|" + unit + "|" +
+        storageType + "|" + stock + "|" + inputPrice + "|" + outputPrice + "|" +
+        activate + "|" + barcode + "|" + barcodeType + "|" + image);
     try {
         const response = await NonoAPI.put("/api/v1/product/" + productId, {
             productCode: productCode,
@@ -127,10 +146,12 @@ async function updateProduct(productId, productCode, name, description, category
             unit: unit,
             storageType: storageType,
             stock: stock,
-            price: price,
-            activate: activate,
+            inputPrice: inputPrice,
+            outputPrice: outputPrice,
+            active: activate,
             barcode: barcode,
-            imageFileId: imageId
+            barcodeType: barcodeType,
+            image: image
         });
 
         console.log(response.data);

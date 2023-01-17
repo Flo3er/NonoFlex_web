@@ -90,7 +90,7 @@ const DocumentConfirm = () => {
 
     async function getProductList(query, page) {
         updateLoading(true);
-        const response = await ProductAPI.getProductList(query, "name", "desc", page)
+        const response = await ProductAPI.getProductList(query, "productCode", "asc", page)
         if (response.isSuccess) {
             dispatch(updateProductList(response.data))
         }
@@ -304,7 +304,7 @@ const DocumentConfirm = () => {
                                                     productList.map((item, index) => {
                                                         return (
                                                             <li key={"productList" + item.productId + index} className="documentProductListItem" >
-                                                                <img src={item.image ?? EmptyImage} className="documentProductListItemImage" />
+                                                                <img src={item.image == null ? EmptyImage : item.image.thumbnailUrl } className="documentProductListItemImage" />
                                                                 <span className="documentProductListItemName">{item.name}</span>
                                                                 <div className="emptySpace" />
 

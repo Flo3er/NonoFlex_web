@@ -50,10 +50,10 @@ const ProductEdit = () => {
 
     const productCategoryList = [
         "선택",
-        "운영 물품",
+        "운영물품",
         "식료품",
         "화성용",
-        "본부 물품",
+        "본부물품",
         "소모품",
         "기타"
     ]
@@ -273,7 +273,17 @@ const ProductEdit = () => {
         if (productImage != null) {
             const uploadImageResponse = await UtilAPI.uploadImage(productImage);
             if (uploadImageResponse.isSuccess) {
-                const fileId = uploadImageResponse.data.fileId;
+                var fileId = uploadImageResponse.data.fileId;
+                console.log(fileId)
+                if (fileId == undefined) {
+                    fileId = null
+                }
+                var barcodeType = selectedProductItem.barcodeType
+                console.log(barcodeType)
+                if (barcodeType == undefined) {
+                    barcodeType = null
+                }
+
                 const response = await ProductAPI.updateProduct(
                     selectedProductItem.productId,
                     productCode,
@@ -287,6 +297,8 @@ const ProductEdit = () => {
                     productInputPrice,
                     productOutputPrice,
                     productActiveType,
+                    selectedProductItem.barcode,
+                    barcodeType,
                     fileId);
 
                 if (response.isSuccess) {
@@ -303,6 +315,21 @@ const ProductEdit = () => {
                 console.log("image upload fail");
             }
         } else {
+            var image = selectedProductItem.image;
+                console.log(image)
+                if (image == undefined || image == null) {
+                    image = null
+                }
+                var barcode = selectedProductItem.barcode
+                console.log(barcodeType)
+                if (barcode == undefined) {
+                    barcode = null
+                }
+                var barcodeType = selectedProductItem.barcodeType
+                console.log(barcodeType)
+                if (barcodeType == undefined) {
+                    barcodeType = null
+                }
             const response = await ProductAPI.updateProduct(
                 selectedProductItem.productId,
                 productCode,
@@ -316,7 +343,9 @@ const ProductEdit = () => {
                 productInputPrice,
                 productOutputPrice,
                 productActiveType,
-                "");
+                barcode,
+                barcodeType,
+                image);
 
             if (response.isSuccess) {
                 NonoToast.success("물품 정보를 수정하였습니다.");
@@ -341,6 +370,10 @@ const ProductEdit = () => {
             }
         }
     }
+
+    const onChangeProductActiveTypeSelection = (event) => {
+        setProductActiveType(event.target.value);
+    }
     return (
         <div>
             <ToastContainer />
@@ -354,7 +387,7 @@ const ProductEdit = () => {
             <div className="page">
                 <Sidebar value="/product/list" />
                 <div className="contentsPage">
-                    <Header title="새 물품 수정"
+                    <Header title="물품 수정"
                         desc="물품을 수정합니다." />
                     <div className="pageBody">
                         <ul className="newProductItemForm">
@@ -452,7 +485,7 @@ const ProductEdit = () => {
                                 <div className="productActiveTypeSelectBox">
                                     <select className="productActiveTypeSelect"
                                         value={productActiveType ?? true}
-                                        onChange={onChangeProductSaveTypeSelection}
+                                        onChange={onChangeProductActiveTypeSelection}
                                         onBlur={updateSaveButtonValidation}>
                                         {
                                             productActiveTypeList.map((item, index) => {

@@ -1,4 +1,4 @@
-import "./DocumentList.css"
+import "./DocumentTempList.css"
 import { ToastContainer } from "react-toastify";
 
 import Header from "../../components/common/header/Header.js"
@@ -15,17 +15,18 @@ import Utils from "../../../features/utils/Utils";
 import { removeSearchValue } from "../../../features/main/SearchSlice";
 
 import DocumentAPI from "../../../apis/document/Document.js"
+import { clearSelectedTempDocument, selectedTempDocument, updateTempDocumentList } from "../../../features/document/TempDocumentSlice";
 
 
-const DocumentList = () => {
+const DocumentTempList = () => {
     const [isLoading, updateLoading] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const searchData = useSelector((state) => state.search.value);
-    const documentList = useSelector((state) => state.document.itemList);
-    const selectedDocumentItem = useSelector((state) => state.document.selectedItem);
+    const documentList = useSelector((state) => state.tempDocument.itemList);
+    const selectedDocumentItem = useSelector((state) => state.tempDocument.selectedItem);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -35,7 +36,7 @@ const DocumentList = () => {
             const fetchData = async () => {
                 if (await Utils.checkToken()) {
                     dispatch(removeSearchValue());
-                    dispatch(clearSelectedDocument());
+                    dispatch(clearSelectedTempDocument());
                     // await getNoticeList("");
                 } else {
                     console.log("token expired");
@@ -57,9 +58,9 @@ const DocumentList = () => {
 
     async function getDocumentList(query, page) {
         updateLoading(true);
-        const response = await DocumentAPI.getDocumentList(query, "company", "desc", page)
+        const response = await DocumentAPI.getTempDocumentList(query, "company", "desc", page)
         if (response.isSuccess) {
-            dispatch(updateDocumentList(response.data))
+            dispatch(updateTempDocumentList(response.data))
         } else {
             NonoToast.error("데이터를 가져오는데 실패했습니다.");
         }
@@ -79,7 +80,7 @@ const DocumentList = () => {
             if (item.documentId !== undefined) {
                 const response = await DocumentAPI.getDocument(item.documentId);
                 if (response.isSuccess) {
-                    dispatch(selectedDocument(response.data));
+                    dispatch(selectedTempDocument(response.data));
                 } else {
                     NonoToast.error("문서 상세 정보를 가져오는데 실패했습니다.");
                 }
@@ -95,10 +96,10 @@ const DocumentList = () => {
         <div>
             <ToastContainer />
             <div className="page">
-                <Sidebar value="/document/list" />
+                <Sidebar value="/document/list/temp" />
                 <div className="contentsPage">
-                    <Header title="문서 목록"
-                        desc="입고/출고 문서의 목록입니다."
+                    <Header title="문서 예정서 목록"
+                        desc="입고/출고 예정서 문서의 목록입니다."
                         isSearch={false} />
                     <div className="pageBody">
                         <div className="documentListPage">
@@ -261,4 +262,4 @@ const DocumentList = () => {
     );
 }
 
-export default DocumentList;
+export default DocumentTempList;

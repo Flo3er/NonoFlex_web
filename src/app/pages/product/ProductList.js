@@ -31,6 +31,18 @@ const ProductList = () => {
         }
         return result;
     };
+
+    const orderCategory = [
+        { value: "물품 코드  ↓", type: "productCode", order: "asc" },
+        { value: "물품 코드  ↑", type: "productCode", order: "desc" },
+        { value: "물품 이름  ↓", type: "name", order: "asc" },
+        { value: "물품 이름  ↑", type: "name", order: "desc" },
+        { value: "재고  ↓", type: "stock", order: "asc" },
+        { value: "재고  ↑", type: "stock", order: "desc" },
+    ];
+    const [selectedSort, setSelectedSort] = useState(orderCategory[0]);
+    const [isHiddenSortDialog, updateHiddenSortDialog] = useState(true);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -63,10 +75,10 @@ const ProductList = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getProductList(searchData, null);
+            await getProductList(searchData, null, selectedSort.type, selectedSort.order);
         }
         fetchData();
-    }, [searchData]);
+    }, [searchData, selectedSort]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -77,9 +89,9 @@ const ProductList = () => {
         fetchData();
     }, [selectedProductItem]);
 
-    async function getProductList(query, page) {
+    async function getProductList(query, page, type, order) {
         updateLoading(true);
-        const response = await ProductAPI.getProductList(query, "name", "desc", page)
+        const response = await ProductAPI.getProductList(query, type, order, page)
         if (response.isSuccess) {
             dispatch(updateProductList(response.data))
         }
@@ -104,18 +116,9 @@ const ProductList = () => {
         navigate("/product/edit");
     }
 
-    const sortCategory = [
-        { value: "물품 이름", order: "asc" },
-        { value: "물품 이름", order: "desc" },
-        { value: "재고", order: "asc" },
-        { value: "재고", order: "desc" },
-    ]
-    const [selectedSort, setSelectedSort] = useState(sortCategory[0]);
-    const [isHiddenSortDialog, updateHiddenSortDialog] = useState(true);
-    const onClickSortButton = (category) => {
-        console.log("clicked sort button");
+    const onClickSortButton = (event) => {
         updateHiddenSortDialog(!isHiddenSortDialog);
-        setSelectedSort(category);
+        setSelectedSort(orderCategory[event.target.value]);
     }
 
     const onClickProductItem = (product) => {
@@ -148,7 +151,7 @@ const ProductList = () => {
 
         if (scrollY >= 600 * productMetaData.page) {
             if (!productMetaData.lastPage && !isLoading) {
-                getProductList(searchData, (productMetaData.page + 1));
+                getProductList(searchData, (productMetaData.page + 1), selectedSort.type, selectedSort.order);
             }
         }
     }
@@ -173,13 +176,25 @@ const ProductList = () => {
                             <div className="productListSection">
                                 <div className="productTopButtonSection">
                                     <div className="emptySection" />
-                                    <img src={Sort} alt="sort"
+                                    {/* <img src={Sort} alt="sort"
                                         className="productSortButton"
                                         id="productSortSetting"
                                         aria-expanded="true"
                                         aria-haspopup="true"
                                         aira-controls="popupSortList"
-                                        onClick={onClickSortButton} />
+                                        onClick={onClickSortButton} /> */}
+                                    <div className="productSortButtonBox">
+                                        <select className="productSortButton"
+                                            onChange={onClickSortButton}>
+                                            {
+                                                orderCategory.map((item, index) => {
+                                                    return (
+                                                        <option key={"productSortCategory" + index} value={index}>{item.value}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div className="productListTitle">
@@ -205,7 +220,7 @@ const ProductList = () => {
                                                                     item.active ? "prouctListItem" : "inactiveProductListItem"}
                                                                 onClick={() => onClickProductItem(item)}
                                                             >
-                                                                <img src={item.imageId ?? EmptyImage} className="productListItemImage" />
+                                                                <img src={item.image == null ? EmptyImage : item.image.thumbnailUrl} className="productListItemImage" />
                                                                 <span className="productListItemName">{item.name}</span>
                                                                 <div className="emptySection" />
                                                                 <span className="productListItemCount">{item.stock} {item.unit}</span>
@@ -237,7 +252,7 @@ const ProductList = () => {
                                                 <div className="productContentsummary">
                                                     <span className="productContentName">{selectedProductItem.name}</span>
                                                     <span className="productContentCount">{selectedProductItem.stock} {selectedProductItem.unit}</span>
-                                                    <img src={selectedProductItem.imageId ?? EmptyImage} className="productContentItemImage" />
+                                                    <img src={selectedProductItem.image == null ? EmptyImage : selectedProductItem.image.thumbnailUrl} className="productContentItemImage" />
                                                 </div>
                                                 <div className="productContentDetailInfo">
                                                     <div className="productContentDetailTitle">

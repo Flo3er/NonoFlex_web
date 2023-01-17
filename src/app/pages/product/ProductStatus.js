@@ -27,6 +27,18 @@ const ProductStatus = () => {
         { value: "비활성", code: false }
     ]
 
+    const orderCategory = [
+        { value: "물품 코드  ↓", type: "productCode", order: "asc" },
+        { value: "물품 코드  ↑", type: "productCode", order: "desc" },
+        { value: "물품 이름  ↓", type: "name", order: "asc" },
+        { value: "물품 이름  ↑", type: "name", order: "desc" },
+        { value: "재고  ↓", type: "stock", order: "asc" },
+        { value: "재고  ↑", type: "stock", order: "desc" },
+    ];
+    const [selectedSort, setSelectedSort] = useState(orderCategory[0]);
+    const [isHiddenSortDialog, updateHiddenSortDialog] = useState(true);
+
+
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
         if (accessToken === "" || accessToken === null) {
@@ -50,24 +62,23 @@ const ProductStatus = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getProductList(searchData);
+            await getProductList(searchData, null, selectedSort.type, selectedSort.order);
         }
         fetchData();
-    }, [searchData]);
+    }, [searchData, selectedSort]);
 
-    async function getProductList(query, page) {
+    async function getProductList(query, page, type, order ) {
         updateLoading(true);
-        const response = await ProductAPI.getProductList(query, "name", "desc", page)
+        const response = await ProductAPI.getProductList(query, type, order, page)
         if (response.isSuccess) {
             dispatch(updateProductList(response.data))
         }
         updateLoading(false);
     }
 
-    const onClickSortButton = (category) => {
-        console.log("clicked sort button");
-        // updateHiddenSortDialog(!isHiddenSortDialog);
-        // setSelectedSort(category);
+    const onClickSortButton = (event) => {
+        updateHiddenSortDialog(!isHiddenSortDialog);
+        setSelectedSort(orderCategory[event.target.value]);
     }
 
     async function onChangeProductSaveTypeSelection(item) {
@@ -121,7 +132,7 @@ const ProductStatus = () => {
 
         if (scrollY >= 600 * productMetaData.page) {
             if (!productMetaData.lastPage && !isLoading) {
-                getProductList(searchData, (productMetaData.page + 1));
+                getProductList(searchData, (productMetaData.page + 1), selectedSort.type, selectedSort.order);
             }
         }
     }
@@ -140,13 +151,25 @@ const ProductStatus = () => {
                             <div className="productStatusListSection">
                                 <div className="productTopButtonSection">
                                     <div className="emptySection" />
-                                    <img src={Sort} alt="sort"
+                                    {/* <img src={Sort} alt="sort"
                                         className="productSortButton"
                                         id="productSortSetting"
                                         aria-expanded="true"
                                         aria-haspopup="true"
                                         aira-controls="popupSortList"
-                                        onClick={onClickSortButton} />
+                                        onClick={onClickSortButton} /> */}
+                                    <div className="productSortButtonBox">
+                                        <select className="productSortButton"
+                                            onChange={onClickSortButton}>
+                                            {
+                                                orderCategory.map((item, index) => {
+                                                    return (
+                                                        <option key={"productSortCategory" + index} value={index}>{item.value}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div className="productListTitle">
