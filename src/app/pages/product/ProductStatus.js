@@ -70,7 +70,7 @@ const ProductStatus = () => {
         fetchData();
     }, [searchData, selectedSort]);
 
-    async function getProductList(query, page, type, order ) {
+    async function getProductList(query, page, type, order) {
         updateLoading(true);
         const response = await ProductAPI.getProductList(query, type, order, page)
         if (response.isSuccess) {
@@ -158,9 +158,9 @@ const ProductStatus = () => {
     const confirmRemoveProductItemDialog = () => {
         onCloseRemoveProductItemDialog();
         console.log(selectedProductItem);
-         const fetchData = async () => {
+        const fetchData = async () => {
             const response = await ProductAPI.deleteProduct(selectedProductItem.productId);
-            if(response.isSuccess) {
+            if (response.isSuccess) {
                 NonoToast.success("물품을 삭제하였습니다.");
                 dispatch(clearSelectedProduct());
                 refreshProductList();
@@ -176,8 +176,8 @@ const ProductStatus = () => {
             <ToastContainer />
             <Modal isOpen={isOpenProductDeleteDialog} onClose={onCloseRemoveProductItemDialog}>
                 <DeleteConfirmModal
-                title="물품 삭제"
-                name={selectedProductItem.name}
+                    title="물품 삭제"
+                    name={selectedProductItem.name}
                     warning={true}
                     onCancel={onCloseRemoveProductItemDialog}
                     confirm={confirmRemoveProductItemDialog} />
@@ -218,7 +218,7 @@ const ProductStatus = () => {
                                     <span className="productListItemPictureTitle">사진</span>
                                     <span className="productListItemNameTitle">물품 이름</span>
                                     <div className="emptySection" />
-                                    <span className="productListItemCountTitle">상태</span>
+                                    <span className="productListItemStatusTitle">상태</span>
                                 </div>
                                 <div className="productStatusList" onScroll={onScrollProductStatusList}>
                                     {
@@ -234,7 +234,11 @@ const ProductStatus = () => {
                                                             <li key={"productList" + item.productId + index}
                                                                 className={item.active ? "prouctStatusListItem" : "inactiveProductStatusListItem"} >
                                                                 <img src={item.image == null ? EmptyImage : item.image.thumbnailUrl} className="productListItemImage" />
-                                                                <span className="productListItemName">{item.name}</span>
+                                                                <div className="productListItemNameInfoBox">
+                                                                    <span className="productListItemName">{item.name}</span>
+                                                                    <span className="productListItemCode">{item.productCode}</span>
+                                                                </div>
+
                                                                 <div className="emptySection" />
                                                                 <div className="deleteButtonBox">
                                                                     <img src={Delete} onClick={() => onClickDeleteItem(item)} />

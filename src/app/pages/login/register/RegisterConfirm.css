@@ -1,0 +1,38 @@
+.registerConfirm {
+    background-color: #0043AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    flex-direction: column;
+}
+.registerConfirmTitle {
+    font-size: 45px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+}
+.registerConfirmDesc {
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+.emptySpceData {
+height: 120px;
+}
+.registerConfirmButton {
+    border-radius: 8px;
+    background-color: #F2F9FF;
+    width: 320px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.registerConfirmButton>span {
+    color: #0043AF;
+    font-weight: 700;
+    font-size: 20px;
+}

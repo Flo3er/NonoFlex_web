@@ -28,11 +28,11 @@ const DocumentList = () => {
     const selectedDocumentItem = useSelector((state) => state.document.selectedItem);
 
     const orderCategory = [
+        { value: "생성 일자  ↑", type: "createdAt", order: "desc" },
         { value: "생성 일자  ↓", type: "createdAt", order: "asc" },
-        { value: "생성 일자  ↑", type: "createdAt", order: "desc" }
     ];
 
-    const [selectedSort, setSelectedSort] = useState(orderCategory[1]);
+    const [selectedSort, setSelectedSort] = useState(orderCategory[0]);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")

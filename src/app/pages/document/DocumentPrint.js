@@ -26,7 +26,7 @@ const DocumentPrint = () => {
         console.log(currentYear)
         console.log(currentMonth)
         const result = [];
-        if(selectedRecordYear == currentYear) {
+        if (selectedRecordYear == currentYear) {
             for (let month = 1; month < (currentMonth + 1); month++) {
                 result.push(<option key={"monthSelection" + month} value={month}>{month + "월"}</option>);
             }
@@ -49,7 +49,7 @@ const DocumentPrint = () => {
 
     const onClickMakeDocumentButton = async () => {
         const response = await DocumentAPI.extractDocument(selectedRecordYear, selectedRecordMonth);
-        if(response.isSuccess) {
+        if (response.isSuccess) {
             NonoToast.success("요청에 성공하였습니다. 이메일을 확인해 주세요.");
         } else {
             NonoToast.error("요청에 실패하였습니다." + response.errorMessage);
@@ -74,6 +74,7 @@ const DocumentPrint = () => {
 
                                 <p className="documentPrintDescription">이점 참고하시어 확인 부탁드립니다.</p>
 
+                                <div className="documentPrintEmptySpace" />
                                 <div className="selectedMakeDateBox" >
                                     <span> 연도 선택</span>
                                     <div className="documentPrintSelectYear">
@@ -95,10 +96,10 @@ const DocumentPrint = () => {
                                             }
                                         </select>
                                     </div>
-                                </div>
-
-                                <div className="sendButtonBox">
-                                    <PrimaryButton value="자료 만들기" onClick={onClickMakeDocumentButton} />
+                                    <div className="emptySpace" />
+                                    <div className="sendButtonBox">
+                                        <PrimaryButton value="자료 만들기" onClick={onClickMakeDocumentButton} />
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -72,7 +72,7 @@ const Login = () => {
                 await Utils.timeout(2000);
                 window.location.replace("/main");
             } else {
-                NonoToast.error("[" + response.errorCode + "]" + response.errorMessage);
+                NonoToast.error(response.errorMessage);
             }
             if (isCheckeSaveduserId) {
                 setCookie('rememberEmail', userId, { maxAge: 2000 });

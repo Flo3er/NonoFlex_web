@@ -1,4 +1,4 @@
-import "./DocumentTempList.css"
+import "./DocumentList.css"
 import { ToastContainer } from "react-toastify";
 
 import Header from "../../components/common/header/Header.js"

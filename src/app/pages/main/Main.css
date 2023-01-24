@@ -27,8 +27,8 @@
 .pageBody {
     width: 100%;
     /* width: calc(100vw-290px); */
-    /* height: calc(100vh - 180px); */
-    height: 650px;
+    height: calc(100% - 240px);
+    /* height: 850px; */
     /* margin-left: 290px; */
 }
 
