@@ -27,6 +27,13 @@ const DocumentList = () => {
     const documentList = useSelector((state) => state.document.itemList);
     const selectedDocumentItem = useSelector((state) => state.document.selectedItem);
 
+    const orderCategory = [
+        { value: "생성 일자  ↓", type: "createdAt", order: "asc" },
+        { value: "생성 일자  ↑", type: "createdAt", order: "desc" }
+    ];
+
+    const [selectedSort, setSelectedSort] = useState(orderCategory[1]);
+
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
         if (accessToken === "" || accessToken === null) {
@@ -50,14 +57,14 @@ const DocumentList = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getDocumentList(searchData, null);
+            await getDocumentList(searchData, null, selectedSort.type, selectedSort.order);
         }
         fetchData();
-    }, [searchData]);
+    }, [searchData, selectedSort]);
 
-    async function getDocumentList(query, page) {
+    async function getDocumentList(query, page, type, order) {
         updateLoading(true);
-        const response = await DocumentAPI.getDocumentList(query, "company", "desc", page)
+        const response = await DocumentAPI.getDocumentList(query, type, order, page)
         if (response.isSuccess) {
             dispatch(updateDocumentList(response.data))
         } else {
@@ -66,8 +73,8 @@ const DocumentList = () => {
         updateLoading(false);
     }
 
-    const onClickSortButton = (category) => {
-        console.log("clicked sort button");
+    const onClickSortButton = (event) => {
+        setSelectedSort(orderCategory[event.target.value]);
     }
 
     const onClickProductAddButton = () => {
@@ -112,6 +119,18 @@ const DocumentList = () => {
                                         aria-haspopup="true"
                                         aira-controls="popupSortList"
                                         onClick={onClickSortButton} /> */}
+                                    <div className="productSortButtonBox">
+                                        <select className="productSortButton"
+                                            onChange={onClickSortButton}>
+                                            {
+                                                orderCategory.map((item, index) => {
+                                                    return (
+                                                        <option key={"documentSortCategory" + index} value={index}>{item.value}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className="documentListTitle">
                                     <span className="documentListInfoTitle">거래 정보</span>

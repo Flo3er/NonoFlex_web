@@ -46,8 +46,8 @@ const SideBar = props => {
   ];
   const document = [
     { page: "/document/list", title: "문서 목록" },
-    { page: "/document/list/temp", title: "문서 예정서 목록"},
-    { page: "/document/ready", title: "예정서 작성" },
+    // { page: "/document/list/temp", title: "문서 예정서 목록"},
+    // { page: "/document/ready", title: "예정서 작성" },
     { page: "/document/confirm", title: "확인서 작성" },
     { page: "/document/print", title: "문서 출력" }
   ];

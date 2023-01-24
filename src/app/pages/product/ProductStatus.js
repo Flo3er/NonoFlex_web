@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import ProductAPI from "../../../apis/product/Product.js";
 import { removeSearchValue } from "../../../features/main/SearchSlice.js";
-import { clearSelectedProduct, selectedProduct, updateProductItem, updateProductList, updateProductRecordList } from "../../../features/product/productSlice.js";
+import { clearSelectedProduct, deleteProductItem, selectedProduct, updateProductItem, updateProductList, updateProductRecordList } from "../../../features/product/productSlice.js";
 import Utils from "../../../features/utils/Utils.js";
 import Header from "../../components/common/header/Header.js"
 import Sidebar from "../../components/common/sidebar/Sidebar.js"
@@ -14,12 +14,15 @@ import ArrowBackward from "../../../assets/images/arrowBackward.png"
 import ArrowForward from "../../../assets/images/arrowForward.png"
 import "./ProductStatus.css"
 import Delete from "../../../assets/images/delete.png"
+import Modal from "../../components/common/modal/Modal.js";
+import DeleteConfirmModal from "../../components/common/modal/DeleteConfirmModal.js";
 
 const ProductStatus = () => {
     const [isLoading, updateLoading] = useState(false);
     const dispatch = useDispatch();
     const productMetaData = useSelector((state) => state.product.metaData);
     const productList = useSelector((state) => state.product.itemList);
+    const selectedProductItem = useSelector((state) => state.product.selectedItem);
     const searchData = useSelector((state) => state.search.value);
 
     const productActiveTypeList = [
@@ -36,8 +39,8 @@ const ProductStatus = () => {
         { value: "재고  ↑", type: "stock", order: "desc" },
     ];
     const [selectedSort, setSelectedSort] = useState(orderCategory[0]);
-    const [isHiddenSortDialog, updateHiddenSortDialog] = useState(true);
-
+    // const [isHiddenSortDialog, updateHiddenSortDialog] = useState(true);
+    const [isOpenProductDeleteDialog, updateProductDeleteDialog] = useState(false);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -77,8 +80,11 @@ const ProductStatus = () => {
     }
 
     const onClickSortButton = (event) => {
-        updateHiddenSortDialog(!isHiddenSortDialog);
         setSelectedSort(orderCategory[event.target.value]);
+    }
+
+    async function refreshProductList() {
+        getProductList(searchData, null, selectedSort.type, selectedSort.order);
     }
 
     async function onChangeProductSaveTypeSelection(item) {
@@ -86,6 +92,7 @@ const ProductStatus = () => {
         var newItem = {
             active: !(item.active),
             barcode: item.barcode,
+            barcodeType: item.barcodeType,
             category: item.category,
             description: item.description,
             image: item.image,
@@ -93,6 +100,7 @@ const ProductStatus = () => {
             maker: item.maker,
             margin: item.argin,
             name: item.name,
+            inputPrice: item.inputPrice,
             outputPrice: item.outputPrice,
             productCode: item.productCode,
             productId: item.productId,
@@ -101,6 +109,8 @@ const ProductStatus = () => {
             unit: item.unit
         }
 
+        const imageId = newItem.image == null ? "" : newItem.image.imageId;
+        console.log(imageId);
         const response = await ProductAPI.updateProduct(
             newItem.productId,
             newItem.productCode,
@@ -111,10 +121,12 @@ const ProductStatus = () => {
             newItem.unit,
             newItem.storageType,
             newItem.stock,
-            newItem.price,
+            newItem.inputPrice,
+            newItem.outputPrice,
             newItem.active,
             newItem.barcode,
-            newItem.image.fileId
+            newItem.barcodeType,
+            imageId
         );
 
         if (response.isSuccess) {
@@ -124,6 +136,8 @@ const ProductStatus = () => {
 
     const onClickDeleteItem = (item) => {
         console.log(item);
+        dispatch(selectedProduct(item));
+        updateProductDeleteDialog(true);
     }
 
     const onScrollProductStatusList = (event) => {
@@ -137,9 +151,37 @@ const ProductStatus = () => {
         }
     }
 
+    const onCloseRemoveProductItemDialog = () => {
+        updateProductDeleteDialog(false);
+    }
+
+    const confirmRemoveProductItemDialog = () => {
+        onCloseRemoveProductItemDialog();
+        console.log(selectedProductItem);
+         const fetchData = async () => {
+            const response = await ProductAPI.deleteProduct(selectedProductItem.productId);
+            if(response.isSuccess) {
+                NonoToast.success("물품을 삭제하였습니다.");
+                dispatch(clearSelectedProduct());
+                refreshProductList();
+            } else {
+                NonoToast.error("물품 등록에 실패했습니다.");
+            }
+        }
+        fetchData();
+    }
+
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={isOpenProductDeleteDialog} onClose={onCloseRemoveProductItemDialog}>
+                <DeleteConfirmModal
+                title="물품 삭제"
+                name={selectedProductItem.name}
+                    warning={true}
+                    onCancel={onCloseRemoveProductItemDialog}
+                    confirm={confirmRemoveProductItemDialog} />
+            </Modal>
             <div className="page">
                 <Sidebar value="/product/status" />
                 <div className="contentsPage">
@@ -191,7 +233,7 @@ const ProductStatus = () => {
                                                         return (
                                                             <li key={"productList" + item.productId + index}
                                                                 className={item.active ? "prouctStatusListItem" : "inactiveProductStatusListItem"} >
-                                                                <img src={item.imageId ?? EmptyImage} className="productListItemImage" />
+                                                                <img src={item.image == null ? EmptyImage : item.image.thumbnailUrl} className="productListItemImage" />
                                                                 <span className="productListItemName">{item.name}</span>
                                                                 <div className="emptySection" />
                                                                 <div className="deleteButtonBox">
@@ -218,12 +260,12 @@ const ProductStatus = () => {
                                     }
                                 </div>
                             </div>
-                            <div className="productStatusEmptySection">
+                            {/* <div className="productStatusEmptySection">
                                 <div className="productTopButtonSection">
                                     <div className="emptySection" />
                                 </div>
                                 <div className="emptyProductContentsSection" />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

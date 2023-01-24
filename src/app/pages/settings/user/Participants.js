@@ -17,7 +17,7 @@ import Delete from "../../../../assets/images/delete.png"
 import Edit from "../../../../assets/images/edit.png"
 import Info from "../../../../assets/images/info.png"
 import Modal from "../../../components/common/modal/Modal";
-import CompanyDeleteModal from "../../../components/settings/company/CompanyDeleteModal";
+import CompanyDeleteModal from "../../../components/common/modal/DeleteConfirmModal";
 import UserDeleteModal from "../../../components/settings/user/UserDeleteModal";
 import UserEditModal from "../../../components/settings/user/UserEditModal";
 import UserNewModal from "../../../components/settings/user/UserNewModal";
@@ -105,7 +105,11 @@ const Participants = () => {
         if (response.isSuccess) {
             NonoToast.success("해당 참여자를 삭제했습니다.");
             dispatch(clearSelectedUser());
-            onCloseUserDeleteItemDialog()
+            onCloseUserDeleteItemDialog();
+            refreshUserList();
+        } else {
+            NonoToast.error("참여자 삭제에 실패 했습니다.");
+            refreshUserList();
         }
     }
     const onClickEditUserItem = (item) => {

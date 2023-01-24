@@ -32,7 +32,8 @@ const UserInfoModal = (props) => {
             if (response.isSuccess) {
                 setUserCode(response.result.code);
             } else {
-                NonoToast.error("코드 발급에 실패했습니다.");
+                // NonoToast.error("코드 발급에 실패했습니다.");
+                console.log("code verify fail.");
             }
         }
     }

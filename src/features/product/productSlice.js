@@ -69,10 +69,26 @@ export const productSlice = createSlice({
                 selectedItem: state.selectedItem,
                 selectedItemRecordList: action.payload
             }
+        },
+        deleteProductItem: (state, action) => {
+            const newProductList = state.itemList.map((item, index) => {
+                if (item.productId == action.payload.productId) {
+                    // skip
+                } else {
+                    return item;
+                }
+            });
+
+            return {
+                itemList: newProductList,
+                metaData: state.metaData,
+                selectedItem: {},
+                selectedItemRecordList: state.selectedItemRecordList
+            };
         }
     }
 });
 
-export const { updateProductList, selectedProduct, clearSelectedProduct, updateProductRecordList, updateProductItem } = productSlice.actions;
+export const { updateProductList, selectedProduct, clearSelectedProduct, updateProductRecordList, updateProductItem, deleteProductItem } = productSlice.actions;
 
 export default productSlice.reducer;

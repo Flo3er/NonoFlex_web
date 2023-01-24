@@ -89,6 +89,9 @@
     list-style: none;
     padding-left: 0px;
 }
+.noticeListContentsSection::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
 
 .noticeListContentsSectionItem {
     height: 60px;
@@ -167,6 +170,10 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+}
+
+.noticeContentSection::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
 .noticeContentsTitle {

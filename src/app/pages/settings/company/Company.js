@@ -15,9 +15,10 @@ import Utils from "../../../../features/utils/Utils"
 import { removeSearchValue } from "../../../../features/main/SearchSlice"
 import NonoToast from "../../../components/common/toast/Toast"
 import Modal from "../../../components/common/modal/Modal"
-import CompanyDeleteModal from "../../../components/settings/company/CompanyDeleteModal"
+import CompanyDeleteModal from "../../../components/common/modal/DeleteConfirmModal"
 import CompanyNewModal from "../../../components/settings/company/CompanyNewModal"
 import CompanyEditModal from "../../../components/settings/company/CompanyEditModal"
+import DeleteConfirmModal from "../../../components/common/modal/DeleteConfirmModal"
 
 
 const Company = () => {
@@ -30,6 +31,11 @@ const Company = () => {
     const companyList = useSelector((state) => state.company.itemList);
     const searchData = useSelector((state) => state.search.value);
     const selectedCompanyItem = useSelector((state) => state.company.selectedItem);
+
+    const orderCategory = [
+        { value: "거래처 이름  ↓", type: "name", order: "asc" },
+        { value: "거래처 이름  ↑", type: "name", order: "desc" }
+    ]; const [selectedSort, setSelectedSort] = useState(orderCategory[0]);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -56,22 +62,22 @@ const Company = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getCompanyList(searchData, 1);
+            await getCompanyList(searchData, 1, selectedSort.type, selectedSort.order);
         }
         fetchData();
-    }, [searchData]);
+    }, [searchData, selectedSort]);
 
-    async function getCompanyList(query, page) {
+    async function getCompanyList(query, page, type, order) {
         updateLoading(true);
-        const response = await CompanyAPI.getCompanyList("all", query, "name", "asc", page);
+        const response = await CompanyAPI.getCompanyList("all", query, type, order, page);
         if (response.isSuccess) {
             dispatch(updateCompanyList(response.data));
         }
         updateLoading(false);
     }
 
-    const onClickSortButton = () => {
-        console.log("onClick sort button");
+    const onClickSortButton = (event) => {
+        setSelectedSort(orderCategory[event.target.value]);
     }
 
     const onClickAddButton = () => {
@@ -93,19 +99,19 @@ const Company = () => {
         updateOpenCompanyDeleteItem(true);
 
     }
-    const onChangeProductSaveTypeSelection = async (item) => {
-        const response = await CompanyAPI.updateCompanyInfo(
-            item.companyId,
-            item.name,
-            item.type,
-            item.category,
-            !item.active);
-        if (response.isSuccess) {
-            dispatch(updateCompanyItem(response.data))
-        } else {
-            NonoToast.error("거래처 정보 변경에 실패했습니다. 새로고침 후 다시 시도해 주세요.");
-        }
-    }
+    // const onChangeProductSaveTypeSelection = async (item) => {
+    //     const response = await CompanyAPI.updateCompanyInfo(
+    //         item.companyId,
+    //         item.name,
+    //         item.type,
+    //         item.category,
+    //         !item.active);
+    //     if (response.isSuccess) {
+    //         dispatch(updateCompanyItem(response.data))
+    //     } else {
+    //         NonoToast.error("거래처 정보 변경에 실패했습니다. 새로고침 후 다시 시도해 주세요.");
+    //     }
+    // }
 
     const onClickCompanyInfoEditButton = (item) => {
         dispatch(selectedCompany(item));
@@ -146,7 +152,9 @@ const Company = () => {
     return (
         <div>
             <Modal isOpen={isOpenCompanyDeleteItem} onClose={onCloseRemoveCompanyItemDialog}>
-                <CompanyDeleteModal
+                <DeleteConfirmModal
+                    title="거래처 삭제"
+                    name={selectedCompanyItem.name}
                     warning={true}
                     onCancel={onCloseRemoveCompanyItemDialog}
                     confirm={confirmRemoveCompanyItemDialog} />
@@ -172,9 +180,18 @@ const Company = () => {
                                     <img src={AddBlue} alt="add"
                                         className="companyAddButton"
                                         onClick={onClickAddButton} />
-                                    <img src={Sort} alt="sort"
-                                        className="companySortButton"
-                                        onClick={onClickSortButton} />
+                                    <div className="productSortButtonBox">
+                                        <select className="productSortButton"
+                                            onChange={onClickSortButton}>
+                                            {
+                                                orderCategory.map((item, index) => {
+                                                    return (
+                                                        <option key={"productSortCategory" + index} value={index}>{item.value}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
 
                                 </div>
 

@@ -273,7 +273,7 @@ const ProductEdit = () => {
         if (productImage != null) {
             const uploadImageResponse = await UtilAPI.uploadImage(productImage);
             if (uploadImageResponse.isSuccess) {
-                var fileId = uploadImageResponse.data.fileId;
+                var fileId = uploadImageResponse.data.imageId;
                 console.log(fileId)
                 if (fileId == undefined) {
                     fileId = null

@@ -208,7 +208,7 @@ const ProductNew = () => {
         if (productImage != null) {
             const uploadImageResponse = await UtilAPI.uploadImage(productImage);
             if (uploadImageResponse.isSuccess) {
-                const fileId = uploadImageResponse.data.fileId;
+                const fileId = uploadImageResponse.data.imageId;
                 const response = await ProductAPI.addProduct(productCode,
                     productName,
                     productDescription,

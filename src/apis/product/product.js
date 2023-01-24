@@ -151,7 +151,7 @@ async function updateProduct(
             active: activate,
             barcode: barcode,
             barcodeType: barcodeType,
-            image: image
+            imageFileId: image
         });
 
         console.log(response.data);
@@ -170,8 +170,29 @@ async function updateProduct(
     }
 }
 
+async function deleteProduct(productId) {
+    try {
+        const response = await NonoAPI.delete(
+            "/api/v1/product/" + productId
+        );
+
+        console.log(response.data);
+        return {
+            isSuccess: true,
+            data: response.data
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        };
+    }
+}
+
 const ProductAPI = {
-    getProductList, getRecordList, addProduct, getProductItem, updateProduct
+    getProductList, getRecordList, addProduct, getProductItem, updateProduct, deleteProduct
 }
 
 export default ProductAPI;

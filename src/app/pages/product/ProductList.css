@@ -87,6 +87,9 @@
     height: 720px;
     height: calc(100% - 40px);
 }
+.productItemListSection::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
 .productItemListSection>ul {
     height: 650px;
     list-style: none;
@@ -391,11 +394,15 @@
 }
 .recordYearSelectBox {
     border-radius: 4px;
-    width: 70px;
+    width: 80px;
     height: 20px;
     margin-right: 10px;
     background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/20px;
 }
+.recordYearSelectBox::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
 .recordYearSelect {
     color: #0B005C;
     width: 100%;
