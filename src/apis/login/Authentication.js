@@ -172,6 +172,27 @@ async function getParticipantCode(loginId) {
     }
 }
 
+async function resetPassword(email, code) {
+    try {
+        const response = await NonoAPI.post('/api/v1/auth/reissue', {
+            email: email,
+            code: code
+        });
+          console.log(response.data)
+          return {
+            isSuccess: true,
+            result: response.data
+          }
+    } catch (error) {
+        console.log(error)
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
 const AuthenticationAPI = {
     login,
     checkDuplicateEmail,
@@ -179,7 +200,8 @@ const AuthenticationAPI = {
     verifyEmailAuthorization,
     regitser,
     refreshToken,
-    getParticipantCode
+    getParticipantCode,
+    resetPassword
 }
 
 export default AuthenticationAPI;

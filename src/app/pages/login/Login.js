@@ -35,7 +35,7 @@ const Login = () => {
     }, [cookies.rememberEmail])
 
     const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
-    const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+    const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*^#?&]{8,}$/
 
     const onChangeUserId = event => {
         setUserId(event);
@@ -141,7 +141,7 @@ const Login = () => {
                     <div className="registerAndChangePassword">
                         <TextLinkButton onClick="/register" value="회원 가입" />
                         <br />
-                        <TextLinkButton onClick="" value="비밀번호 변경하기" />
+                        <TextLinkButton onClick="/resetPassword" value="비밀번호 변경하기" />
                     </div>
                 </div>
                 <br />

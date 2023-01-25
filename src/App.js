@@ -20,6 +20,7 @@ import User from './app/pages/settings/user/User';
 import Participants from './app/pages/settings/user/Participants';
 import DocumentTempList from './app/pages/document/DocumentTempList';
 import RegisterConfirm from './app/pages/login/register/RegisterConfirm'
+import ResetPassword from './app/pages/login/resetPassword/ResetPassword';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/main" element={<Main />} />
             <Route path="/register" element={<Register />} />
             <Route path='/register/confirm' element={<RegisterConfirm />} />
+            <Route path='/resetPassword' element={<ResetPassword />} />
             <Route path="/notice/list" element={<NoticeList />} />
             <Route path="/product/list" element={<ProductList />} />
             <Route path="/product/new" element={<ProductNew />} />
