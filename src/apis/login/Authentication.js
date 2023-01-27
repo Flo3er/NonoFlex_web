@@ -193,6 +193,27 @@ async function resetPassword(email, code) {
     }
 }
 
+async function changePassword(currentPassword, newPassword) {
+    try {
+        const response = await NonoAPI.put('/api/v1/user/me/password', {
+            password: currentPassword,
+            newPassword: newPassword
+        });
+          console.log(response.data)
+          return {
+            isSuccess: true,
+            result: response.data
+          }
+    } catch (error) {
+        console.log(error)
+        return {
+            isSuccess: false,
+            errorCode: error.response.status,
+            errorMessage: error.response.data.message
+        }
+    }
+}
+
 const AuthenticationAPI = {
     login,
     checkDuplicateEmail,
@@ -201,7 +222,8 @@ const AuthenticationAPI = {
     regitser,
     refreshToken,
     getParticipantCode,
-    resetPassword
+    resetPassword,
+    changePassword
 }
 
 export default AuthenticationAPI;

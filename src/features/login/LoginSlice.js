@@ -6,7 +6,8 @@ const initialState = {
         password: '',
         accessToken: '',
         refreshToken: '',
-    }
+    },
+    changePasswordModalFlag: false
 }
 
 export const loginSlice = createSlice({
@@ -16,10 +17,16 @@ export const loginSlice = createSlice({
         login: (state, action) => {
             state.loginUser = action.payload;
             console.log(state.loginUser);
+        },
+        changePassword: (state, action) => {
+            return {
+                loginUser: state.loginUser,
+                changePasswordModalFlag: action.payload
+            }
         }
     }
 })
 
-export const { login } = loginSlice.actions;
+export const { login, changePassword } = loginSlice.actions;
 
 export default loginSlice.reducer;

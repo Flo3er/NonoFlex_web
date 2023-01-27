@@ -13,14 +13,19 @@ import settingsBlack from "../../../../assets/images/settings.png";
 import rightArrow from "../../../../assets/images/arrowRight.png";
 import RoundButton from "../button/RoundButton";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Utils from "../../../../features/utils/Utils";
+import PrimaryButton from "../button/PrimaryButton";
+import { changePassword } from "../../../../features/login/LoginSlice";
 
 
 const SideBar = props => {
   const [userName, updateUserName] = useState("이름");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isClickedUserSpace, updateClickedUserSpace] = useState(false);
   // const loginUser = useSelector(state => state.login.loginUser);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // 사용자 이름 설정
@@ -91,6 +96,14 @@ const SideBar = props => {
     window.location.replace("/login");
   }
 
+  const onClickedUserSpace = () => {
+    updateClickedUserSpace(!isClickedUserSpace);
+  }
+
+  const onClickChangePassword = () => {
+    dispatch(changePassword(true));
+  }
+
   return (
     <div className="sidebar">
       <div className="company">
@@ -103,12 +116,26 @@ const SideBar = props => {
           </div>
         </Link>
       </div>
-      <div className="user">
-        <p className="userName">{userName}</p>
-        <p className="userNameSufix">님</p>
-        <div className="myPageButton">
-          <RoundButton value="로그아웃" onClick={onClickLogout}/>
+      <div className={isClickedUserSpace ? "clickedUser" : "user"} onClick={onClickedUserSpace}>
+        <div className="userSpaceUserArea">
+          <span className="userName">{userName}</span>
+          <span className="userNameSufix">님</span>
+          <span className="emptySpace" />
+          <div className="orangeFlag" />
         </div>
+        {
+          isClickedUserSpace ?
+            <div className="clickedUserSpaceButtonArea">
+              <div className="logoutButton" onClick={onClickLogout}>
+                <span>로그아웃</span>
+              </div>
+              <div className="changePasswordButton" onClick={onClickChangePassword}>
+                <span>비밀번호 변경</span>
+              </div>
+            </div>
+            : <div />
+        }
+
       </div>
       <div className="menu">
         <ul>

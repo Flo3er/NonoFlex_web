@@ -16,6 +16,9 @@ import { removeSearchValue } from "../../../features/main/SearchSlice";
 
 import DocumentAPI from "../../../apis/document/Document.js"
 import { clearSelectedTempDocument, selectedTempDocument, updateTempDocumentList } from "../../../features/document/TempDocumentSlice";
+import { changePassword } from "../../../features/login/LoginSlice";
+import Modal from "../../components/common/modal/Modal";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
 
 
 const DocumentTempList = () => {
@@ -27,6 +30,7 @@ const DocumentTempList = () => {
     const searchData = useSelector((state) => state.search.value);
     const documentList = useSelector((state) => state.tempDocument.itemList);
     const selectedDocumentItem = useSelector((state) => state.tempDocument.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -91,10 +95,17 @@ const DocumentTempList = () => {
         console.log(item)
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
 
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <div className="page">
                 <Sidebar value="/document/list/temp" />
                 <div className="contentsPage">

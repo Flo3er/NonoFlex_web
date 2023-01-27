@@ -27,6 +27,8 @@ import { clearDocumentProduct, selectDocumentProduct, selectTempDocumentProduct 
 import ChooseDocumentPartnerModal from "../../components/document/ChooseDocumentPartnerModal";
 import { clearSelectedPartner } from "../../../features/document/DocumentPartnerSlice";
 import DocumentAPI from "../../../apis/document/Document";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
+import { changePassword } from "../../../features/login/LoginSlice";
 
 const DocumentReady = () => {
     const [isSelectedDocumentInputType, updateDocumentType] = useState(true);
@@ -48,6 +50,7 @@ const DocumentReady = () => {
     });
     const documentProductItem = useSelector((state) => state.documentProduct.documentProductTempItem);
     const documentPartner = useSelector((state) => state.documentPartner.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -187,9 +190,16 @@ const DocumentReady = () => {
     const onCloseDocumentProductModal = () => {
         updateDocumentProductModal(false);
     }
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <Modal isOpen={isOpenDocumentProductModal} onClose={onCloseDocumentProductModal}>
                 <DocumentProductModal onClickClose={onCloseDocumentProductModal} isTemp={true} type={isSelectedDocumentInputType ? "INPUT" : "OUTPUT"}/>
             </Modal>

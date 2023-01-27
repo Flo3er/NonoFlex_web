@@ -13,6 +13,9 @@ import Dialog from "../../components/common/modal/Dialog";
 import UtilAPI from "../../../apis/etc/util";
 import ProductAPI from "../../../apis/product/Product";
 import { useNavigate } from "react-router-dom";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
+import { useDispatch, useSelector } from "react-redux";
+import { changePassword } from "../../../features/login/LoginSlice";
 
 const ProductNew = () => {
     const [productName, setProductName] = useState("");
@@ -53,6 +56,9 @@ const ProductNew = () => {
     ]
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
 
     const onChangeProductName = (value) => {
@@ -202,6 +208,10 @@ const ProductNew = () => {
         updateOpenSaveProductConfirm(false);
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     const confirmSaveProduct = async () => {
         updateOpenSaveProductConfirm(false);
 
@@ -257,6 +267,10 @@ const ProductNew = () => {
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <Modal isOpen={isOpenSaveProductConfirm}>
                 <Dialog title="물품 저장"
                     contents="저장 하시겠습니까?"

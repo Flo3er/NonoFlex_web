@@ -17,6 +17,9 @@ import ProductAPI from "../../../apis/product/Product"
 import { clearSelectedProduct, selectedProduct, updateProductList, updateProductRecordList } from "../../../features/product/productSlice"
 import PopupBox from "../../components/common/modal/PopupBox"
 import { useNavigate } from "react-router-dom"
+import { changePassword } from "../../../features/login/LoginSlice"
+import ChangePasswordModal from "../../components/login/ChangePasswordModal"
+import Modal from "../../components/common/modal/Modal"
 
 const ProductList = () => {
     const [isLoading, updateLoading] = useState(false);
@@ -51,6 +54,7 @@ const ProductList = () => {
     const selectedProductItem = useSelector((state) => state.product.selectedItem);
     const recordList = useSelector((state) => state.product.selectedItemRecordList.recordList);
     const productMetaData = useSelector((state) => state.product.metaData);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -162,9 +166,17 @@ const ProductList = () => {
         setSelectedRecordYear(event.target.value);
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <div className="page">
                 <Sidebar value="/product/list" />
                 <div className="contentsPage">

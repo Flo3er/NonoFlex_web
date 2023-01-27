@@ -16,6 +16,8 @@ import "./ProductStatus.css"
 import Delete from "../../../assets/images/delete.png"
 import Modal from "../../components/common/modal/Modal.js";
 import DeleteConfirmModal from "../../components/common/modal/DeleteConfirmModal.js";
+import { changePassword } from "../../../features/login/LoginSlice.js";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal.js";
 
 const ProductStatus = () => {
     const [isLoading, updateLoading] = useState(false);
@@ -24,6 +26,7 @@ const ProductStatus = () => {
     const productList = useSelector((state) => state.product.itemList);
     const selectedProductItem = useSelector((state) => state.product.selectedItem);
     const searchData = useSelector((state) => state.search.value);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     const productActiveTypeList = [
         { value: "활성", code: true },
@@ -171,6 +174,10 @@ const ProductStatus = () => {
         fetchData();
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     return (
         <div>
             <ToastContainer />
@@ -181,6 +188,10 @@ const ProductStatus = () => {
                     warning={true}
                     onCancel={onCloseRemoveProductItemDialog}
                     confirm={confirmRemoveProductItemDialog} />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/product/status" />

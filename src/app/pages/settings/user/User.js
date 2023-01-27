@@ -2,13 +2,16 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ToastContainer } from "react-toastify"
 import UserAPI from "../../../../apis/user/user"
+import { changePassword } from "../../../../features/login/LoginSlice"
 import { removeSearchValue } from "../../../../features/main/SearchSlice"
 import { clearSelectedUser, clearUserList, updateUserList } from "../../../../features/settings/userSlice"
 import Utils from "../../../../features/utils/Utils"
 import RoundButton from "../../../components/common/button/RoundButton"
 import Header from "../../../components/common/header/Header"
+import Modal from "../../../components/common/modal/Modal"
 import SideBar from "../../../components/common/sidebar/Sidebar"
 import NonoToast from "../../../components/common/toast/Toast"
+import ChangePasswordModal from "../../../components/login/ChangePasswordModal"
 import "./User.css"
 
 const User = () => {
@@ -24,6 +27,7 @@ const User = () => {
         return filterUserList
     });
     const selectedUserItem = useSelector((state) => state.user.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     const activeTypeList = [
         { value: "활성", code: true },
@@ -95,9 +99,17 @@ const User = () => {
         getUserList(searchData, 1);
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <div className="page">
                 <SideBar value="/settings/user" />
                 <div className="contentsPage">

@@ -26,6 +26,8 @@ import DocumentProductModal from "../../components/document/DocumentProductModal
 import { clearSelectedPartner } from "../../../features/document/DocumentPartnerSlice.js";
 import DocumentAPI from "../../../apis/document/Document.js";
 import ChooseDocumentPartnerModal from "../../components/document/ChooseDocumentPartnerModal.js";
+import { changePassword } from "../../../features/login/LoginSlice.js";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal.js";
 
 
 const DocumentConfirm = () => {
@@ -48,6 +50,7 @@ const DocumentConfirm = () => {
     });
     const documentProductItem = useSelector((state) => state.documentProduct.documentProductItem);
     const documentPartner = useSelector((state) => state.documentPartner.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -119,6 +122,10 @@ const DocumentConfirm = () => {
     const onCloseChooseDocumentPartner = () => {
         updateOpenChooseDocumentPartner(false);
     }
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     const onClickSaveDocumentButton = async () => {
         if (documentPartner.companyId == undefined) {
             NonoToast.error("거래처 정보를 입력해 주세요.");
@@ -196,6 +203,10 @@ const DocumentConfirm = () => {
             </Modal>
             <Modal isOpen={isOpenChooseDocumentPartner} onClose={onCloseChooseDocumentPartner}>
                 <ChooseDocumentPartnerModal onClickClose={onCloseChooseDocumentPartner} type={isSelectedDocumentInputType ? "input" : "output"} />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/document/confirm" />

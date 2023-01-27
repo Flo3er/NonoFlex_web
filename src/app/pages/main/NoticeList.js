@@ -19,6 +19,8 @@ import NoticeContentsModal from "../../components/main/notice/NoticeContentsModa
 import Dialog from "../../components/common/modal/Dialog";
 import { removeSearchValue, search } from "../../../features/main/SearchSlice";
 import RoundButton from "../../components/common/button/RoundButton";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
+import { changePassword } from "../../../features/login/LoginSlice";
 
 const NoticeList = () => {
     const [isOpenNoticeAddModal, updateOpenNoticeAddModal] = useState(false);
@@ -36,6 +38,9 @@ const NoticeList = () => {
     const noticeList = useSelector((state) => state.notice.itemList);
     const noticeMetaData = useSelector((state) => state.notice.metaData);
     const searchData = useSelector((state) => state.search.value);
+
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
+
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -158,6 +163,10 @@ const NoticeList = () => {
         }
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     return (
         <div>
             <ToastContainer />
@@ -176,6 +185,10 @@ const NoticeList = () => {
                     warning={true}
                     onCancel={onCloseRemoveNoticeModal}
                     confirm={confirmRemoveNoticeDialog} />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/notice/list" />

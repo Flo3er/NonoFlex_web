@@ -19,6 +19,8 @@ import CompanyDeleteModal from "../../../components/common/modal/DeleteConfirmMo
 import CompanyNewModal from "../../../components/settings/company/CompanyNewModal"
 import CompanyEditModal from "../../../components/settings/company/CompanyEditModal"
 import DeleteConfirmModal from "../../../components/common/modal/DeleteConfirmModal"
+import { changePassword } from "../../../../features/login/LoginSlice"
+import ChangePasswordModal from "../../../components/login/ChangePasswordModal"
 
 
 const Company = () => {
@@ -31,6 +33,7 @@ const Company = () => {
     const companyList = useSelector((state) => state.company.itemList);
     const searchData = useSelector((state) => state.search.value);
     const selectedCompanyItem = useSelector((state) => state.company.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     const orderCategory = [
         { value: "거래처 이름  ↓", type: "name", order: "asc" },
@@ -149,6 +152,10 @@ const Company = () => {
         await refreshCompanyList();
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     return (
         <div>
             <Modal isOpen={isOpenCompanyDeleteItem} onClose={onCloseRemoveCompanyItemDialog}>
@@ -158,6 +165,10 @@ const Company = () => {
                     warning={true}
                     onCancel={onCloseRemoveCompanyItemDialog}
                     confirm={confirmRemoveCompanyItemDialog} />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <Modal isOpen={isOpenCompanyNew} onClose={onCloseCompanyNewDialog}>
                 <CompanyNewModal onClose={onCloseCompanyNewDialog} />

@@ -1,6 +1,6 @@
 .sidebar {
     height: 100vh;
-    position:sticky ;
+    position: sticky;
     top: 0;
     left: 0;
     width: 240px;
@@ -54,35 +54,99 @@ p {
 .user {
     width: 100%;
     height: 50px;
-    display: block;
     margin-top: 30px;
+    background-color: #F1F4F8;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.user:hover {
+    background-color: #C9D5E1;
+}
+
+.userSpaceUserArea {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.clickedUser {
+    width: 100%;
+    height: 140px;
+    margin-top: 30px;
+    background-color: #F1F4F8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.clickedUser:hover {
+    background-color: #C9D5E1;
+}
+
+.clickedUserSpaceButtonArea {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 .userName {
-    display: inline-block;
-    width: 90px;
-    overflow: hidden;
+    font-size: 16px;
+    font-weight: 400;
     text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-top: 5px;
-    margin-bottom: auto;
+    margin-left: 15px;
 }
 
 .userNameSufix {
     font-size: 14px;
-    width: 20px;
-    display: inline-block;
-    overflow: hidden;
-    text-align: top;
-    margin-top: auto;
-    margin-bottom: auto;
+    font-weight: 350px;
+    margin-left: 8px;
 }
 
-.myPageButton {
-    width: 90px;
-    height: 35px;
-    display: block;
-    float: right;
+.orangeFlag {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: #F96D39;
+    margin-right: 15px;
+}
+
+.logoutButton {
+    width: calc(100% - 30px);
+    height: 32px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 6px;
+    background-color: #1F6DE2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logoutButton>span {
+    color: #FFFFFF;
+    size: 12px;
+    font-weight: 500;
+}
+.changePasswordButton {
+    width: calc(100% - 30px);
+    height: 32px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: #1F6DE2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.changePasswordButton>span {
+    color: #FFFFFF;
+    size: 12px;
+    font-weight: 500;
 }
 
 .menu {
@@ -96,7 +160,7 @@ p {
     display: block;
     list-style: none;
     padding-left: 0px;
-    
+
 }
 
 .menu>ul>li {
@@ -189,6 +253,7 @@ p {
     display: inline-flex;
     align-items: center;
 }
+
 .subMenuItem:hover {
     background-color: #F2F9FF;
 }

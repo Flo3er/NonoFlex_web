@@ -22,6 +22,8 @@ import UserDeleteModal from "../../../components/settings/user/UserDeleteModal";
 import UserEditModal from "../../../components/settings/user/UserEditModal";
 import UserNewModal from "../../../components/settings/user/UserNewModal";
 import UserInfoModal from "../../../components/settings/user/UserInfoModal";
+import { changePassword } from "../../../../features/login/LoginSlice";
+import ChangePasswordModal from "../../../components/login/ChangePasswordModal";
 
 const Participants = () => {
     const [isLoading, updateLoading] = useState(false);
@@ -38,6 +40,7 @@ const Participants = () => {
         return userList.filter((item, index) => item.role === "ROLE_PARTICIPANT");
     });
     const selectedUserItem = useSelector((state) => state.user.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -137,6 +140,9 @@ const Participants = () => {
         updateOpenCreateUserDialog(false);
         refreshUserList();
     }
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
 
     return (
         <div>
@@ -146,6 +152,10 @@ const Participants = () => {
                     userName={selectedUserItem.userName}
                     onCancel={onCloseUserDeleteItemDialog}
                     confirm={onConfirmDeleteUserItemDialog} />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <Modal isOpen={isOpenUserEditDialog} onClose={onCloseEditUserItem}>
                 <UserEditModal onClose={onCloseEditUserItem} />

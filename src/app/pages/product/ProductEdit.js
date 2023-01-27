@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Utils from "../../../features/utils/Utils";
 import { selectedProduct } from "../../../features/product/productSlice";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
+import { changePassword } from "../../../features/login/LoginSlice";
 
 const ProductEdit = () => {
     const [productName, setProductName] = useState("");
@@ -65,7 +67,10 @@ const ProductEdit = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
     const selectedProductItem = useSelector((state) => state.product.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
+
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
         if (accessToken === "" || accessToken === null) {
@@ -374,6 +379,9 @@ const ProductEdit = () => {
     const onChangeProductActiveTypeSelection = (event) => {
         setProductActiveType(event.target.value);
     }
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
     return (
         <div>
             <ToastContainer />
@@ -383,6 +391,10 @@ const ProductEdit = () => {
                     warning={false}
                     onCancel={canceledSaveProduct}
                     confirm={confirmSaveProduct} />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/product/list" />

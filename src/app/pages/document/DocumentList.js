@@ -15,6 +15,9 @@ import Utils from "../../../features/utils/Utils";
 import { removeSearchValue } from "../../../features/main/SearchSlice";
 
 import DocumentAPI from "../../../apis/document/Document.js"
+import Modal from "../../components/common/modal/Modal";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
+import { changePassword } from "../../../features/login/LoginSlice";
 
 
 const DocumentList = () => {
@@ -26,6 +29,7 @@ const DocumentList = () => {
     const searchData = useSelector((state) => state.search.value);
     const documentList = useSelector((state) => state.document.itemList);
     const selectedDocumentItem = useSelector((state) => state.document.selectedItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     const orderCategory = [
         { value: "생성 일자  ↑", type: "createdAt", order: "desc" },
@@ -97,10 +101,17 @@ const DocumentList = () => {
         console.log(item)
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
 
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <div className="page">
                 <Sidebar value="/document/list" />
                 <div className="contentsPage">

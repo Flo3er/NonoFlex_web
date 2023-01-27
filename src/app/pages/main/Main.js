@@ -19,6 +19,8 @@ import NoticeContentsModal from "../../components/main/notice/NoticeContentsModa
 import { useDispatch, useSelector } from "react-redux"
 import { clearNoticeItem, recentNotice, selectNotice } from "../../../features/main/NoticeSlice.js"
 import { useNavigate } from "react-router-dom"
+import { changePassword } from "../../../features/login/LoginSlice.js"
+import ChangePasswordModal from "../../components/login/ChangePasswordModal.js"
 
 const Main = () => {
     const [isEmptyNotice, updateEmptyNotice] = useState(true);
@@ -29,6 +31,7 @@ const Main = () => {
     const navigate = useNavigate();
 
     const recentNoticeData = useSelector((state) => state.notice.recentItem);
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     useEffect(() => {
         const accessToken = sessionStorage.getItem("accessToken")
@@ -88,6 +91,10 @@ const Main = () => {
         updateRecentNotice()
     }
 
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
 
     return (
         <div>
@@ -100,6 +107,10 @@ const Main = () => {
                     onClickClose={onCloseNoticeContentsModal}
                     isReadOnly={true}
                 />
+            </Modal>
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/main" />

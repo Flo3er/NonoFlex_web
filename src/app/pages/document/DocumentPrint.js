@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import DocumentAPI from "../../../apis/document/Document";
+import { changePassword } from "../../../features/login/LoginSlice";
 import PrimaryButton from "../../components/common/button/PrimaryButton";
 import Header from "../../components/common/header/Header";
+import Modal from "../../components/common/modal/Modal";
 import SideBar from "../../components/common/sidebar/Sidebar";
 import NonoToast from "../../components/common/toast/Toast";
+import ChangePasswordModal from "../../components/login/ChangePasswordModal";
 import "./DocumentPrint.css"
 
 const DocumentPrint = () => {
     const dispatch = useDispatch();
     const [selectedRecordYear, setSelectedRecordYear] = useState(new Date().getFullYear());
     const [selectedRecordMonth, selSelectedRecordMonth] = useState((new Date().getMonth() + 1));
+    const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
+
     const searchYearArray = () => {
         const currentYear = new Date().getFullYear();
         const result = [];
@@ -55,9 +60,18 @@ const DocumentPrint = () => {
             NonoToast.error("요청에 실패하였습니다." + response.errorMessage);
         }
     }
+
+    const onCloseChangePasswordModal = () => {
+        dispatch(changePassword(false));
+    }
+
     return (
         <div>
             <ToastContainer />
+            <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
+                <ChangePasswordModal
+                 onClickClose={onCloseChangePasswordModal} />
+            </Modal>
             <div className="page">
                 <SideBar value="/document/print" />
                 <div className="contentsPage">
