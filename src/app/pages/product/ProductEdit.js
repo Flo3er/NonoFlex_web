@@ -67,7 +67,7 @@ const ProductEdit = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+
     const selectedProductItem = useSelector((state) => state.product.selectedItem);
     const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
@@ -321,20 +321,20 @@ const ProductEdit = () => {
             }
         } else {
             var image = selectedProductItem.image;
-                console.log(image)
-                if (image == undefined || image == null) {
-                    image = null
-                }
-                var barcode = selectedProductItem.barcode
-                console.log(barcodeType)
-                if (barcode == undefined) {
-                    barcode = null
-                }
-                var barcodeType = selectedProductItem.barcodeType
-                console.log(barcodeType)
-                if (barcodeType == undefined) {
-                    barcodeType = null
-                }
+            console.log(image)
+            if (image == undefined || image == null) {
+                image = null
+            }
+            var barcode = selectedProductItem.barcode
+            console.log(barcodeType)
+            if (barcode == undefined) {
+                barcode = null
+            }
+            var barcodeType = selectedProductItem.barcodeType
+            console.log(barcodeType)
+            if (barcodeType == undefined) {
+                barcodeType = null
+            }
             const response = await ProductAPI.updateProduct(
                 selectedProductItem.productId,
                 productCode,
@@ -394,7 +394,7 @@ const ProductEdit = () => {
             </Modal>
             <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
                 <ChangePasswordModal
-                 onClickClose={onCloseChangePasswordModal} />
+                    onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/product/list" />
@@ -591,9 +591,10 @@ const ProductEdit = () => {
                                     <TextField isValidData={true}
                                         type="text"
                                         value={productStock}
-                                        onChange={value => {
-                                            onChangeProductStock(value);
-                                        }}
+                                        readOnly={true}
+                                        // onChange={value => {
+                                        //     onChangeProductStock(value);
+                                        // }}
                                         onFocusOut={updateSaveButtonValidation}
                                         placeholder="재고 수량을 입력해 주세요!" />
                                 </div>
