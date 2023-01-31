@@ -6,6 +6,11 @@
     margin: 8px;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px;
 }
 
 .warningButton {
@@ -16,20 +21,37 @@
     font-family: 'Noto Sans KR', sans-serif;
     color: #E21F1F;
     cursor: pointer;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px;
 }
 
 .warningButton:hover {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
+    background-color: #F1F4F8;
     margin: 8px;
     font-family: 'Noto Sans KR', sans-serif;
-    color: #ba1F1F;
+    color: #E21F1F;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px;
 }
 
 .textButton:hover {
     color: #1957B5;
-    font-weight: 700;
+    background-color: #F1F4F8;
+    font-weight: 600;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px;
 }
 
 .textButton:disabled {

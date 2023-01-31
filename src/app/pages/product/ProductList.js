@@ -29,7 +29,7 @@ const ProductList = () => {
     const searchYearArray = () => {
         const currentYear = new Date().getFullYear();
         const result = [];
-        for (let year = 2021; year < (currentYear + 1); year++) {
+        for (let year = 2022; year < (currentYear + 1); year++) {
             result.push(<option key={"yearSelection" + year} value={year}>{year + "년"}</option>);
         }
         return result;
@@ -112,12 +112,12 @@ const ProductList = () => {
     }
 
     const onClickProductAddButton = () => {
-        navigate("/product/new");
+        window.location.replace("/product/new");
     }
 
     const onClickProductEditButton = () => {
         console.log(selectedProductItem);
-        navigate("/product/edit");
+        window.location.replace("/product/edit");
     }
 
     const onClickSortButton = (event) => {
@@ -170,6 +170,32 @@ const ProductList = () => {
         dispatch(changePassword(false));
     }
 
+    function getDayString(day) {
+        if (day == undefined || day == null) {
+            return ""
+        }
+
+        const intDay = new Date(day).getDay();
+        console.log(intDay);
+        switch(intDay) {
+            case 0 : return "(일)";
+            case 1 : return "(월)";
+            case 2 : return "(화)";
+            case 3 : return "(수)";
+            case 4 : return "(목)";
+            case 5 : return "(금)";
+            case 6 : return "(토)";
+            default : return "";
+        }
+    }
+
+    function getStorageType(type) {
+        switch(type) {
+            case "ROOM" : return "실온";
+            case "COLD" : return "냉장";
+            case "ICE" : return "냉동";
+        }
+    }
     return (
         <div>
             <ToastContainer />
@@ -181,7 +207,7 @@ const ProductList = () => {
                 <Sidebar value="/product/list" />
                 <div className="contentsPage">
                     <Header title="물품 목록"
-                        desc="물품 관리는 중요합니다!"
+                        desc="노노유통에서 다루고 있는 물품 정보를 확인할 수 있습니다."
                         isSearch={true} />
                     <div className="pageBody">
                         <div className="productListPage">
@@ -232,7 +258,14 @@ const ProductList = () => {
                                                                     item.active ? "prouctListItem" : "inactiveProductListItem"}
                                                                 onClick={() => onClickProductItem(item)}
                                                             >
-                                                                <img src={item.image == null ? EmptyImage : item.image.thumbnailUrl} className="productListItemImage" />
+                                                                {
+                                                                    item.image == null ?
+                                                                    <div className="productListItemEmptyImage" />
+                                                                    :
+                                                                    <img src={ item.image.thumbnailUrl} className= "productListItemImage" />
+
+                                                                }
+                                                                
                                                                 <span className="productListItemName">{item.name}</span>
                                                                 <div className="emptySection" />
                                                                 <span className="productListItemCount">{item.stock} {item.unit}</span>
@@ -264,7 +297,13 @@ const ProductList = () => {
                                                 <div className="productContentsummary">
                                                     <span className="productContentName">{selectedProductItem.name}</span>
                                                     <span className="productContentCount">{selectedProductItem.stock} {selectedProductItem.unit}</span>
-                                                    <img src={selectedProductItem.image == null ? EmptyImage : selectedProductItem.image.thumbnailUrl} className="productContentItemImage" />
+                                                    {
+                                                         selectedProductItem.image == null ?
+                                                         <div className="productContentItemEmptyImage" />
+                                                         :
+                                                         <img src={selectedProductItem.image.thumbnailUrl} className="productContentItemImage" />
+                                                    }
+                                                   
                                                 </div>
                                                 <div className="productContentDetailInfo">
                                                     <div className="productContentDetailTitle">
@@ -276,27 +315,27 @@ const ProductList = () => {
                                                     <div className="productContentDetailContentsBox">
                                                         <div className="productDetailRowBox">
                                                             <div className="productDetailRowTitleBox">
-                                                                <span>제품명</span>
+                                                                <span>물품명</span>
                                                             </div>
                                                             <span>{selectedProductItem.name}</span>
                                                         </div>
                                                         <div className="productDetailRowBox">
                                                             <div className="productDetailRowTitleBox">
-                                                                <span>제품코드</span>
+                                                                <span>물품 코드</span>
                                                             </div>
                                                             <span>{selectedProductItem.productCode}</span>
                                                         </div>
                                                         <div className="productDetailRowBox">
                                                             <div className="productDetailRowTitleBox">
-                                                                <span>분류</span>
+                                                                <span>물품 분류</span>
                                                             </div>
                                                             <span>{selectedProductItem.category}</span>
                                                         </div>
                                                         <div className="productDetailRowBox">
                                                             <div className="productDetailRowTitleBox">
-                                                                <span>보관방법</span>
+                                                                <span>보관 방법</span>
                                                             </div>
-                                                            <span>{selectedProductItem.storageType}</span>
+                                                            <span>{getStorageType(selectedProductItem.storageType)}</span>
                                                         </div>
                                                         <div className="productDetailRowBox">
                                                             <div className="productDetailRowTitleBox">
@@ -352,7 +391,7 @@ const ProductList = () => {
                                                                         return (
                                                                             <li key={"recordList" + item.recordId + index}>
                                                                                 <div className="productRecordListItemBox">
-                                                                                    <span className="recordItemDate">{item.date}</span>
+                                                                                    <span className="recordItemDate">{(new Date(item.date).getMonth() + 1) + "월 " + new Date(item.date).getDate() + "일 " + getDayString(item.date) }</span>
                                                                                     <div className="emptySection" />
                                                                                     <span className="recordItemWriter">{item.writer}</span>
                                                                                     <span className={item.type === "OUTPUT" ? "recordItemQuantityOutput" : "recordItemQuantityInput"} >

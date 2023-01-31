@@ -20,7 +20,7 @@ const DocumentPrint = () => {
     const searchYearArray = () => {
         const currentYear = new Date().getFullYear();
         const result = [];
-        for (let year = 2021; year < (currentYear + 1); year++) {
+        for (let year = 2022; year < (currentYear + 1); year++) {
             result.push(<option key={"yearSelection" + year} value={year}>{year + "년"}</option>);
         }
         return result;

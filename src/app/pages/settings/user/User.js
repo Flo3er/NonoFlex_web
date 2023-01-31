@@ -132,7 +132,11 @@ const User = () => {
                                                         return (
                                                             <li key={"userList" + item.userId + index}
                                                                 className={item.active ? "userListItem" : "inactiveUserListItem"}>
-                                                                <span className="userListItemUserName">{item.userName}</span>
+                                                                    <div className="userListItemBox">
+                                                                    <span className="userListItemUserName">{item.userName}</span>
+                                                                    <span className="userListItemUserEmail">{item.email}</span>
+                                                                    </div>
+               
                                                                 <div className="emptySection" />
                                                                 <div className="activeTypeSelectBox">
                                                                     <select className="activeTypeSelect"

@@ -194,7 +194,7 @@ const NoticeList = () => {
                 <Sidebar value="/notice/list" />
                 <div className="contentsPage">
                     <Header title="공지사항 목록"
-                        desc="공지사항을 관리할 수 있어요!"
+                        desc=" 참여자와 관리자에게 알리고 싶은 내용을 입력 해 보세요."
                         isSearch={true} />
                     <div className="pageBody">
                         {

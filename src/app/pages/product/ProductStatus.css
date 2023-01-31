@@ -76,14 +76,14 @@
 }
 .inactiveProductStatusListItem {
     height: 80px;
-    width: 100%;
+    width: calc(100% - 20px);
     margin-bottom: 2.5px;
     margin-top: 2.5px;
     display: flex;
     align-items: center;
     border-radius: 8px;
-    /* padding-left: 5px; */
-    /* padding-right: 15px; */
+    padding-left: 5px;
+    padding-right: 15px;
     background-color: #E9EAEF;
 }
 .productStatusEmptySection {

@@ -211,8 +211,8 @@ const DocumentConfirm = () => {
             <div className="page">
                 <Sidebar value="/document/confirm" />
                 <div className="contentsPage">
-                    <Header title="확인서 작성"
-                        desc="입고/출고 확인 문서 입니다." />
+                    <Header title="입고서/출고서 작성"
+                        desc="입고/출고 문서를 작성합니다." />
                     <div className="pageBody">
                         <div className="documentReadyPage">
                             <div className="documentReadyInfoSection">

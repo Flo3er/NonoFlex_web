@@ -20,11 +20,11 @@ const Dialog = (props) => {
             <div className="dialogTail">
                 <div className="dialogTailCancelButton"
                     onClick={onClickCancelButton}>
-                    <span>cancel</span>
+                    <span>취소</span>
                 </div>
                 <div className={props.warning ? "dialogTailWarningButton" : "dialogTailOKButton"}
                     onClick={onClickOKButton}>
-                    <span>OK</span>
+                    <span>확인</span>
                 </div>
             </div>
 

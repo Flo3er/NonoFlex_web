@@ -153,9 +153,9 @@ const SideBar = props => {
                   main.map((item, index) => {
                     return (
                       <li key={"main" + index}>
-                        <Link to={item.page} replace={true}>
+                        <Link to={item.page}>
                           <div className=" subMenuItem">
-                            <div className="subMenuImage" >
+                            <div className="subMenuImage">
                               <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
                             </div>
                             <p className={props.value === item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
@@ -182,7 +182,7 @@ const SideBar = props => {
                     product.map((item, index) => {
                       return (
                         <li key={"product" + index}>
-                          <Link to={item.page} replace={true}>
+                          <Link to={item.page}>
                             <div className=" subMenuItem">
                               <div className="subMenuImage" >
                                 <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
@@ -212,7 +212,7 @@ const SideBar = props => {
                     document.map((item, index) => {
                       return (
                         <li key={"document" + index}>
-                          <Link to={item.page} replace={true}>
+                          <Link to={item.page}>
                             <div className=" subMenuItem">
                               <div className="subMenuImage" >
                                 <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />

@@ -84,7 +84,7 @@ p {
 }
 
 .clickedUser:hover {
-    background-color: #C9D5E1;
+    background-color: #EAEEF3;
 }
 
 .clickedUserSpaceButtonArea {
@@ -98,7 +98,7 @@ p {
     font-size: 16px;
     font-weight: 400;
     text-overflow: ellipsis;
-    margin-left: 15px;
+    margin-left: 20px;
 }
 
 .userNameSufix {
@@ -160,11 +160,12 @@ p {
     display: block;
     list-style: none;
     padding-left: 0px;
+    padding-right: 0px;
 
 }
 
 .menu>ul>li {
-    width: 95%;
+    width: 100%;
     text-decoration: none;
     margin-top: 2.5px;
     margin-bottom: 2.5px;

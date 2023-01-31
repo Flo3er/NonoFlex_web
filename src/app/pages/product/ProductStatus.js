@@ -134,6 +134,11 @@ const ProductStatus = () => {
 
         if (response.isSuccess) {
             dispatch(updateProductItem(newItem));
+            if(newItem.active) {
+                NonoToast.success(newItem.name + " 가 활성 상태로 변경되었습니다.");
+            } else {
+                NonoToast.error(newItem.name + " 가 비활성 상태로 변경되었습니다.")
+            }
         }
     }
 
@@ -168,7 +173,7 @@ const ProductStatus = () => {
                 dispatch(clearSelectedProduct());
                 refreshProductList();
             } else {
-                NonoToast.error("물품 등록에 실패했습니다.");
+                NonoToast.error("물품 삭제에 실패했습니다.");
             }
         }
         fetchData();

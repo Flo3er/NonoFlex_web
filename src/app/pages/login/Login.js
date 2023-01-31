@@ -141,7 +141,7 @@ const Login = () => {
                     <div className="registerAndChangePassword">
                         <TextLinkButton onClick="/register" value="회원 가입" />
                         <br />
-                        <TextLinkButton onClick="/resetPassword" value="비밀번호 변경하기" />
+                        <TextLinkButton onClick="/resetPassword" value="비밀번호 초기화" />
                     </div>
                 </div>
                 <br />

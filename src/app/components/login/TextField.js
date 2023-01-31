@@ -1,6 +1,7 @@
 import "./TextField.css"
 
 import Visibility from "../../../assets/images/visibility.png"
+import Invisibility from "../../../assets/images/visibility_off.png"
 import { useState } from "react";
 /*
 TextField
@@ -36,7 +37,7 @@ const TextField = (props) => {
                 onBlur={props.onFocusOut}
             />
 
-            <img src={Visibility}
+            <img src={isShowPassword ? Invisibility : Visibility}
                 alt=''
                 className='visibliltyicon'
                 onClick={changeShowPassword}

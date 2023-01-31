@@ -82,7 +82,7 @@ const DocumentList = () => {
     }
 
     const onClickProductAddButton = () => {
-        navigate("/document/ready")
+        window.location.replace("/document/confirm")
     }
 
     const onClickDocumentItem = (item) => {

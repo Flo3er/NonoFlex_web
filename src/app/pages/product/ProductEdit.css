@@ -88,7 +88,7 @@
 }
 
 .productImageDescription {
-    width: 270px;
+    width: 380px;
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -101,7 +101,7 @@
 }
 
 .productImageDescription>span {
-    font-weight: 350;
+    font-weight: 450;
     font-size: 12px;
     color: #0B005C;
 }
@@ -129,7 +129,7 @@
 }
 
 .productNameTextField {
-    width: 420px;
+    width: 540px;
     height: 50px;
     margin-left: 20px;
 }
@@ -152,15 +152,18 @@
 }
 
 .productDescriptionTextField {
-    width: 420px;
+    width: 540px;
     height: 120px;
     margin-left: 20px;
 }
 
 .productDescriptionTextField>textarea {
-    padding: 16px;
-    width: calc(420px - 32px);
-    height: calc(120px - 32px);
+    padding-left: 24px;
+    padding-left: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: calc(540px - 40px);
+    height: calc(120px - 40px);
     text-align: start;
     vertical-align: top;
     background-color: #F1F4F8;
@@ -191,7 +194,7 @@
 }
 
 .productCodeTextField {
-    width: 420px;
+    width: 540px;
     height: 50px;
     margin-left: 20px;
 }
@@ -214,7 +217,7 @@
 }
 
 .productBarCodeTextField {
-    width: 420px;
+    width: 540px;
     height: 50px;
     border-radius: 8px;
     margin-left: 20px;
@@ -226,7 +229,7 @@
 
 .productBarCodeTextField>span {
     color: #7A7A7D;
-    margin-left: 16px;
+    margin-left: 24px;
     font-weight: 400;
     font-size: 16px;
 }
@@ -251,7 +254,7 @@
 .productActiveTypeSelectBox {
     width: 210px;
     height: 50px;
-    margin-left: 16px;
+    margin-left: 20px;
     border-radius: 8px;
     background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/30px #F1F4F8;
 }
@@ -302,7 +305,7 @@
 .productCategorySelectBox {
     width: 210px;
     height: 50px;
-    margin-left: 16px;
+    margin-left: 20px;
     border-radius: 8px;
     background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/30px #F1F4F8;
 }
@@ -311,7 +314,7 @@
     width: 100%;
     background-color: transparent;
     height: 100%;
-    padding-left: 10px;
+    padding-left: 24px;
     font-size: 16px;
     font-weight: 400;
     border: 0px solid transparent;
@@ -352,7 +355,7 @@
 .productSaveTypeSelectBox {
     width: 210px;
     height: 50px;
-    margin-left: 16px;
+    margin-left: 20px;
     border-radius: 8px;
     background: url('../../../assets/images/selectArrow.png') no-repeat 97% 50%/30px #F1F4F8;
 }
@@ -361,7 +364,7 @@
     width: 100%;
     background-color: transparent;
     height: 100%;
-    padding-left: 10px;
+    padding-left: 24px;
     font-size: 16px;
     font-weight: 400;
     border: 0px solid transparent;
@@ -400,7 +403,7 @@
 }
 
 .productUnitTextField {
-    width: 420px;
+    width: 540px;
     height: 50px;
     margin-left: 20px;
 }
@@ -423,7 +426,7 @@
 }
 
 .productMakerTextField {
-    width: 420px;
+    width: 540px;
     height: 50px;
     margin-left: 20px;
 }
@@ -447,7 +450,7 @@
 }
 
 .productStockTextField {
-    width: 420px;
+    width: 540px;
     height: 50px;
     margin-left: 20px;
 }
@@ -470,7 +473,7 @@
 }
 
 .productPriceTextField {
-    width: 360px;
+    width: 480px;
     height: 50px;
     margin-left: 20px;
 }
@@ -485,7 +488,7 @@
 }
 
 .saveProductInfoBox {
-    width: 640px;
+    width: 760px;
     display: flex;
     align-items: center;
     justify-content: end;

@@ -9,8 +9,8 @@
 .userListSection {
     width: 100%;
     /* height: 100%; */
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-left: 10px; */
+    /* margin-right: 10px; */
 }
 .userListTopButtonSection {
     height: 40px;
@@ -63,7 +63,7 @@
     display: flex;
     align-items: center;
     border-radius: 8px;
-    padding-left: 5px;
+    padding-left: 15px;
     padding-right: 15px;
 }
 .userListItem:hover {
@@ -77,14 +77,21 @@
     display: flex;
     align-items: center;
     border-radius: 8px;
-    padding-left: 5px;
+    padding-left: 15px;
     padding-right: 15px;
     background-color: #E9EAEF;
 }
+.userListItemBox {
+    display: flex;
+    flex-direction: column;
+}
 .userListItemUserName {
-    font-weight: 700;
-    font-size: 25px;
+    font-weight: 500;
+    font-size: 22px;
     color: #2E2E2E;
+}
+.userListItemUserEmail {
+    color: #7A7A7D;
 }
 .activeTypeSelectBox {
     width: 120px;

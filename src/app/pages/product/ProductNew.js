@@ -233,7 +233,7 @@ const ProductNew = () => {
 
                 if (response.isSuccess) {
                     NonoToast.success("물품 등록에 성공했습니다.");
-                    navigate(-1);
+                    window.location.replace("/product/list");
                 } else {
                     NonoToast.error("물품 등록에 실패했습니다.");
                     console.log(response.errorMessage);
@@ -257,7 +257,7 @@ const ProductNew = () => {
 
             if (response.isSuccess) {
                 NonoToast.success("물품 등록에 성공했습니다.");
-                navigate(-1);
+                window.location.replace("/product/list")
             } else {
                 NonoToast.error("물품 등록에 실패했습니다.");
                 console.log(response.errorMessage);
@@ -272,8 +272,8 @@ const ProductNew = () => {
                  onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <Modal isOpen={isOpenSaveProductConfirm}>
-                <Dialog title="물품 저장"
-                    contents="저장 하시겠습니까?"
+                <Dialog title="새 물품 추가"
+                    contents="새로운 물품 정보를 추가하시겠습니까?"
                     warning={false}
                     onCancel={canceledSaveProduct}
                     confirm={confirmSaveProduct} />
@@ -282,7 +282,7 @@ const ProductNew = () => {
                 <Sidebar value="/product/new" />
                 <div className="contentsPage">
                     <Header title="새 물품 추가"
-                        desc="물품을 추가합니다." />
+                        desc="새로운 물품을 추가하는 화면입니다." />
                     <div className="pageBody">
                         <ul className="newProductItemForm">
                             <li>
@@ -291,9 +291,9 @@ const ProductNew = () => {
                                     <span>물품 이미지</span>
                                 </div>
                                 <div className="productImageDescription">
-                                    <span>*png 이미지 형식</span>
-                                    <span>이미지는 1:1 사이즈로 입력해야 이쁘게 나와요.</span>
-                                    <span>*500kb 이상 파일을 업로드 해주세요.</span>
+                                    <span>• png, jpg, jpeg 형식을 지원합니다.</span>
+                                    <span>• 1:1 비율의 이미지가 가장 적합하게 나타납니다.</span>
+                                    <span>• 500KB이상, 10MB이하까지 업로드 가능합니다.</span>
                                     <div className="emptySpace" />
                                     {/* <div className="loadProductImageButton"
                                         onClick={onClickLoadProductImageButton}>
