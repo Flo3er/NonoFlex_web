@@ -170,25 +170,6 @@ const ProductList = () => {
         dispatch(changePassword(false));
     }
 
-    function getDayString(day) {
-        if (day == undefined || day == null) {
-            return ""
-        }
-
-        const intDay = new Date(day).getDay();
-        console.log(intDay);
-        switch(intDay) {
-            case 0 : return "(일)";
-            case 1 : return "(월)";
-            case 2 : return "(화)";
-            case 3 : return "(수)";
-            case 4 : return "(목)";
-            case 5 : return "(금)";
-            case 6 : return "(토)";
-            default : return "";
-        }
-    }
-
     function getStorageType(type) {
         switch(type) {
             case "ROOM" : return "실온";
@@ -307,7 +288,7 @@ const ProductList = () => {
                                                 </div>
                                                 <div className="productContentDetailInfo">
                                                     <div className="productContentDetailTitle">
-                                                        <span>상세정보</span>
+                                                        <span>상세 정보</span>
                                                         <div className="emptySection" />
                                                         <img src={EditBlue} alt="edit"
                                                             onClick={onClickProductEditButton} />
@@ -321,7 +302,7 @@ const ProductList = () => {
                                                         </div>
                                                         <div className="productDetailRowBox">
                                                             <div className="productDetailRowTitleBox">
-                                                                <span>물품 코드</span>
+                                                                <span>물품 번호</span>
                                                             </div>
                                                             <span>{selectedProductItem.productCode}</span>
                                                         </div>
@@ -391,7 +372,7 @@ const ProductList = () => {
                                                                         return (
                                                                             <li key={"recordList" + item.recordId + index}>
                                                                                 <div className="productRecordListItemBox">
-                                                                                    <span className="recordItemDate">{(new Date(item.date).getMonth() + 1) + "월 " + new Date(item.date).getDate() + "일 " + getDayString(item.date) }</span>
+                                                                                    <span className="recordItemDate">{(new Date(item.date).getMonth() + 1) + "월 " + new Date(item.date).getDate() + "일 " + Utils.getDayString(item.date) }</span>
                                                                                     <div className="emptySection" />
                                                                                     <span className="recordItemWriter">{item.writer}</span>
                                                                                     <span className={item.type === "OUTPUT" ? "recordItemQuantityOutput" : "recordItemQuantityInput"} >

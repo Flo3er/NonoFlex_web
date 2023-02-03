@@ -4,7 +4,7 @@ import NonoAPI from "../NonoApi";
 async function getRecentNotice() {
     try {
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/notice/recent", {}
             );
             console.log(response.data);
@@ -27,7 +27,7 @@ async function getRecentNotice() {
 async function addNewNotice(title, body, isFocus) {
     try {
         if(await Utils.checkToken()) { 
-        const response = await NonoAPI.post("/api/v1/notice", {
+        const response = await NonoAPI().post("/api/v1/notice", {
             title: title,
             content: body,
             focus: isFocus,
@@ -53,7 +53,7 @@ async function addNewNotice(title, body, isFocus) {
 async function removeNotice(noticeId) {
     try {
         if(await Utils.checkToken()) {
-        const response = await NonoAPI.delete("/api/v1/notice/" + noticeId, {});
+        const response = await NonoAPI().delete("/api/v1/notice/" + noticeId, {});
         return {
             isSuccess: true,
             data: response.data
@@ -74,7 +74,7 @@ async function removeNotice(noticeId) {
 async function editNotice(noticeId, title, body, isFocus) {
     try {
         if(await Utils.checkToken()) {
-        const response = await NonoAPI.put("/api/v1/notice/" + noticeId, {
+        const response = await NonoAPI().put("/api/v1/notice/" + noticeId, {
             title: title,
             content: body,
             focus: isFocus,
@@ -108,7 +108,7 @@ async function getNoticeList(column, order, query, page) {
             page: page ?? 1
         };
         if (await Utils.checkToken()) {
-        const response = await NonoAPI.get("/api/v1/notice", {
+        const response = await NonoAPI().get("/api/v1/notice", {
             params,
         });
         console.log(response.data)

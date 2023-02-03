@@ -2,7 +2,7 @@ import NonoAPI from "../NonoApi";
 
 async function login(userId, password) {
     try {
-        const response = await NonoAPI.post(
+        const response = await NonoAPI().post(
             "/api/v1/auth/code", {
             email: userId,
             password: password
@@ -23,7 +23,7 @@ async function login(userId, password) {
 
 async function getAccessToken(code) {
     try {
-        const response = await NonoAPI.post(
+        const response = await NonoAPI().post(
             "/api/v1/auth/token", {
                 grant_type: "authorization_code",
                 code: code,
@@ -45,7 +45,7 @@ async function getAccessToken(code) {
 
 async function refreshToken(token) {
     try {
-        const response = await NonoAPI.post(
+        const response = await NonoAPI().post(
             "/api/v1/auth/token", {
                 grant_type: "refresh_token",
                 refresh_token: token,
@@ -67,7 +67,7 @@ async function refreshToken(token) {
 
 async function checkDuplicateEmail(email) {
     try {
-        const response = await NonoAPI.post('/api/v1/auth/email/duplicate',{
+        const response = await NonoAPI().post('/api/v1/auth/email/duplicate',{
             email: email,
             type: "JOIN"
         });
@@ -87,7 +87,7 @@ async function checkDuplicateEmail(email) {
 
 async function sendEmailAuthorization(email, type) {
     try {
-        const response = await NonoAPI.post('/api/v1/auth/email/check',{
+        const response = await NonoAPI().post('/api/v1/auth/email/check',{
             email: email,
             type: type
         });
@@ -107,7 +107,7 @@ async function sendEmailAuthorization(email, type) {
 
 async function verifyEmailAuthorization(email, code) {
     try {
-        const response = await NonoAPI.post('/api/v1/auth/email/verify',{
+        const response = await NonoAPI().post('/api/v1/auth/email/verify',{
             email: email,
             code: code
         });
@@ -131,7 +131,7 @@ async function regitser(name, email, password, code) {
     console.log(password)
     console.log(code)
     try {
-        const response = await NonoAPI.post('/api/v1/auth/join',{
+        const response = await NonoAPI().post('/api/v1/auth/join',{
             name: name,
             email: email,
             password: password,
@@ -156,7 +156,7 @@ async function regitser(name, email, password, code) {
 async function getParticipantCode(loginId) {
     try {
         console.log(loginId)
-        const response = await NonoAPI.post('/api/v1/auth/code/' + loginId);
+        const response = await NonoAPI().post('/api/v1/auth/code/' + loginId);
           console.log(response.data)
           return {
             isSuccess: true,
@@ -174,7 +174,7 @@ async function getParticipantCode(loginId) {
 
 async function resetPassword(email, code) {
     try {
-        const response = await NonoAPI.post('/api/v1/auth/reissue', {
+        const response = await NonoAPI().post('/api/v1/auth/reissue', {
             email: email,
             code: code
         });
@@ -195,7 +195,7 @@ async function resetPassword(email, code) {
 
 async function changePassword(currentPassword, newPassword) {
     try {
-        const response = await NonoAPI.put('/api/v1/user/me/password', {
+        const response = await NonoAPI().put('/api/v1/user/me/password', {
             password: currentPassword,
             newPassword: newPassword
         });

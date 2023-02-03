@@ -10,7 +10,7 @@ async function getUserList(query, page) {
 
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.get("/api/v1/user/", {
+            const response = await NonoAPI().get("/api/v1/user/", {
                 params
             })
 
@@ -36,7 +36,7 @@ async function getUserList(query, page) {
 async function updateUserItem(userId, userName, isActive) {
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.put("/api/v1/user/" + userId, {
+            const response = await NonoAPI().put("/api/v1/user/" + userId, {
                 userName: userName,
                 active: isActive
             });
@@ -63,7 +63,7 @@ async function updateUserItem(userId, userName, isActive) {
 async function deleteUserItem(userId) {
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.delete("/api/v1/user/" + userId,);
+            const response = await NonoAPI().delete("/api/v1/user/" + userId,);
 
             console.log(response.data)
             return {
@@ -87,7 +87,7 @@ async function deleteUserItem(userId) {
 async function createUserItem(userName) {
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.post("/api/v1/user/", {
+            const response = await NonoAPI().post("/api/v1/user/", {
                 userName: userName
             });
 

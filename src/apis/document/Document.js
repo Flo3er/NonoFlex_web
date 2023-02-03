@@ -11,7 +11,7 @@ async function getDocumentList(query, column, order, page) {
             page: page ?? 1
         };
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/document", {
                 params,
             }
@@ -44,7 +44,7 @@ async function getTempDocumentList(query, column, order, page) {
             page: page ?? 1
         };
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/document/temp", {
                 params,
             }
@@ -70,7 +70,7 @@ async function getTempDocumentList(query, column, order, page) {
 async function getDocument(documentId) {
     try {
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/document/" + documentId
             );
             console.log(response.data)
@@ -95,7 +95,7 @@ async function createTempDocument(date, type, companyId, recordList) {
     try {
         if (await Utils.checkToken()) {
             console.log(date.toISOString());
-            const response = await NonoAPI.post(
+            const response = await NonoAPI().post(
                 "/api/v1/document/temp",
                 {
                     date: date,
@@ -125,7 +125,7 @@ async function createTempDocument(date, type, companyId, recordList) {
 async function createDocument(date, type, companyId, recordList) {
     try {
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.post(
+            const response = await NonoAPI().post(
                 "/api/v1/document",
                 {
                     date: date,
@@ -159,7 +159,7 @@ async function extractDocument(year, month) {
     };
     try {
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/document/excel",
                 {
                     params

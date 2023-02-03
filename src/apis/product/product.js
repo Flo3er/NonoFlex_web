@@ -11,7 +11,7 @@ async function getProductList(query, column, order, page) {
             page: page ?? 1
         };
         if (await Utils.checkToken()) {
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/product", {
                 params,
             }
@@ -42,7 +42,7 @@ async function getRecordList(productId, year, month) {
         };
         if (await Utils.checkToken()) {
             console.log("month : " + params.month);
-            const response = await NonoAPI.get(
+            const response = await NonoAPI().get(
                 "/api/v1/product/" + productId + "/record",
                 { params }
             );
@@ -65,7 +65,7 @@ async function getRecordList(productId, year, month) {
 
 async function addProduct(productCode, name, description, category, maker, unit, storageType, stock, inputPrice, outputPrice, imageId) {
     try {
-        const response = await NonoAPI.post("/api/v1/product", {
+        const response = await NonoAPI().post("/api/v1/product", {
             productCode: productCode,
             name: name,
             description: description,
@@ -97,7 +97,7 @@ async function addProduct(productCode, name, description, category, maker, unit,
 
 async function getProductItem(productId) {
     try {
-        const response = await NonoAPI.get(
+        const response = await NonoAPI().get(
             "/api/v1/product/" + productId
         );
 
@@ -137,7 +137,7 @@ async function updateProduct(
         storageType + "|" + stock + "|" + inputPrice + "|" + outputPrice + "|" +
         activate + "|" + barcode + "|" + barcodeType + "|" + image);
     try {
-        const response = await NonoAPI.put("/api/v1/product/" + productId, {
+        const response = await NonoAPI().put("/api/v1/product/" + productId, {
             productCode: productCode,
             name: name,
             description: description,
@@ -172,7 +172,7 @@ async function updateProduct(
 
 async function deleteProduct(productId) {
     try {
-        const response = await NonoAPI.delete(
+        const response = await NonoAPI().delete(
             "/api/v1/product/" + productId
         );
 

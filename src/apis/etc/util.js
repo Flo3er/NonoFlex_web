@@ -4,7 +4,7 @@ async function uploadImage(image) {
     try {
         var formData = new FormData();
         formData.append("imageFile", image);
-        const response = await NonoAPI.post("/api/v1/product/image", formData, {
+        const response = await NonoAPI().post("/api/v1/product/image", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

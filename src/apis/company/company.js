@@ -13,16 +13,17 @@ async function getCompanyList(type, query, column, order, page) {
     if (await Utils.checkToken()) {
         try {
             if (type === "input") {
-                const response = await NonoAPI.get("/api/v1/company/input", {
-                    params,
-                })
+                const response = await NonoAPI().get("/api/v1/company/input",
+                    {
+                        params,
+                    })
                 console.log(response.data)
                 return {
                     isSuccess: true,
                     data: response.data
                 }
             } else if (type === "output") {
-                const response = await NonoAPI.get("/api/v1/company/output", {
+                const response = await NonoAPI().get("/api/v1/company/output", {
                     params,
                 })
                 console.log(response.data)
@@ -31,7 +32,7 @@ async function getCompanyList(type, query, column, order, page) {
                     data: response.data
                 }
             } else {
-                const response = await NonoAPI.get("/api/v1/company", {
+                const response = await NonoAPI().get("/api/v1/company", {
                     params,
                 })
                 console.log(response.data)
@@ -56,7 +57,7 @@ async function getCompanyList(type, query, column, order, page) {
 async function updateCompanyInfo(id, name, type, category, active) {
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.put("/api/v1/company/" + id, {
+            const response = await NonoAPI().put("/api/v1/company/" + id, {
                 name: name,
                 type: type,
                 category: category,
@@ -85,7 +86,7 @@ async function updateCompanyInfo(id, name, type, category, active) {
 async function deleteCompanyItem(id) {
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.delete("/api/v1/company/" + id)
+            const response = await NonoAPI().delete("/api/v1/company/" + id)
 
             console.log(response.data)
             return {
@@ -109,7 +110,7 @@ async function deleteCompanyItem(id) {
 async function createCompanyItem(name, type, category) {
     if (await Utils.checkToken()) {
         try {
-            const response = await NonoAPI.post("/api/v1/company/", {
+            const response = await NonoAPI().post("/api/v1/company/", {
                 name: name,
                 type: type,
                 category: category

@@ -147,13 +147,14 @@ const DocumentConfirm = () => {
         })
         console.log(recordList);
         const response = await DocumentAPI.createDocument(documentDate, documentType, documentPartner.companyId, recordList);
+        const documentTypeText = isSelectedDocumentInputType ? "입고" : "출고"
         if (response.isSuccess) {
-            NonoToast.success("예정서 작성에 성공하였습니다.");
+            NonoToast.success("작성된 "+documentTypeText+ " 확인서가 저장되었습니다.");
             window.location.replace("/document/list");
             dispatch(clearSelectedPartner);
             dispatch(clearDocumentProduct);
         } else {
-            NonoToast.error("예정서 작성에 실패하였습니다.");
+            NonoToast.error("작성된 "+documentTypeText+ " 확인서 저장에 실패하였습니다.");
         }
     }
 
@@ -198,21 +199,21 @@ const DocumentConfirm = () => {
     return (
         <div>
             <ToastContainer />
-            <Modal isOpen={isOpenDocumentProductModal} onClose= {onCloseDocumentProductModal}>
-                <DocumentProductModal onClickClose={onCloseDocumentProductModal} type={isSelectedDocumentInputType ? "INPUT" : "OUTPUT"}/>
+            <Modal isOpen={isOpenDocumentProductModal} onClose={onCloseDocumentProductModal}>
+                <DocumentProductModal onClickClose={onCloseDocumentProductModal} type={isSelectedDocumentInputType ? "INPUT" : "OUTPUT"} />
             </Modal>
             <Modal isOpen={isOpenChooseDocumentPartner} onClose={onCloseChooseDocumentPartner}>
                 <ChooseDocumentPartnerModal onClickClose={onCloseChooseDocumentPartner} type={isSelectedDocumentInputType ? "input" : "output"} />
             </Modal>
             <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
                 <ChangePasswordModal
-                 onClickClose={onCloseChangePasswordModal} />
+                    onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/document/confirm" />
                 <div className="contentsPage">
-                    <Header title="입고서/출고서 작성"
-                        desc="입고/출고 문서를 작성합니다." />
+                    <Header title="문서 작성"
+                        desc=" 입고/출고 문서를 작성 해 보세요. 작성한 문서는 문서 목록에서 확인하실 수 있습니다." />
                     <div className="pageBody">
                         <div className="documentReadyPage">
                             <div className="documentReadyInfoSection">
@@ -261,7 +262,10 @@ const DocumentConfirm = () => {
                                         <div className="documentProductInputBox">
                                             {
                                                 documentProduct.length === 0 ?
-                                                    <span className="emptyDocumentProductPlaceHolder">거래 물품을 선택해 주세요.</span>
+                                                    <div>
+                                                        <p className="emptyDocumentProductPlaceHolder">선택된 물품이 없습니다.</p>
+                                                        <p className="emptyDocumentProductPlaceHolder">우측 물품 목록에서 거래 물품을 추가 해 보세요.</p>
+                                                    </div>
                                                     :
                                                     <ul>
                                                         {
@@ -314,13 +318,19 @@ const DocumentConfirm = () => {
                                                 {
                                                     productList.map((item, index) => {
                                                         return (
-                                                            <li key={"productList" + item.productId + index} className="documentProductListItem" >
-                                                                <img src={item.image == null ? EmptyImage : item.image.thumbnailUrl } className="documentProductListItemImage" />
+                                                            <li key={"productList" + item.productId + index} className="documentProductListItem" onClick={() => onClickProductAddButton(item)} >
+                                                                {
+                                                                    item.image == null ?
+                                                                        <div className="productListItemEmptyImage" />
+                                                                        :
+                                                                        <img src={item.image.thumbnailUrl} className="documentProductListItemImage" />
+                                                                }
+
                                                                 <span className="documentProductListItemName">{item.name}</span>
                                                                 <div className="emptySpace" />
 
                                                                 {/* <img src={Info} className="documentProductListItemInfoButton" onClick={() => onClickProductInfoButton(item)} /> */}
-                                                                <img src={Add} className="documentProductListItemAddButton" onClick={() => onClickProductAddButton(item)} />
+                                                                <img src={Add} className="documentProductListItemAddButton" />
                                                             </li>
                                                         )
                                                     })

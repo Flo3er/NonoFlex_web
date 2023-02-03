@@ -183,7 +183,7 @@ const Participants = () => {
                                             value={
                                                 <div className="addUserButtonContents">
                                                     <img src={Plus} className="addUserButtonPlusIcon" />
-                                                    <span>사용자 추가하기</span>
+                                                    <span>참여자 정보 추가</span>
                                                 </div>
                                             } />
                                     </div>

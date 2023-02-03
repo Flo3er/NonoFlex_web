@@ -6,6 +6,8 @@ import Sidebar from "../../components/common/sidebar/Sidebar.js"
 
 import Sort from "../../../assets/images/sorting.png"
 import AddBlue from "../../../assets/images/addBlue.png"
+import ArrowUp from "../../../assets/images/arrowUp.png"
+import ArrowDown from "../../../assets/images/arrowDown.png"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -32,8 +34,8 @@ const DocumentList = () => {
     const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
 
     const orderCategory = [
-        { value: "생성 일자  ↑", type: "createdAt", order: "desc" },
-        { value: "생성 일자  ↓", type: "createdAt", order: "asc" },
+        { value: "생성 일자", type: "createdAt", order: "desc" },
+        { value: "생성 일자", type: "createdAt", order: "asc" },
     ];
 
     const [selectedSort, setSelectedSort] = useState(orderCategory[0]);
@@ -77,8 +79,9 @@ const DocumentList = () => {
         updateLoading(false);
     }
 
-    const onClickSortButton = (event) => {
-        setSelectedSort(orderCategory[event.target.value]);
+    const onClickSortButton = () => {
+        const selectedItemIndex = selectedSort.order == "asc" ? 0 : 1
+        setSelectedSort(orderCategory[selectedItemIndex]);
     }
 
     const onClickProductAddButton = () => {
@@ -110,13 +113,13 @@ const DocumentList = () => {
             <ToastContainer />
             <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
                 <ChangePasswordModal
-                 onClickClose={onCloseChangePasswordModal} />
+                    onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <Sidebar value="/document/list" />
                 <div className="contentsPage">
                     <Header title="문서 목록"
-                        desc="입고/출고 문서의 목록입니다."
+                        desc="노노유통의 입고/출고 문서를 확인할 수 있습니다."
                         isSearch={false} />
                     <div className="pageBody">
                         <div className="documentListPage">
@@ -130,7 +133,7 @@ const DocumentList = () => {
                                         aria-haspopup="true"
                                         aira-controls="popupSortList"
                                         onClick={onClickSortButton} /> */}
-                                    <div className="productSortButtonBox">
+                                    {/* <div className="productSortButtonBox">
                                         <select className="productSortButton"
                                             onChange={onClickSortButton}>
                                             {
@@ -141,6 +144,10 @@ const DocumentList = () => {
                                                 })
                                             }
                                         </select>
+                                    </div> */}
+                                    <div className="noticeSortButton" onClick={onClickSortButton}>
+                                        <span>{selectedSort.value}</span>
+                                        <img src={selectedSort.order === "asc" ? ArrowUp : ArrowDown} />
                                     </div>
                                 </div>
                                 <div className="documentListTitle">
@@ -168,7 +175,7 @@ const DocumentList = () => {
                                                             >
                                                                 <div className="documentListItemFrontInfo">
                                                                     <span className="documentListCompanyName">{item.companyName ?? "삭제된 거래처"}</span>
-                                                                    <span className="documentListDate">{createDate.toDateString()}</span>
+                                                                    <span className="documentListDate">{new Date(item.createdAt).getMonth() + "월 " + new Date(item.createdAt).getDate() +"일 | " + item.writer }</span>
                                                                 </div>
 
                                                                 <div className="emptySection" />
@@ -209,7 +216,7 @@ const DocumentList = () => {
                                                     <div className="documentContentSummeryInfo">
                                                         <div className="documentDetailRowBox">
                                                             <div className="documentDetailRowTitleBox">
-                                                                <span>문서코드</span>
+                                                                <span>문서 번호</span>
                                                             </div>
                                                             <span>{selectedDocumentItem.documentId}</span>
                                                         </div>
@@ -227,23 +234,24 @@ const DocumentList = () => {
                                                         </div>
                                                         <div className="documentDetailRowBox">
                                                             <div className="documentDetailRowTitleBox">
-                                                                <span>작성일자</span>
+                                                                <span>{selectedDocumentItem.type == "INPUT" ? "입고 날짜" : "출고 날짜"}</span>
                                                             </div>
-                                                            <span>{(new Date(selectedDocumentItem.createdAt)).toDateString()}</span>
+                                                            <span>{(new Date(selectedDocumentItem.createdAt)).getFullYear() + "-" 
+                                                            + (new Date(selectedDocumentItem.createdAt)).getMonth() + 1 + "-" 
+                                                            + (new Date(selectedDocumentItem.createdAt)).getDate() + " "
+                                                            + Utils.getDayString(new Date(selectedDocumentItem.createdAt))}</span>
                                                         </div>
                                                         <div className="documentDetailRowBox">
                                                             <div className="documentDetailRowTitleBox">
                                                                 <span>금액</span>
                                                             </div>
-                                                            <span>{selectedDocumentItem.totalPrice}</span>
+                                                            <span>{"₩" + new Intl.NumberFormat('en-US').format(selectedDocumentItem.totalPrice)}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="documentContentProductSection">
-                                                <div>
-                                                    <span>입고 품목</span>
-                                                </div>
+                                                <span>입고 품목</span>
                                                 <div className="documentListTitle">
                                                     <span className="documentRecordListInfoTitle">물품 정보</span>
                                                     <div className="emptySection" />
