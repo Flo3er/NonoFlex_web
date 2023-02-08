@@ -233,7 +233,7 @@ const ProductNew = () => {
 
                 if (response.isSuccess) {
                     NonoToast.success("물품 등록에 성공했습니다.");
-                    window.location.replace("/product/list");
+                    window.location.href = "/product/list";
                 } else {
                     NonoToast.error("물품 등록에 실패했습니다.");
                     console.log(response.errorMessage);
@@ -257,7 +257,7 @@ const ProductNew = () => {
 
             if (response.isSuccess) {
                 NonoToast.success("새 물품이 추가되었습니다. 물품 목록에서 확인하세요.");
-                window.location.replace("/product/list")
+                window.location.href = "/product/list";
             } else {
                 NonoToast.error("물품 등록에 실패했습니다.");
                 console.log(response.errorMessage);

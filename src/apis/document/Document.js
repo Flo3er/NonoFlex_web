@@ -24,7 +24,7 @@ async function getDocumentList(query, column, order, page, year, month) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login";
         }
     } catch (error) {
         console.log(error.response.data)
@@ -57,7 +57,7 @@ async function getTempDocumentList(query, column, order, page) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login";
         }
     } catch (error) {
         console.log(error.response.data)
@@ -81,7 +81,7 @@ async function getDocument(documentId) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login";
         }
     } catch (error) {
         console.log(error.response.data)
@@ -112,7 +112,7 @@ async function createTempDocument(date, type, companyId, recordList) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login"
         }
     } catch (error) {
         console.log(error.response.data)
@@ -142,7 +142,7 @@ async function createDocument(date, type, companyId, recordList) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login";
         }
     } catch (error) {
         console.log(error.response.data)
@@ -173,7 +173,7 @@ async function extractDocument(year, month) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login"
         }
     } catch (error) {
         console.log(error.response.data)

@@ -145,7 +145,7 @@ const DocumentReady = () => {
         const response = await DocumentAPI.createTempDocument(documentDate, documentType, documentPartner.companyId, recordList);
         if (response.isSuccess) {
             NonoToast.success("예정서 작성에 성공하였습니다.");
-            window.location.replace("/document/list");
+            window.location.href = "/document/list";
             dispatch(clearSelectedPartner);
             dispatch(clearDocumentProduct);
         } else {

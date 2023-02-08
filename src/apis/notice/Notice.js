@@ -13,7 +13,7 @@ async function getRecentNotice() {
                 data: response.data
             };
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login"
         }
     } catch (error) {
         return {
@@ -38,7 +38,7 @@ async function addNewNotice(title, body, isFocus) {
             data: response.data
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
     } catch (error) {
         console.log(error);
@@ -59,7 +59,7 @@ async function removeNotice(noticeId) {
             data: response.data
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login"
     }
     } catch (error) {
         console.log(error);
@@ -85,7 +85,7 @@ async function editNotice(noticeId, title, body, isFocus) {
             data: response.data
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login"
     }
     } catch (error) {
         console.log(error);
@@ -117,7 +117,7 @@ async function getNoticeList(column, order, query, page) {
             data: response.data
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login"
     }
     } catch (error) {
         console.log(error);

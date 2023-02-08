@@ -86,7 +86,7 @@ const ProductEdit = () => {
                         } else {
                             NonoToast.error(response.errorMessage);
                             await Utils.timeout(1000);
-                            window.location.replace("/product/list");
+                            window.location.href = "/product/list";
                         }
                     }
                 } else {
@@ -309,7 +309,7 @@ const ProductEdit = () => {
                 if (response.isSuccess) {
                     NonoToast.success("물품 정보를 수정하였습니다.");
                     await Utils.timeout(1000);
-                    window.location.replace("/product/list");
+                    window.location.href = "/product/list";
 
                 } else {
                     NonoToast.error("물품 정보 수정에 실패했습니다.");
@@ -355,7 +355,7 @@ const ProductEdit = () => {
             if (response.isSuccess) {
                 NonoToast.success("물품 정보를 수정하였습니다.");
                 await Utils.timeout(1000);
-                window.location.replace("/product/list");
+                window.location.href = "/product/list";
             } else {
                 NonoToast.error("물품 정보 수정에 실패했습니다.");
                 console.log(response.errorMessage);

@@ -259,7 +259,7 @@ const SideBar = props => {
               </div>
             </div>
           </li>
-          <li onClick={() => { window.location.replace("http://download.nonoflex.com") }} className="menuBox">
+          <li onClick={() => { window.location.href = "http://download.nonoflex.com" }} className="menuBox">
             <div >
               <div className="menuImage" >
                 <img src={appDownload} alt="appDownload" />

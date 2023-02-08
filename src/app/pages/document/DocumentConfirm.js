@@ -150,7 +150,7 @@ const DocumentConfirm = () => {
         const documentTypeText = isSelectedDocumentInputType ? "입고" : "출고"
         if (response.isSuccess) {
             NonoToast.success("작성된 " + documentTypeText + " 확인서가 저장되었습니다.");
-            window.location.replace("/document/list");
+            window.location.href = "/document/list"
             dispatch(clearSelectedPartner);
             dispatch(clearDocumentProduct);
         } else {

@@ -29,7 +29,7 @@ async function getUserList(query, page) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login"
     }
 }
 
@@ -56,7 +56,7 @@ async function updateUserItem(userId, userName, isActive) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login"
     }
 }
 
@@ -80,7 +80,7 @@ async function deleteUserItem(userId) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
 }
 
@@ -106,7 +106,7 @@ async function createUserItem(userName) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login"
     }
 }
 

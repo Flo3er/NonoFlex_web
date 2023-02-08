@@ -112,12 +112,12 @@ const ProductList = () => {
     }
 
     const onClickProductAddButton = () => {
-        window.location.replace("/product/new");
+        window.location.href = "/product/new";
     }
 
     const onClickProductEditButton = () => {
         console.log(selectedProductItem);
-        window.location.replace("/product/edit");
+        window.location.href = "/product/edit";
     }
 
     const onClickSortButton = (event) => {

@@ -76,7 +76,7 @@ const DocumentTempList = () => {
     }
 
     const onClickProductAddButton = () => {
-        window.location.replace("/document/ready")
+        window.location.href = "/document/ready";
     }
 
     const onClickDocumentItem = (item) => {

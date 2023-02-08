@@ -50,7 +50,7 @@ async function getCompanyList(type, query, column, order, page) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
 }
 
@@ -79,7 +79,7 @@ async function updateCompanyInfo(id, name, type, category, active) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
 }
 
@@ -103,7 +103,7 @@ async function deleteCompanyItem(id) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
 }
 
@@ -131,7 +131,7 @@ async function createCompanyItem(name, type, category) {
             }
         }
     } else {
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
 }
 

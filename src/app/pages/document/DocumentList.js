@@ -89,7 +89,8 @@ const DocumentList = () => {
     }
 
     const onClickProductAddButton = () => {
-        window.location.replace("/document/confirm")
+        
+        window.location.href = "/document/confirm"
     }
 
     const onClickDocumentItem = (item) => {

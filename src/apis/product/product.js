@@ -22,7 +22,7 @@ async function getProductList(query, column, order, page) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login"
         }
     } catch (error) {
         return {
@@ -52,7 +52,7 @@ async function getRecordList(productId, year, month) {
                 data: response.data
             }
         } else {
-            window.location.replace("/login");
+            window.location.href = "/login"
         }
     } catch (error) {
         return {
