@@ -174,9 +174,7 @@ const Participants = () => {
                         desc="참여자 정보를 관리하는 화면입니다."
                         isSearch={true} />
                     <div className="pageBody">
-                        <div className="userListPage">
-                            <div className="userListSection">
-                                <div className="userListTopButtonSection">
+                    <div className="userListTopButtonSection">
                                     <div className="addUserButtonBox">
                                         <RoundButton
                                             onClick={onClickCreateNewUserItem}
@@ -188,6 +186,8 @@ const Participants = () => {
                                             } />
                                     </div>
                                 </div>
+                        <div className="userListPage">
+                            <div className="userListSection">
                                 <div className="companyListTitle">
                                     <span className="companyListItemNameTitle">참여자 정보</span>
                                     <div className="emptySection" />
