@@ -8,6 +8,8 @@ import Sort from "../../../assets/images/sorting.png"
 import AddBlue from "../../../assets/images/addBlue.png"
 import ArrowUp from "../../../assets/images/arrowUp.png"
 import ArrowDown from "../../../assets/images/arrowDown.png"
+import ArrowBackward from "../../../assets/images/arrowBackward.png"
+import ArrowForward from "../../../assets/images/arrowForward.png"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -24,6 +26,8 @@ import { changePassword } from "../../../features/login/LoginSlice";
 
 const DocumentList = () => {
     const [isLoading, updateLoading] = useState(false);
+    const [selectedRecordMonth, setSelectedRecordMonth] = useState(new Date().getMonth() + 1);
+    const [selectedRecordYear, setSelectedRecordYear] = useState(new Date().getFullYear());
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -63,14 +67,14 @@ const DocumentList = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getDocumentList(searchData, null, selectedSort.type, selectedSort.order);
+            await getDocumentList(searchData, null, selectedSort.type, selectedSort.order, selectedRecordYear, selectedRecordMonth);
         }
         fetchData();
-    }, [searchData, selectedSort]);
+    }, [searchData, selectedSort, selectedRecordYear, selectedRecordMonth]);
 
-    async function getDocumentList(query, page, type, order) {
+    async function getDocumentList(query, page, type, order, year, month) {
         updateLoading(true);
-        const response = await DocumentAPI.getDocumentList(query, type, order, page)
+        const response = await DocumentAPI.getDocumentList(query, type, order, page, year, month)
         if (response.isSuccess) {
             dispatch(updateDocumentList(response.data))
         } else {
@@ -108,6 +112,40 @@ const DocumentList = () => {
         dispatch(changePassword(false));
     }
 
+    const onClickRecordBackwardButton = () => {
+        const backwardMonth = selectedRecordMonth - 1;
+        if (backwardMonth < 1) {
+            return
+        }
+        // getRecordList(selectedRecordYear, backwardMonth);
+        setSelectedRecordMonth(backwardMonth);
+    }
+
+    const onClickRecordForwardButton = () => {
+        const forwardMonth = selectedRecordMonth + 1;
+        if (forwardMonth > 12) {
+            return
+        }
+        // getRecordList(selectedRecordYear, forwardMonth);
+        setSelectedRecordMonth(forwardMonth);
+    }
+
+    const searchYearArray = () => {
+        const currentYear = new Date().getFullYear();
+        const result = [];
+        for (let year = 2022; year < (currentYear + 1); year++) {
+            result.push(<option key={"yearSelection" + year} value={year}>{year + "년"}</option>);
+        }
+        return result;
+    };
+
+    const onChangeRecordYearSelection = (event) => {
+        console.log(event.target.value);
+        // getRecordList(event.target.value, selectedRecordMonth);
+        setSelectedRecordYear(event.target.value);
+    }
+
+
     return (
         <div>
             <ToastContainer />
@@ -125,6 +163,22 @@ const DocumentList = () => {
                         <div className="documentListPage">
                             <div className="documentListSection">
                                 <div className="documentTopButtonSection">
+                                    <div className="documentYearSelectBox">
+                                        <select className="recordYearSelect"
+                                            value={selectedRecordYear}
+                                            onChange={onChangeRecordYearSelection}>
+                                            {
+                                                searchYearArray()
+                                            }
+                                        </select>
+                                    </div>
+                                    <img src={ArrowBackward} alt="backward"
+                                    className="selectMonthArrowButtonBox"
+                                        onClick={onClickRecordBackwardButton} />
+                                    <span className="documentCurrentMonth"> {selectedRecordMonth}월</span>
+                                    <img src={ArrowForward} alt="forward"
+                                    className="selectMonthArrowButtonBox"
+                                        onClick={onClickRecordForwardButton} />
                                     <div className="emptySection" />
                                     {/* <img src={Sort} alt="sort"
                                         className="documentListSortButton"
@@ -157,9 +211,9 @@ const DocumentList = () => {
                                 </div>
                                 <div className="documentList">
                                     {
-                                        (documentList.length === 0 && searchData !== "") ?
+                                        (documentList.length === 0 ) ?
                                             <div className="emptyDocumentList">
-                                                <p>검색 결과가 존재하지 않습니다.</p>
+                                                <p>리스트가 존재하지 않습니다.</p>
                                             </div>
                                             :
                                             <ul>
@@ -175,7 +229,7 @@ const DocumentList = () => {
                                                             >
                                                                 <div className="documentListItemFrontInfo">
                                                                     <span className="documentListCompanyName">{item.companyName ?? "삭제된 거래처"}</span>
-                                                                    <span className="documentListDate">{new Date(item.createdAt).getMonth() + "월 " + new Date(item.createdAt).getDate() +"일 | " + item.writer }</span>
+                                                                    <span className="documentListDate">{(new Date(item.createdAt).getMonth() + 1) + "월 " + new Date(item.createdAt).getDate() + "일 | " + item.writer}</span>
                                                                 </div>
 
                                                                 <div className="emptySection" />
@@ -236,10 +290,10 @@ const DocumentList = () => {
                                                             <div className="documentDetailRowTitleBox">
                                                                 <span>{selectedDocumentItem.type == "INPUT" ? "입고 날짜" : "출고 날짜"}</span>
                                                             </div>
-                                                            <span>{(new Date(selectedDocumentItem.createdAt)).getFullYear() + "-" 
-                                                            + (new Date(selectedDocumentItem.createdAt)).getMonth() + 1 + "-" 
-                                                            + (new Date(selectedDocumentItem.createdAt)).getDate() + " "
-                                                            + Utils.getDayString(new Date(selectedDocumentItem.createdAt))}</span>
+                                                            <span>{(new Date(selectedDocumentItem.date)).getFullYear() + "-"
+                                                                + ((new Date(selectedDocumentItem.date)).getMonth() + 1) + "-"
+                                                                + (new Date(selectedDocumentItem.date)).getDate() + " "
+                                                                + Utils.getDayString(new Date(selectedDocumentItem.date))}</span>
                                                         </div>
                                                         <div className="documentDetailRowBox">
                                                             <div className="documentDetailRowTitleBox">

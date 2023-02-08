@@ -237,7 +237,7 @@ const NoticeList = () => {
                                                                         </div>
                                                                         <div className="noticeItemInfo">
                                                                             <span>{item.writer}</span>
-                                                                            <span>{createdAt.toDateString()}</span>
+                                                                            <span>{createdAt.getFullYear() + "월" + (createdAt.getMonth() + 1) + "월" + createdAt.getDate() + "일"}</span>
                                                                         </div>
                                                                     </li>
                                                                 );

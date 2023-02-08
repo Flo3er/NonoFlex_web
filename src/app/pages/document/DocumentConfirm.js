@@ -149,12 +149,12 @@ const DocumentConfirm = () => {
         const response = await DocumentAPI.createDocument(documentDate, documentType, documentPartner.companyId, recordList);
         const documentTypeText = isSelectedDocumentInputType ? "입고" : "출고"
         if (response.isSuccess) {
-            NonoToast.success("작성된 "+documentTypeText+ " 확인서가 저장되었습니다.");
+            NonoToast.success("작성된 " + documentTypeText + " 확인서가 저장되었습니다.");
             window.location.replace("/document/list");
             dispatch(clearSelectedPartner);
             dispatch(clearDocumentProduct);
         } else {
-            NonoToast.error("작성된 "+documentTypeText+ " 확인서 저장에 실패하였습니다.");
+            NonoToast.error("작성된 " + documentTypeText + " 확인서 저장에 실패하였습니다.");
         }
     }
 
@@ -194,6 +194,51 @@ const DocumentConfirm = () => {
 
     const onCloseDocumentProductModal = () => {
         updateDocumentProductModal(false);
+    }
+
+    const getCurrentDate = () => {
+        const month = new Date().getMonth() + 1;
+        var strMonth = ""
+        if (month < 10) {
+            strMonth = "0"+month;
+        } else {
+            strMonth = month;
+        }
+
+        const date = new Date().getDate()
+        var strDate = ""
+        if (date < 10) {
+            strDate = "0"+date
+        } else {
+            strDate = date
+        }
+
+         return new Date().getFullYear()+"-"+strMonth+"-"+strDate
+    }
+
+    const getMaxDate = () => {
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth() + 1 + 3;
+        if(month > 12) {
+            month = month - 12;
+            year = year + 1;
+        }
+
+        var strMonth = ""
+        if (month < 10) {
+            strMonth = "0"+month;
+        } else {
+            strMonth = month;
+        }
+
+        const date = new Date().getDate()
+        var strDate = ""
+        if (date < 10) {
+            strDate = "0"+date
+        } else {
+            strDate = date
+        }
+        return year+"-"+strMonth+"-"+strDate
     }
 
     return (
@@ -241,7 +286,11 @@ const DocumentConfirm = () => {
                                             <span>{documentDate.toDateString()}</span>
                                             <div className="emptySpace" />
                                             <div className="documentDateInputButtonBox">
-                                                <input type="date" className="documentDateInputButton" onChange={onChangeDateInputData} />
+                                                <input type="date"
+                                                    min={getCurrentDate()}
+                                                    max={getMaxDate()}
+                                                    className="documentDateInputButton"
+                                                    onChange={onChangeDateInputData} />
                                             </div>
                                         </div>
                                     </li>

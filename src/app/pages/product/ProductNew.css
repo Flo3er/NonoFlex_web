@@ -130,8 +130,18 @@
 
 .productNameTextField {
     width: 420px;
-    height: 50px;
+    height: 70px;
     margin-left: 20px;
+}
+.productNameTextField>p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #2E2E2E;
+    margin-left: 26px;
+    color: #E21F1F;
+    text-align: right;
 }
 
 .productDescriptionTitleBox {
@@ -192,8 +202,18 @@
 
 .productCodeTextField {
     width: 420px;
-    height: 50px;
+    height: 70px;
     margin-left: 20px;
+}
+.productCodeTextField>p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #2E2E2E;
+    margin-left: 26px;
+    color: #E21F1F;
+    text-align: right;
 }
 
 .productBarCodeTitleBox {
@@ -350,8 +370,18 @@
 
 .productUnitTextField {
     width: 420px;
-    height: 50px;
+    height: 70px;
     margin-left: 20px;
+}
+.productUnitTextField>p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #2E2E2E;
+    margin-left: 26px;
+    color: #E21F1F;
+    text-align: right;
 }
 
 .productMakerTitleBox {
@@ -375,6 +405,16 @@
     width: 420px;
     height: 50px;
     margin-left: 20px;
+}
+.productMakerTextField>p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 8px;
+    font-weight: 400;
+    color: #2E2E2E;
+    margin-left: 26px;
+    color: #E21F1F;
+    text-align: right;
 }
 
 

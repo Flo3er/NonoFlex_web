@@ -256,7 +256,7 @@ const ProductNew = () => {
                 "");
 
             if (response.isSuccess) {
-                NonoToast.success("물품 등록에 성공했습니다.");
+                NonoToast.success("새 물품이 추가되었습니다. 물품 목록에서 확인하세요.");
                 window.location.replace("/product/list")
             } else {
                 NonoToast.error("물품 등록에 실패했습니다.");
@@ -328,6 +328,10 @@ const ProductNew = () => {
                                         }}
                                         onFocusOut={updateSaveButtonValidation}
                                         placeholder="물품 이름을 입력해 주세요!" />
+                                        {
+                                            isValidProductName ? null : 
+                                            <p>물품 이름 항목은 필수 항목 입니다.</p>
+                                        }
                                 </div>
                             </li>
                             <li>
@@ -355,6 +359,10 @@ const ProductNew = () => {
                                         }}
                                         onFocusOut={updateSaveButtonValidation}
                                         placeholder="물품 코드를 입력해 주세요!" />
+                                        {
+                                            isValidProductCode ? null : 
+                                            <p>물품 코드 항목은 필수 항목 입니다.</p>
+                                        }
                                 </div>
                             </li>
                             <li>
@@ -418,11 +426,16 @@ const ProductNew = () => {
                                         onFocusOut={updateSaveButtonValidation}
                                         type="text"
                                         placeholder="물품 규격을 입력해 주세요!" />
+                                        {
+                                            isValidProductUnit ? null : 
+                                            <p>물품 규격 항목은 필수 항목 입니다.</p>
+                                        }
                                 </div>
                             </li>
                             <li>
                                 <div className="productMakerTitleBox">
-                                    <img src={AssentialPoint} className="assentialPointImage" />
+                                <div className="assentialPointImage" />
+                                    {/* <img src={AssentialPoint} className="assentialPointImage" /> */}
                                     <span>제조사</span>
                                 </div>
                                 <div className="productMakerTextField">

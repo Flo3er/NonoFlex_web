@@ -139,9 +139,13 @@ const Login = () => {
                         <label className="saveUserIdLabel">아이디 저장</label>
                     </div>
                     <div className="registerAndChangePassword">
-                        <TextLinkButton onClick="/register" value="회원 가입" />
+                        <span className="registerButtonBox"
+                         onClick={() => window.location.href("/register")}>회원 가입</span>
+                        {/* <TextLinkButton onClick="/register" value="회원 가입" /> */}
                         <br />
-                        <TextLinkButton onClick="/resetPassword" value="비밀번호 초기화" />
+                        <span  className="resetPasswordButtonBox"
+                         onClick={() => window.location.href("/resetPassword")}>비밀번호 초기화</span>
+                        {/* <TextLinkButton onClick="/resetPassword" value="비밀번호 초기화" /> */}
                     </div>
                 </div>
                 <br />

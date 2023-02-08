@@ -37,20 +37,24 @@
   height: 70px;
   width: auto;
 }
+
 .emailCheckBox {
   height: 20px;
   margin-left: 30px;
 }
+
 .emailCheck {
   color: #e21f1f;
   font-size: 8px;
   font-weight: 400;
   margin-left: 16px;
 }
+
 .passwordCheckBox {
   height: 20px;
   margin-left: 30px;
 }
+
 .passwordCheck {
   color: #e21f1f;
   font-size: 8px;
@@ -75,10 +79,11 @@
 }
 
 input[type="checkbox"] {
-  display:none;
+  display: none;
 
 }
-input[type="checkbox"] +label {
+
+input[type="checkbox"]+label {
   width: 16px;
   height: 16px;
   background: #E2F1FF;
@@ -88,10 +93,11 @@ input[type="checkbox"] +label {
   display: inline-block;
   cursor: pointer;
 }
-input[type="checkbox"]:checked + label {
+
+input[type="checkbox"]:checked+label {
   background: #1F6DE2;
   border-radius: 6px;
-  
+
 }
 
 .registerAndChangePassword {
@@ -107,4 +113,20 @@ input[type="checkbox"]:checked + label {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.registerButtonBox {
+  font-size: 14px;
+  color: #1F6DE2;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
+
+.resetPasswordButtonBox {
+  font-size: 14px;
+  color: #1F6DE2;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
 }

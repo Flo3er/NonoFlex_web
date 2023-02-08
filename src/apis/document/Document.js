@@ -1,14 +1,16 @@
 import Utils from "../../features/utils/Utils";
 import NonoAPI from "../NonoApi";
 
-async function getDocumentList(query, column, order, page) {
+async function getDocumentList(query, column, order, page, year, month) {
     try {
         const params = {
             query: query,
             column: column,
             order: order,
             size: 20,
-            page: page ?? 1
+            page: page ?? 1,
+            year: year,
+            month: month
         };
         if (await Utils.checkToken()) {
             const response = await NonoAPI().get(

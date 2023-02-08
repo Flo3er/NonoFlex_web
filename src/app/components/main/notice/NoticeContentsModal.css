@@ -78,7 +78,7 @@
     height: 40px;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    align-items: center;
 }
 .checkBoxBlock {
     display: flex;
@@ -110,6 +110,11 @@
 
 .emptySpace {
     flex-grow: 1;
+}
+
+.deleteNoticeButtonBox {
+    width: 130px;
+    height: 50px;
 }
 
 .noticeAddModalSaveButton {

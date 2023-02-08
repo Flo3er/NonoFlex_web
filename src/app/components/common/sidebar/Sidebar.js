@@ -11,6 +11,7 @@ import descriptionBlack from "../../../../assets/images/description.png";
 import settingsBlue from "../../../../assets/images/settingsBlue.png";
 import settingsBlack from "../../../../assets/images/settings.png";
 import rightArrow from "../../../../assets/images/arrowRight.png";
+import appDownload from "../../../../assets/images/appDown.png"
 import RoundButton from "../button/RoundButton";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -256,6 +257,35 @@ const SideBar = props => {
                   }
                 </ul>
               </div>
+            </div>
+          </li>
+          <li onClick={() => { window.location.replace("http://download.nonoflex.com") }} className="menuBox">
+            <div >
+              <div className="menuImage" >
+                <img src={appDownload} alt="appDownload" />
+              </div>
+              <p className="menuText">앱 다운로드</p>
+              {/* <div hidden={selectedIndex !== 3}>
+                <ul
+                  className="subMenu">
+                  {
+                    setting.map((item, index) => {
+                      return (
+                        <li key={"setting" + index}>
+                          <Link to={item.page}>
+                            <div className=" subMenuItem">
+                              <div className="subMenuImage" >
+                                <img src={rightArrow} alt="arrow" hidden={props.value !== item.page} />
+                              </div>
+                              <p className={props.value === item.page ? "selectedSubMenuText" : "subMenuText"}>{item.title}</p>
+                            </div>
+                          </Link>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              </div> */}
             </div>
           </li>
         </ul>

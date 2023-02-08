@@ -125,6 +125,7 @@ const NoticeContentsModal = (props) => {
                     <TextButton value="공지사항 삭제"
                         warning={true}
                         onclick={onClickRemoveNoticeModal} /> : null
+
                 }
                 <div className="noticeAddModalSaveButton">
                     <PrimaryButton value={isReadOnly ? "수정하기" : "저장하기"} onClick={onClickSaveButton} />

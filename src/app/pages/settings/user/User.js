@@ -23,8 +23,11 @@ const User = () => {
     const userList = useSelector((state) => {
         const userList = state.user.itemList;
         const filterUserList = userList.filter((item, index) => item.role == "ROLE_ADMIN");
-        console.log(filterUserList)
-        return filterUserList
+        const accessToken = sessionStorage.getItem("accessToken")
+        const userInfo = Utils.parseJwt(accessToken);
+        const filterMyList = filterUserList.filter((item, index) => item.userId != userInfo.userId)
+        console.log(filterMyList)
+        return filterMyList
     });
     const selectedUserItem = useSelector((state) => state.user.selectedItem);
     const changePasswordModalFlag = useSelector((state) => state.login.changePasswordModalFlag);
@@ -108,7 +111,7 @@ const User = () => {
             <ToastContainer />
             <Modal isOpen={changePasswordModalFlag} onClose={onCloseChangePasswordModal}>
                 <ChangePasswordModal
-                 onClickClose={onCloseChangePasswordModal} />
+                    onClickClose={onCloseChangePasswordModal} />
             </Modal>
             <div className="page">
                 <SideBar value="/settings/user" />
@@ -119,6 +122,11 @@ const User = () => {
                     <div className="pageBody">
                         <div className="userListPage">
                             <div className="userListSection">
+                                <div className="companyListTitle">
+                                    <span className="companyListItemNameTitle">사용자 정보</span>
+                                    <div className="emptySection" />
+                                    <span className="companyListItemStatusTitle">활성화</span>
+                                </div>
                                 <div className="userListContentsSection" onScroll={onScrollUserList}>
                                     {
                                         (userList.length === 0 && searchData !== "") ?
@@ -132,11 +140,11 @@ const User = () => {
                                                         return (
                                                             <li key={"userList" + item.userId + index}
                                                                 className={item.active ? "userListItem" : "inactiveUserListItem"}>
-                                                                    <div className="userListItemBox">
+                                                                <div className="userListItemBox">
                                                                     <span className="userListItemUserName">{item.userName}</span>
                                                                     <span className="userListItemUserEmail">{item.email}</span>
-                                                                    </div>
-               
+                                                                </div>
+
                                                                 <div className="emptySection" />
                                                                 <div className="activeTypeSelectBox">
                                                                     <select className="activeTypeSelect"

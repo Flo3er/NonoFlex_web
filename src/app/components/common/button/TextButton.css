@@ -1,7 +1,7 @@
 .textButton {
-    font-size: 14px;
+    font-size: 16px;
     color: #1F6DE2;
-    font-weight: 400;
+    font-weight: 600;
     text-decoration: none;
     margin: 8px;
     font-family: 'Noto Sans KR', sans-serif;
@@ -14,8 +14,8 @@
 }
 
 .warningButton {
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
     text-decoration: none;
     margin: 8px;
     font-family: 'Noto Sans KR', sans-serif;
@@ -29,10 +29,9 @@
 }
 
 .warningButton:hover {
-    font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    background-color: #F1F4F8;
+    background-color: #F2F9FF;
     margin: 8px;
     font-family: 'Noto Sans KR', sans-serif;
     color: #E21F1F;
@@ -45,7 +44,7 @@
 
 .textButton:hover {
     color: #1957B5;
-    background-color: #F1F4F8;
+    background-color: #F2F9FF;
     font-weight: 600;
     padding-left: 25px;
     padding-right: 25px;

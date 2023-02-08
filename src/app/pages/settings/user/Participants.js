@@ -188,6 +188,11 @@ const Participants = () => {
                                             } />
                                     </div>
                                 </div>
+                                <div className="companyListTitle">
+                                    <span className="companyListItemNameTitle">참여자 정보</span>
+                                    <div className="emptySection" />
+                                    {/* <span className="companyListItemStatusTitle"></span> */}
+                                </div>
                                 <div className="userListContentsSection" onScroll={onScrollUserList}>
                                     {
                                         (userList.length === 0 && searchData !== "") ?
