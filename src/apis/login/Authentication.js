@@ -13,6 +13,7 @@ async function login(userId, password) {
         const accesToken = await getAccessToken(authCode);
         return accesToken;
     } catch (error) {
+        console.log(error)
         return {
             isSuccess: false,
             errorCode: error.response.status,
