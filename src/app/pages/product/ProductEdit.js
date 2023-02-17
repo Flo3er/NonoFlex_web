@@ -78,13 +78,15 @@ const ProductEdit = () => {
         } else {
             const fetchData = async () => {
                 if (await Utils.checkToken()) {
+                    console.log(selectedProductItem)
                     const productId = selectedProductItem.productId;
                     if (productId !== null) {
                         const response = await ProductAPI.getProductItem(productId);
+                        console.log(response);
                         if (response.isSuccess) {
                             dispatch(selectedProduct(response.data))
                         } else {
-                            NonoToast.error(response.errorMessage);
+                            NonoToast.error("페이지에 오류가 있어 목록 페이지로 이동합니다.");
                             await Utils.timeout(1000);
                             window.location.href = "/product/list";
                         }

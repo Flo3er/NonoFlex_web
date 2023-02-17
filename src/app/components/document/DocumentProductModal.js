@@ -20,15 +20,22 @@ const DocumentProductModal = (props) => {
     useEffect(() => {
         if(props.isTemp) {
            if(props.type === "INPUT") {
-            setDocumentProductPrice(selectedTempProduct.inputPrice);
+            setDocumentProductPrice(selectedTempProduct.inputPrice ?? selectedTempProduct.price);
            } else {
-            setDocumentProductPrice(selectedTempProduct.outputPrice);
+            setDocumentProductPrice(selectedTempProduct.outputPrice ?? selectedTempProduct.price);
+           }
+
+           if (selectedTempProduct.count != null || selectedTempProduct.count != undefined) {
+            setDocumentProductCount(selectedTempProduct.count);
            }
         } else {
             if(props.type === "INPUT") {
-                setDocumentProductPrice(selectedproduct.inputPrice);
+                setDocumentProductPrice(selectedproduct.inputPrice ?? selectedproduct.price);
                } else {
-                setDocumentProductPrice(selectedproduct.outputPrice);
+                setDocumentProductPrice(selectedproduct.outputPrice ?? selectedproduct.price);
+               }
+               if (selectedproduct.count != null || selectedproduct.count != undefined) {
+                setDocumentProductCount(selectedproduct.count);
                }
         }
     }, [selectedproduct, selectedTempProduct])
@@ -41,8 +48,9 @@ const DocumentProductModal = (props) => {
     }
 
     const onChangePriceText = (event) => {
-        setDocumentProductPrice(event);
-        console.log(event);
+        const price = Number(event);
+        setDocumentProductPrice(price);
+        console.log(price);
     }
 
     const onClickMinusButton = () => {
@@ -72,7 +80,7 @@ const DocumentProductModal = (props) => {
         if(props.isTemp) {
              const resultData = {
                 productId: selectedTempProduct.productId,
-                productName: selectedTempProduct.name,
+                name: selectedTempProduct.name,
                 productCode: selectedTempProduct.productCode,
                 price: documentPrductPrice,
                 count: documentProductCount
@@ -81,7 +89,7 @@ const DocumentProductModal = (props) => {
         } else {
             const resultData = {
                 productId: selectedproduct.productId,
-                productName: selectedproduct.name,
+                name: selectedproduct.name,
                 productCode: selectedproduct.productCode,
                 price: documentPrductPrice,
                 count: documentProductCount
@@ -96,7 +104,7 @@ const DocumentProductModal = (props) => {
     return (
         <div className="documentProductModalBody">
             <div className="documentProductTitleSection">
-                <span>{selectedproduct.name ?? selectedTempProduct.name}</span>
+                <span>{selectedproduct.name ?? ( selectedTempProduct.name)}</span>
                 <div className="emptySpace" />
                 <div className="documentProductModalCloseButton"
                     onClick={onClickCloseButton} >
@@ -111,7 +119,7 @@ const DocumentProductModal = (props) => {
                             placeholder="금액을 입력해 주세요."
                             value={documentPrductPrice}
                             isValidData={true}
-                            type="number"
+                            type="text"
                             onChange={onChangePriceText}
                         />
                     </div>

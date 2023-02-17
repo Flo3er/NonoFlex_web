@@ -300,7 +300,7 @@ const DocumentList = () => {
                                                             <div className="documentDetailRowTitleBox">
                                                                 <span>금액</span>
                                                             </div>
-                                                            <span>{"₩" + new Intl.NumberFormat('en-US').format(selectedDocumentItem.totalPrice)}</span>
+                                                            <span>{new Intl.NumberFormat('en-US').format(selectedDocumentItem.totalPrice) + " 원"}</span>
                                                         </div>
                                                     </div>
                                                 </div>

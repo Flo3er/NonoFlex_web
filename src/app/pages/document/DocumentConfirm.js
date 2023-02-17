@@ -28,6 +28,7 @@ import DocumentAPI from "../../../apis/document/Document.js";
 import ChooseDocumentPartnerModal from "../../components/document/ChooseDocumentPartnerModal.js";
 import { changePassword } from "../../../features/login/LoginSlice.js";
 import ChangePasswordModal from "../../components/login/ChangePasswordModal.js";
+import { compose } from "redux";
 
 
 const DocumentConfirm = () => {
@@ -83,9 +84,24 @@ const DocumentConfirm = () => {
         console.log(documentProduct);
         if (documentProductItem.productId !== undefined) {
             var updateDocumentProductList = documentProduct.copyWithin();
-            updateDocumentProductList.push(documentProductItem);
-            setDocumentProduct(updateDocumentProductList);
+            var duplicateIndex = -1;
+            updateDocumentProductList = updateDocumentProductList.filter((item, index) => {
+                if (item.productId == documentProductItem.productId) {
+                    duplicateIndex = index;
+                    return false;
+                } else {
+                    return true;
+                }
+            });
 
+            if (duplicateIndex == -1) {
+                updateDocumentProductList.push(documentProductItem);
+                setDocumentProduct(updateDocumentProductList);
+            } else {
+                updateDocumentProductList.splice(duplicateIndex, 0, documentProductItem);
+                setDocumentProduct(updateDocumentProductList);
+            }
+            
             dispatch(clearDocumentProduct());
         }
 
@@ -176,6 +192,14 @@ const DocumentConfirm = () => {
 
     const onClickProductAddButton = (item) => {
         console.log(item);
+        dispatch(selectDocumentProduct(item));
+        updateDocumentProductModal(true);
+    }
+
+    const onClickProductModifyButton = (item, event) => {
+        if(event.target.id == "removeButton") {
+            return;
+        }
         dispatch(selectDocumentProduct(item));
         updateDocumentProductModal(true);
     }
@@ -283,7 +307,10 @@ const DocumentConfirm = () => {
                                             <span>거래 날짜</span>
                                         </div>
                                         <div className="documentDateInputBox">
-                                            <span>{documentDate.toDateString()}</span>
+                                            <span>{
+                                            documentDate.getFullYear() + "년 "
+                                            + (documentDate.getMonth() + 1) + "월 "
+                                            + documentDate.getDate() + "일"}</span>
                                             <div className="emptySpace" />
                                             <div className="documentDateInputButtonBox">
                                                 <input type="date"
@@ -321,16 +348,16 @@ const DocumentConfirm = () => {
                                                             documentProduct.map((item, index) => {
                                                                 return (
                                                                     <li key={"documentProduct" + item.productId + index}
-                                                                        className="settedDocumentProductList">
-                                                                        <img src={Close} className="removeDocumentProduct" onClick={() => onClickRemoveDocumentProduct(item)} />
+                                                                        className="settedDocumentProductList" onClick={(event) => {onClickProductModifyButton(item, event)}}>
+                                                                        <img src={Close} className="removeDocumentProduct" id="removeButton" onClick={() => onClickRemoveDocumentProduct(item)} />
                                                                         <div className="documentProductItemSection">
-                                                                            <span className="documentProductName">{item.productName}</span>
+                                                                            <span className="documentProductName">{item.name}</span>
                                                                             <span className="documentProductCode">{item.productCode}</span>
                                                                         </div>
                                                                         <div className="emptySpace" />
                                                                         <div className="documentProductItemSection">
                                                                             <span className={isSelectedDocumentInputType ? "documentProductInputCount" : "documentProductOutputCount"}>{isSelectedDocumentInputType ? "+" : "-"}{item.count}</span>
-                                                                            <span className="documentProductPrice">{item.price + "원"}</span>
+                                                                            <span className="documentProductPrice">{new Intl.NumberFormat('en-US').format(item.price) + "원"}</span>
                                                                         </div>
 
                                                                     </li>

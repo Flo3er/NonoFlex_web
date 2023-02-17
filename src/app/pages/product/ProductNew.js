@@ -1,5 +1,5 @@
 import "./ProductNew.css"
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Header from "../../components/common/header/Header.js"
 import Sidebar from "../../components/common/sidebar/Sidebar.js"
 import AssentialPoint from "../../../assets/images/assentialPoint.png"
@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import ChangePasswordModal from "../../components/login/ChangePasswordModal";
 import { useDispatch, useSelector } from "react-redux";
 import { changePassword } from "../../../features/login/LoginSlice";
+import Utils from "../../../features/utils/Utils";
 
 const ProductNew = () => {
     const [productName, setProductName] = useState("");
@@ -62,6 +63,10 @@ const ProductNew = () => {
 
 
     const onChangeProductName = (value) => {
+        if (value.length > 20) {
+            NonoToast.error("최대 20자까지 가능합니다.");
+            return;
+        }
         setProductName(value);
         productNameValidation(value);
     }
@@ -71,10 +76,18 @@ const ProductNew = () => {
     }
 
     const onChangeProductDescription = (event) => {
+        if (event.target.value.length > 250) {
+            NonoToast.error("최대 250자까지 가능합니다.");
+            return;
+        }
         setProductDescription(event.target.value);
     }
 
     const onChangeProductCode = (value) => {
+        if (value.length > 20) {
+            NonoToast.error("최대 20자까지 가능합니다.");
+            return;
+        }
         setProductCode(value);
         productCodeValidation(value);
     }
@@ -102,6 +115,10 @@ const ProductNew = () => {
     }
 
     const onChangeProductUnit = (value) => {
+        if (value.length > 5) {
+            NonoToast.error("최대 5자까지 가능합니다.");
+            return;
+        }
         setProductUnit(value);
         productUnitValidation(value);
     }
@@ -110,6 +127,10 @@ const ProductNew = () => {
         updateValidProductUnit(!isInvalidProductUnit);
     }
     const onChangeProductMaker = (value) => {
+        if (value.length > 20) {
+            NonoToast.error("최대 20자까지 가능합니다.");
+            return;
+        }
         setProductMaker(value);
         productMakerValidation(value);
     }
@@ -122,15 +143,28 @@ const ProductNew = () => {
         if (value === null || value === undefined) {
             setProductStock(0);
         } else {
-            setProductStock(value);
+            if (isNaN(value)) {
+                NonoToast.error("숫자만 입력이 가능합니다.")
+                return
+            }
+            const stockValue = Number(value);
+            setProductStock(stockValue);
         }
     }
 
     const onChangeProductInputPrice = (value) => {
+        if (isNaN(value)) {
+            NonoToast.error("숫자만 입력이 가능합니다.")
+            return
+        }
         const price = Number(value)
         setProductInputPrice(price)
     }
     const onChangeProductOutputPrice = (value) => {
+        if (isNaN(value)) {
+            NonoToast.error("숫자만 입력이 가능합니다.")
+            return
+        }
         const price = Number(value)
         setProductOutputPrice(price)
     }
@@ -232,7 +266,8 @@ const ProductNew = () => {
                     fileId);
 
                 if (response.isSuccess) {
-                    NonoToast.success("물품 등록에 성공했습니다.");
+                    NonoToast.success("새 물품이 추가되었습니다. 물품 목록에서 확인하세요.");
+                    await Utils.timeout(1500);
                     window.location.href = "/product/list";
                 } else {
                     NonoToast.error("물품 등록에 실패했습니다.");
@@ -257,6 +292,7 @@ const ProductNew = () => {
 
             if (response.isSuccess) {
                 NonoToast.success("새 물품이 추가되었습니다. 물품 목록에서 확인하세요.");
+                await Utils.timeout(1500);
                 window.location.href = "/product/list";
             } else {
                 NonoToast.error("물품 등록에 실패했습니다.");
@@ -322,6 +358,7 @@ const ProductNew = () => {
                                 <div className="productNameTextField">
                                     <TextField
                                         type="text"
+                                        value={productName}
                                         isValidData={isValidProductName}
                                         onChange={value => {
                                             onChangeProductName(value);
@@ -341,6 +378,7 @@ const ProductNew = () => {
                                 </div>
                                 <div className="productDescriptionTextField">
                                     <textarea
+                                    value={productDescription}
                                         onChange={(value) => onChangeProductDescription(value)}
                                         placeholder="물품 설명이 필요한 경우, 여기에 입력해 주세요!" />
                                 </div>
@@ -357,6 +395,7 @@ const ProductNew = () => {
                                         onChange={value => {
                                             onChangeProductCode(value);
                                         }}
+                                        value={productCode}
                                         onFocusOut={updateSaveButtonValidation}
                                         placeholder="물품 코드를 입력해 주세요!" />
                                         {
@@ -423,6 +462,7 @@ const ProductNew = () => {
                                         onChange={value => {
                                             onChangeProductUnit(value);
                                         }}
+                                        value={productUnit}
                                         onFocusOut={updateSaveButtonValidation}
                                         type="text"
                                         placeholder="물품 규격을 입력해 주세요!" />
@@ -441,6 +481,7 @@ const ProductNew = () => {
                                 <div className="productMakerTextField">
                                     <TextField isValidData={true}
                                         type="text"
+                                        value={productMaker}
                                         onChange={value => {
                                             onChangeProductMaker(value);
                                         }}
@@ -456,6 +497,7 @@ const ProductNew = () => {
                                 <div className="productStockTextField">
                                     <TextField isValidData={true}
                                         type="text"
+                                        value={productStock}
                                         onChange={value => {
                                             onChangeProductStock(value);
                                         }}

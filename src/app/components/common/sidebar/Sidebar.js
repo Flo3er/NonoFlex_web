@@ -259,7 +259,7 @@ const SideBar = props => {
               </div>
             </div>
           </li>
-          <li onClick={() => { window.location.href = "http://download.nonoflex.com" }} className="menuBox">
+          <li onClick={() => { window.open("http://download.nonoflex.com", '_blank'); }} className="menuBox">
             <div >
               <div className="menuImage" >
                 <img src={appDownload} alt="appDownload" />

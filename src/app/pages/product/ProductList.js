@@ -117,7 +117,8 @@ const ProductList = () => {
 
     const onClickProductEditButton = () => {
         console.log(selectedProductItem);
-        window.location.href = "/product/edit";
+        // window.location.href = "/product/edit";
+        navigate("/product/edit");
     }
 
     const onClickSortButton = (event) => {
