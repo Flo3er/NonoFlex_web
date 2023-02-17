@@ -2,7 +2,7 @@ import axios from "axios";
 
 const NonoAPI = () => {
     return axios.create({
-    baseURL: "http://3.39.53.3:3000",
+    baseURL: "https://api.nonoflex.com",
     headers: {
         Authorization : `Bearer ${sessionStorage.getItem("accessToken")}`
         }
