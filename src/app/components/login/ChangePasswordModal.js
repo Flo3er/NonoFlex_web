@@ -14,7 +14,7 @@ const ChangePasswordModal = (props) => {
     const [isValidChangePassword, updateChangePasswordValidation] = useState(false);
 
     const resetFlag = useSelector((state) => state.login.changePasswordModalFlag);
-    const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*^#?&]{8,}$/
+    const regExpPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()\-_+=])[A-Za-z\d!@#$%^&*()+=\-_]{8,}$/ 
 
     useEffect(() => {
         console.log("flag");
